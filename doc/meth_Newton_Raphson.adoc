@@ -1,0 +1,24 @@
+= Newton - Raphson's method
+:icons: font
+:stem: latexmath
+
+== Unidimensional problem
+
+Consider the problem non-linear of one-variable
+
+[stem]
+++++
+f(x) = 0 \quad (1)
+++++
+k=k,,
+We will construct a good approximation towards the root stem:[x_r] of the equation (1)
+by a proceeding called iterative.
+We start with a  good estimate stem:[x_0] of stem:[x_r]. From stem:[x_0], we produce an improved
+estimate stem:[x_1] by using the linear approximation
+
+[stem]
+++++
+f(x) \simeq f(x_0) + f'(x_0)(x - x_0)
+++++
+
+ik
