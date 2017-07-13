@@ -1,0 +1,4 @@
+Log file created at: 2017/07/05 13:39:40
+Running on machine: d2f84d321aa8
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+W0705 13:39:40.505807   460 ginac.hpp:441] invalid symbol u in expression 1:x:y

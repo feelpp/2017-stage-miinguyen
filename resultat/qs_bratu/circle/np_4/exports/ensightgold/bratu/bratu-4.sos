@@ -1,0 +1,12 @@
+FORMAT:
+type: master_server gold 
+
+MULTIPLE_CASEFILES
+total number of cfiles: 1 
+cfiles global path: /feel/qs_bratu/circle/np_4
+cfiles pattern: bratu.case
+cfiles start number: 0
+cfiles increment: 1
+
+SERVERS
+number of servers: 1 repeat

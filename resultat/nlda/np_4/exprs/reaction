@@ -1,0 +1,12 @@
+#include <ginac-extern-math.h> 
+#if !defined( pi )
+#define pi 3.14159
+#endif // pi
+#if !defined( Pi )
+#define Pi 3.14159
+#endif // Pi
+
+void compiled_ex(const int* an, const double a[], const int* fn, double f[])
+{
+f[0] = exp(a[2]*a[3]);
+}

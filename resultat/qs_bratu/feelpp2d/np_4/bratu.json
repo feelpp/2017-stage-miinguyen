@@ -1,0 +1,14 @@
+{
+    "application": {
+        "name": "bratu",
+        "date": {
+            "start": "2017-Jul-12 19:18:05",
+            "end": "2017-Jul-12 19:18:08"
+        },
+        "directories": {
+            "exports": "\/feel\/qs_bratu\/feelpp2d\/np_4\/exports",
+            "logs": "\/feel\/qs_bratu\/feelpp2d\/np_4\/logs",
+            "exprs": "\/feel\/qs_bratu\/feelpp2d\/np_4\/exprs"
+        }
+    }
+}

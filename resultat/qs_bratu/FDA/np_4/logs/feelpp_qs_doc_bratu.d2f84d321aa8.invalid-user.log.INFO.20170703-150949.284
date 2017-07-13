@@ -1,0 +1,60 @@
+Log file created at: 2017/07/03 15:09:49
+Running on machine: d2f84d321aa8
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0703 15:09:49.352716   284 environment.cpp:1435] File /feel/bratu/bratu/testcase2/2D_FDA_L.geo found
+I0703 15:09:49.378044   284 environment.cpp:1435] File /feel/bratu/bratu/testcase2/2D_FDA_L.geo found
+I0703 15:09:49.402724   284 gmsh.cpp:328] [Gmsh::retrieveGeoParameter] New geometry parameter : c = 1
+I0703 15:09:49.402773   284 gmsh.cpp:328] [Gmsh::retrieveGeoParameter] New geometry parameter : lo = 0.24
+I0703 15:09:49.405171   284 gmsh.cpp:444] Generate mesh on processor 0/4
+I0703 15:09:49.405270   284 gmsh.cpp:355] [Gmsh::generateGeo] Geo geometry parameter ElementOrder not found ! 
+I0703 15:09:49.405380   284 gmsh.cpp:355] [Gmsh::generateGeo] Geo geometry parameter c=1 now !
+I0703 15:09:49.405630   284 gmsh.cpp:355] [Gmsh::generateGeo] Geo geometry parameter lo=0.24 now !
+I0703 15:09:49.405763   284 gmsh.cpp:376] [Gmsh::generateGeo] Parameter h parameter (hsize) not found ! 
+I0703 15:09:49.414690   284 gmsh.cpp:422] "2D_FDA_L.geo" exists and its content correspond to the expected geometry
+I0703 15:09:49.414777   284 gmsh.cpp:461] Mesh file 2D_FDA_L.msh generated from geometry 2D_FDA_L.geo
+I0703 15:09:49.414801   284 gmsh.cpp:462]  - does mesh file name exists : true
+I0703 15:09:49.415716   284 gmsh.cpp:467] Generating 2D_FDA_L.msh...
+I0703 15:09:49.434718   284 gmsh.cpp:617] [Gmsh::generate] env.part: 4
+I0703 15:09:49.434749   284 gmsh.cpp:618] [Gmsh::generate] env.part: 4
+I0703 15:09:49.434758   284 gmsh.cpp:619] [Gmsh::generate] partitions: 4
+I0703 15:09:49.434768   284 gmsh.cpp:620] [Gmsh::generate] partitioner: 1
+I0703 15:10:29.097841   284 gmsh.cpp:670] Mesh refinement levels : 0
+I0703 15:10:42.967128   284 gmsh.cpp:676] Mesh partitions : 4
+I0703 15:10:42.968601   284 gmsh.cpp:683] Writing GMSH file 2D_FDA_L.msh in ascii format
+I0703 15:10:50.634938   284 gmsh.cpp:471] Generating 2D_FDA_L.msh done.
+I0703 15:10:50.684815   284 gmsh.cpp:483] Broadcast mesh file 2D_FDA_L.msh to all other mpi processes, (created: 1)
+I0703 15:10:50.685133   284 importergmsh.hpp:784] Reading Msh file 2D_FDA_L.msh
+I0703 15:10:50.690218   284 importergmsh.hpp:821] GMSH mesh file version : 2.2 format: ascii size of double: 8
+I0703 15:10:50.690477   284 importergmsh.hpp:918] Reading 192126 nodes
+I0703 15:10:51.568761   284 importergmsh.hpp:998] Reading 384206 elements...
+I0703 15:10:52.458503   284 importergmsh.hpp:1177] Read 1336 Line 2 elements
+I0703 15:10:52.458652   284 importergmsh.hpp:1177] Read 94981 Triangle 3 elements
+I0703 15:10:54.459913   284 meshimpl.hpp:1027] We have 1336 faces in the database
+I0703 15:10:56.816764   284 meshimpl.hpp:1446] We have now 1288 faces on the boundary in the database
+I0703 15:10:57.052798   284 meshimpl.hpp:1761] update boundary points...
+I0703 15:10:57.052839   284 meshimpl.hpp:1762] Initially we have 0 boundary points
+I0703 15:10:57.095139   284 meshimpl.hpp:1780] We have now 1290 boundary points
+I0703 15:10:57.116782   284 meshimpl.hpp:1781] update boundary elements...
+I0703 15:10:57.192843   284 meshimpl.hpp:1822] [updateOnBoundary] We have 2585 elements sharing a point, a edge or a face with the boundary in the database
+I0703 15:10:58.659219   284 meshimpl.hpp:470] h average : 0.000171475
+I0703 15:10:58.662021   284 meshimpl.hpp:471]     h min : 0.000130531
+I0703 15:10:58.664785   284 meshimpl.hpp:472]     h max : 0.000230108
+I0703 15:10:58.666962   284 geomap.hpp:527] [Geomap] start caching J,K,B for 94981 elements
+I0703 15:10:58.910735   284 partitionio.hpp:306] writing mesh in HDF5 format in /feel/qs_bratu/FDA/np_4/2D_FDA_L.h5
+I0703 15:11:10.895722   284 element_impl.hpp:240] creating element u : u
+I0703 15:11:10.925508   284 element_impl.hpp:240] creating element u : u
+I0703 15:11:45.152735   284 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0703 15:11:45.550149   284 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0703 15:11:53.627604   284 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0703 15:11:53.627655   284 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0703 15:12:12.561923   284 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0703 15:12:19.631923   284 element_impl.hpp:240] creating element u : u
+I0703 15:12:20.320201   284 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0703 15:12:32.455422   284 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0703 15:12:39.079136   284 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0703 15:12:39.079172   284 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0703 15:12:45.716251   284 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0703 15:12:45.716287   284 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0703 15:13:06.389845   284 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0703 15:13:07.231956   284 functionspetsc.cpp:38] mat solver package before 6
+I0703 15:13:07.366967   284 functionspetsc.cpp:194] mat solver package is mumps

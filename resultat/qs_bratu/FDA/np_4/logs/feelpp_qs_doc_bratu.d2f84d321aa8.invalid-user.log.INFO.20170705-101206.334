@@ -1,0 +1,501 @@
+Log file created at: 2017/07/05 10:12:06
+Running on machine: d2f84d321aa8
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0705 10:12:06.939604   334 environment.cpp:1435] File /feel/bratu/bratu/testcase2/square.geo found
+I0705 10:12:06.966336   334 environment.cpp:1435] File /feel/bratu/bratu/testcase2/square.geo found
+I0705 10:12:06.997426   334 gmsh.cpp:328] [Gmsh::retrieveGeoParameter] New geometry parameter : h = 0.1
+I0705 10:12:07.002636   334 gmsh.cpp:444] Generate mesh on processor 0/4
+I0705 10:12:07.002703   334 gmsh.cpp:355] [Gmsh::generateGeo] Geo geometry parameter ElementOrder not found ! 
+I0705 10:12:07.002768   334 gmsh.cpp:355] [Gmsh::generateGeo] Geo geometry parameter h=0.1 now !
+I0705 10:12:07.002965   334 gmsh.cpp:376] [Gmsh::generateGeo] Parameter hsize  = (?1$1) = 0.1; now ! (overwrite geo param h !)
+I0705 10:12:07.012326   334 gmsh.cpp:422] "square.geo" exists and its content correspond to the expected geometry
+I0705 10:12:07.012361   334 gmsh.cpp:461] Mesh file square.msh generated from geometry square.geo
+I0705 10:12:07.012372   334 gmsh.cpp:462]  - does mesh file name exists : true
+I0705 10:12:07.013195   334 gmsh.cpp:467] Generating square.msh...
+I0705 10:12:07.049942   334 gmsh.cpp:617] [Gmsh::generate] env.part: 4
+I0705 10:12:07.050020   334 gmsh.cpp:618] [Gmsh::generate] env.part: 4
+I0705 10:12:07.050041   334 gmsh.cpp:619] [Gmsh::generate] partitions: 4
+I0705 10:12:07.050055   334 gmsh.cpp:620] [Gmsh::generate] partitioner: 1
+I0705 10:12:07.124572   334 gmsh.cpp:670] Mesh refinement levels : 0
+I0705 10:12:07.135243   334 gmsh.cpp:676] Mesh partitions : 4
+I0705 10:12:07.135268   334 gmsh.cpp:683] Writing GMSH file square.msh in ascii format
+I0705 10:12:07.139947   334 gmsh.cpp:471] Generating square.msh done.
+I0705 10:12:07.146986   334 gmsh.cpp:483] Broadcast mesh file square.msh to all other mpi processes, (created: 1)
+I0705 10:12:07.147317   334 importergmsh.hpp:784] Reading Msh file square.msh
+I0705 10:12:07.149436   334 importergmsh.hpp:821] GMSH mesh file version : 2.2 format: ascii size of double: 8
+I0705 10:12:07.149665   334 importergmsh.hpp:918] Reading 142 nodes
+I0705 10:12:07.150048   334 importergmsh.hpp:998] Reading 282 elements...
+I0705 10:12:07.151459   334 importergmsh.hpp:1177] Read 10 Line 2 elements
+I0705 10:12:07.151530   334 importergmsh.hpp:1177] Read 85 Triangle 3 elements
+I0705 10:12:07.159628   334 meshimpl.hpp:1027] We have 10 faces in the database
+I0705 10:12:07.159943   334 meshimpl.hpp:1446] We have now 10 faces on the boundary in the database
+I0705 10:12:07.161756   334 meshimpl.hpp:1761] update boundary points...
+I0705 10:12:07.161778   334 meshimpl.hpp:1762] Initially we have 0 boundary points
+I0705 10:12:07.161795   334 meshimpl.hpp:1780] We have now 11 boundary points
+I0705 10:12:07.161808   334 meshimpl.hpp:1781] update boundary elements...
+I0705 10:12:07.161860   334 meshimpl.hpp:1822] [updateOnBoundary] We have 19 elements sharing a point, a edge or a face with the boundary in the database
+I0705 10:12:07.169049   334 meshimpl.hpp:470] h average : 0.14351
+I0705 10:12:07.169082   334 meshimpl.hpp:471]     h min : 0.0836612
+I0705 10:12:07.169097   334 meshimpl.hpp:472]     h max : 0.122505
+I0705 10:12:07.169167   334 geomap.hpp:527] [Geomap] start caching J,K,B for 85 elements
+I0705 10:12:07.171905   334 partitionio.hpp:306] writing mesh in HDF5 format in /feel/qs_bratu/FDA/np_4/square.h5
+I0705 10:12:07.390619   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:07.390646   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:07.542512   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:07.542665   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:07.572809   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:07.572829   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:07.723670   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:07.730974   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:07.747179   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:07.767490   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:07.767518   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:07.775647   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:07.775669   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:07.791925   334 functionspetsc.cpp:38] mat solver package before 6
+I0705 10:12:07.791971   334 functionspetsc.cpp:194] mat solver package is mumps
+I0705 10:12:07.918004   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:07.928643   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:07.933909   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:07.944190   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:07.944223   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:07.952836   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:07.952863   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:07.984163   334 functionspetsc.cpp:38] mat solver package before 6
+I0705 10:12:07.984190   334 functionspetsc.cpp:194] mat solver package is mumps
+I0705 10:12:07.998582   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:08.008257   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.014762   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.026286   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:08.026324   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.053747   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:08.053771   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.068279   334 functionspetsc.cpp:38] mat solver package before 6
+I0705 10:12:08.068313   334 functionspetsc.cpp:194] mat solver package is mumps
+I0705 10:12:08.089238   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:08.099011   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.104202   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.114051   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:08.114082   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.122846   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:08.122872   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.160642   334 functionspetsc.cpp:38] mat solver package before 6
+I0705 10:12:08.160687   334 functionspetsc.cpp:194] mat solver package is mumps
+I0705 10:12:08.177495   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:08.198837   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.204035   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.213336   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:08.213366   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.221909   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:08.221935   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.261025   334 functionspetsc.cpp:38] mat solver package before 6
+I0705 10:12:08.261063   334 functionspetsc.cpp:194] mat solver package is mumps
+I0705 10:12:08.280678   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:08.298267   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.303467   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.315903   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:08.315932   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.324437   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:08.324457   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.358006   334 functionspetsc.cpp:38] mat solver package before 6
+I0705 10:12:08.358041   334 functionspetsc.cpp:194] mat solver package is mumps
+I0705 10:12:08.374529   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:08.388772   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.393982   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.416790   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:08.416858   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.459141   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:08.459177   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.488160   334 functionspetsc.cpp:38] mat solver package before 6
+I0705 10:12:08.488198   334 functionspetsc.cpp:194] mat solver package is mumps
+I0705 10:12:08.508010   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:08.518800   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.531251   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.539103   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:08.539134   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.559762   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:08.559789   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.574249   334 functionspetsc.cpp:38] mat solver package before 6
+I0705 10:12:08.574285   334 functionspetsc.cpp:194] mat solver package is mumps
+I0705 10:12:08.601879   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:08.618929   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.632849   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.643609   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:08.643636   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.652356   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:08.652384   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.690603   334 functionspetsc.cpp:38] mat solver package before 6
+I0705 10:12:08.690639   334 functionspetsc.cpp:194] mat solver package is mumps
+I0705 10:12:08.706845   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:08.719182   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.724378   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.737179   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:08.737208   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.745566   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:08.745591   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.818796   334 functionspetsc.cpp:38] mat solver package before 6
+I0705 10:12:08.818830   334 functionspetsc.cpp:194] mat solver package is mumps
+I0705 10:12:08.833549   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:08.857496   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.862691   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.869380   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:08.869415   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.877869   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:08.877892   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.940919   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:08.954454   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.959750   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.966084   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:08.966119   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:08.974292   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:08.974315   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.033723   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:09.047076   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.052341   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.058802   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:09.058835   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.076666   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:09.076694   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.111338   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:09.126915   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.132259   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.138801   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:09.138828   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.159284   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:09.159308   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.192378   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:09.208232   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.213510   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.220059   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:09.220089   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.240195   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:09.240221   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.282532   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:09.308377   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.313567   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.328774   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:09.328799   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.357343   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:09.357385   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.409040   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:09.428828   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.434025   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.449733   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:09.450335   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.460247   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:09.460270   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.502557   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:09.518834   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.524137   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.549726   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:09.549756   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.576285   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:09.576314   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.621335   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:09.638880   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.644100   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.657865   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:09.657893   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.687170   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:09.687194   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.725461   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:09.738512   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.743697   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.766333   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:09.766360   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.774446   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:09.774466   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.842237   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:09.858072   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.863330   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.886550   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:09.886574   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.894541   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:09.894564   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.947006   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:09.958897   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.964144   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.972180   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:09.972214   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:09.991736   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:09.991762   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.045539   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:10.068856   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.074029   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.088485   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.088517   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.117213   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.117238   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.157229   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:10.168987   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.174229   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.182034   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.182063   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.190301   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.190320   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.239457   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:10.249434   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.254647   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.265265   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.265318   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.274051   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.274082   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.324095   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:10.337245   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.342444   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.348894   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.348930   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.368474   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.368510   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.403193   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:10.417058   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.422251   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.435794   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.435820   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.456233   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.456274   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.482048   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:10.497807   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.503108   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.509851   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.509892   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.530208   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.530233   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.561815   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:10.577471   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.582736   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.590131   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.590159   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.610401   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.610426   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.642153   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:10.656925   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.662134   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.669739   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.669770   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.689441   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.689466   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.724186   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:10.729612   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.743129   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.749645   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.749672   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.769747   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.769773   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.802531   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:10.817838   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.823036   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.830621   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.830653   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.850447   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.850474   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.895934   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:10.919067   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.924278   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.932487   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.932515   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:10.941112   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:10.941136   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.012758   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:11.026393   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.031713   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.038700   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.038729   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.059633   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.059660   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.095000   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:11.108253   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.113481   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.120689   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.120721   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.140880   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.140907   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.177222   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:11.187235   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.192471   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.202375   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.202405   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.221681   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.221710   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.259680   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:11.269191   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.274390   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.285892   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.285925   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.294378   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.294404   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.342383   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:11.349326   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.354629   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.368340   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.368371   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.388305   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.388330   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.429443   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:11.437954   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.443294   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.454712   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.454741   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.463021   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.463047   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.526439   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:11.539293   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.544494   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.552098   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.552130   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.560437   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.560461   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.603090   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:11.617259   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.623664   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.630676   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.630705   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.650480   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.650506   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.683974   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:11.698788   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.704033   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.712329   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.712357   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.721287   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.721312   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.776263   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:11.788698   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.793896   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.801594   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.801623   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.810269   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.810292   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.863957   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:11.877259   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.882475   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.889078   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.889107   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.909370   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.909396   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.945554   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:11.958359   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.963681   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.971694   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.971730   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:11.981122   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:11.981148   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.031963   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:12.045260   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.050590   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.059439   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:12.059471   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.077077   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:12.077106   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.116078   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:12.128734   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.133929   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.141584   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:12.141613   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.150954   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:12.150986   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.256474   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:12.278836   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.284072   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.295604   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:12.295639   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.304271   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:12.304296   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.351254   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:12.377034   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.382235   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.397752   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:12.397827   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.424070   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:12.424094   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.455651   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:12.467488   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.474349   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.484174   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:12.484203   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.492907   334 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0705 10:12:12.492933   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.551219   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:12.564616   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.569944   334 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0705 10:12:12.574302   334 solvernonlinearpetsc.cpp:964] [SolverNonLinearPetsc] number of nonlinear iterations = 50
+I0705 10:12:12.574363   334 solvernonlinearpetsc.cpp:977] iteration 0: Linear iterations : 0 Function norm = 0.0879185
+I0705 10:12:12.574388   334 solvernonlinearpetsc.cpp:977] iteration 1: Linear iterations : 1 Function norm = 0.0323434
+I0705 10:12:12.574395   334 solvernonlinearpetsc.cpp:977] iteration 2: Linear iterations : 1 Function norm = 0.0223881
+I0705 10:12:12.574404   334 solvernonlinearpetsc.cpp:977] iteration 3: Linear iterations : 1 Function norm = 0.0173551
+I0705 10:12:12.574416   334 solvernonlinearpetsc.cpp:977] iteration 4: Linear iterations : 1 Function norm = 0.0142461
+I0705 10:12:12.574429   334 solvernonlinearpetsc.cpp:977] iteration 5: Linear iterations : 1 Function norm = 0.012115
+I0705 10:12:12.574440   334 solvernonlinearpetsc.cpp:977] iteration 6: Linear iterations : 1 Function norm = 0.0105555
+I0705 10:12:12.574450   334 solvernonlinearpetsc.cpp:977] iteration 7: Linear iterations : 1 Function norm = 0.00936134
+I0705 10:12:12.574460   334 solvernonlinearpetsc.cpp:977] iteration 8: Linear iterations : 1 Function norm = 0.0084158
+I0705 10:12:12.574470   334 solvernonlinearpetsc.cpp:977] iteration 9: Linear iterations : 1 Function norm = 0.00764757
+I0705 10:12:12.574481   334 solvernonlinearpetsc.cpp:977] iteration 10: Linear iterations : 1 Function norm = 0.00701046
+I0705 10:12:12.574494   334 solvernonlinearpetsc.cpp:977] iteration 11: Linear iterations : 1 Function norm = 0.00647317
+I0705 10:12:12.574507   334 solvernonlinearpetsc.cpp:977] iteration 12: Linear iterations : 1 Function norm = 0.00601369
+I0705 10:12:12.574518   334 solvernonlinearpetsc.cpp:977] iteration 13: Linear iterations : 1 Function norm = 0.0056161
+I0705 10:12:12.574532   334 solvernonlinearpetsc.cpp:977] iteration 14: Linear iterations : 1 Function norm = 0.00526857
+I0705 10:12:12.574542   334 solvernonlinearpetsc.cpp:977] iteration 15: Linear iterations : 1 Function norm = 0.00496212
+I0705 10:12:12.574550   334 solvernonlinearpetsc.cpp:977] iteration 16: Linear iterations : 1 Function norm = 0.00468982
+I0705 10:12:12.574563   334 solvernonlinearpetsc.cpp:977] iteration 17: Linear iterations : 1 Function norm = 0.0044462
+I0705 10:12:12.574571   334 solvernonlinearpetsc.cpp:977] iteration 18: Linear iterations : 1 Function norm = 0.00422694
+I0705 10:12:12.574580   334 solvernonlinearpetsc.cpp:977] iteration 19: Linear iterations : 1 Function norm = 0.00402853
+I0705 10:12:12.574589   334 solvernonlinearpetsc.cpp:977] iteration 20: Linear iterations : 1 Function norm = 0.0038481
+I0705 10:12:12.574597   334 solvernonlinearpetsc.cpp:977] iteration 21: Linear iterations : 1 Function norm = 0.00368331
+I0705 10:12:12.574605   334 solvernonlinearpetsc.cpp:977] iteration 22: Linear iterations : 1 Function norm = 0.00353218
+I0705 10:12:12.574614   334 solvernonlinearpetsc.cpp:977] iteration 23: Linear iterations : 1 Function norm = 0.00339309
+I0705 10:12:12.574622   334 solvernonlinearpetsc.cpp:977] iteration 24: Linear iterations : 1 Function norm = 0.00326463
+I0705 10:12:12.574630   334 solvernonlinearpetsc.cpp:977] iteration 25: Linear iterations : 1 Function norm = 0.00314563
+I0705 10:12:12.574683   334 solvernonlinearpetsc.cpp:977] iteration 26: Linear iterations : 1 Function norm = 0.00303507
+I0705 10:12:12.574694   334 solvernonlinearpetsc.cpp:977] iteration 27: Linear iterations : 1 Function norm = 0.00293209
+I0705 10:12:12.574707   334 solvernonlinearpetsc.cpp:977] iteration 28: Linear iterations : 1 Function norm = 0.00283591
+I0705 10:12:12.574719   334 solvernonlinearpetsc.cpp:977] iteration 29: Linear iterations : 1 Function norm = 0.0027459
+I0705 10:12:12.574729   334 solvernonlinearpetsc.cpp:977] iteration 30: Linear iterations : 1 Function norm = 0.00266146
+I0705 10:12:12.575305   334 solvernonlinearpetsc.cpp:977] iteration 31: Linear iterations : 1 Function norm = 0.0025821
+I0705 10:12:12.575336   334 solvernonlinearpetsc.cpp:977] iteration 32: Linear iterations : 1 Function norm = 0.00250737
+I0705 10:12:12.575350   334 solvernonlinearpetsc.cpp:977] iteration 33: Linear iterations : 1 Function norm = 0.00243687
+I0705 10:12:12.575361   334 solvernonlinearpetsc.cpp:977] iteration 34: Linear iterations : 1 Function norm = 0.00237026
+I0705 10:12:12.575371   334 solvernonlinearpetsc.cpp:977] iteration 35: Linear iterations : 1 Function norm = 0.00230721
+I0705 10:12:12.575381   334 solvernonlinearpetsc.cpp:977] iteration 36: Linear iterations : 1 Function norm = 0.00224745
+I0705 10:12:12.575390   334 solvernonlinearpetsc.cpp:977] iteration 37: Linear iterations : 1 Function norm = 0.00219073
+I0705 10:12:12.575400   334 solvernonlinearpetsc.cpp:977] iteration 38: Linear iterations : 1 Function norm = 0.00213681
+I0705 10:12:12.575417   334 solvernonlinearpetsc.cpp:977] iteration 39: Linear iterations : 1 Function norm = 0.0020855
+I0705 10:12:12.575428   334 solvernonlinearpetsc.cpp:977] iteration 40: Linear iterations : 1 Function norm = 0.00203662
+I0705 10:12:12.575438   334 solvernonlinearpetsc.cpp:977] iteration 41: Linear iterations : 1 Function norm = 0.00198998
+I0705 10:12:12.575445   334 solvernonlinearpetsc.cpp:977] iteration 42: Linear iterations : 1 Function norm = 0.00194544
+I0705 10:12:12.575453   334 solvernonlinearpetsc.cpp:977] iteration 43: Linear iterations : 1 Function norm = 0.00190287
+I0705 10:12:12.575465   334 solvernonlinearpetsc.cpp:977] iteration 44: Linear iterations : 1 Function norm = 0.00186213
+I0705 10:12:12.575477   334 solvernonlinearpetsc.cpp:977] iteration 45: Linear iterations : 1 Function norm = 0.0018231
+I0705 10:12:12.575487   334 solvernonlinearpetsc.cpp:977] iteration 46: Linear iterations : 1 Function norm = 0.00178569
+I0705 10:12:12.575497   334 solvernonlinearpetsc.cpp:977] iteration 47: Linear iterations : 1 Function norm = 0.00174978
+I0705 10:12:12.575507   334 solvernonlinearpetsc.cpp:977] iteration 48: Linear iterations : 1 Function norm = 0.0017153
+I0705 10:12:12.575517   334 solvernonlinearpetsc.cpp:977] iteration 49: Linear iterations : 1 Function norm = 0.00168216
+I0705 10:12:12.575567   334 solvernonlinearpetsc.cpp:982] [solvernonlinearpetsc] convergence reason : -5
+E0705 10:12:12.575600   334 solvernonlinearpetsc.cpp:989] Nonlinear solve did not converge due to DIVERGED_MAX_IT iterations 50
+E0705 10:12:12.585443   334 backend.cpp:464] 
+[backend] non-linear solver fail
+E0705 10:12:12.586701   334 backend.cpp:465] Backend  : non-linear solver failed to converge
+I0705 10:12:12.602643   334 exporterimpl.hpp:224] [Exporter] format :  ensightgold
+I0705 10:12:12.602672   334 exporterimpl.hpp:225] [Exporter] N      :  1
+I0705 10:12:12.619720   334 element_impl.hpp:240] creating element u : u
+I0705 10:12:12.620926   334 exporterensightgold_impl.hpp:947] nMarkers 1
+I0705 10:12:12.620957   334 exporterensightgold_impl.hpp:1026] 0 partid 8(85)
+I0705 10:12:12.621003   334 exporterensightgold_impl.hpp:1055] 0 parts/markers 8 (61)
+I0705 10:12:12.621021   334 exporterensightgold_impl.hpp:776] GEO: Changing geo mode
+I0705 10:12:12.657992   334 exporterensightgold_impl.hpp:1399] writing part 9
+I0705 10:12:12.699879   334 exporterensightgold_impl.hpp:1679] NodalScalar: 1
+I0705 10:12:12.771023   334 environment.cpp:2108] Environment::clearSomeMemory before: PETSC get current memory usage (resident memory): 142049  KBytes 142.049  MBytes 0.142049 GBytes
+I0705 10:12:12.771181   334 environment.cpp:2113] Environment::clearSomeMemory before: PETSC get current PETSC Malloc usage: 0  KBytes 0 MBytes 0 GBytes
+I0705 10:12:12.771219   334 environment.cpp:2115] Environment::clearSomeMemory before: PETSC get maximum PETSC Malloc usage(largest memory ever used so far): 0  KBytes 0 MBytes 0 GBytes
+I0705 10:12:12.771340   334 backendpetsc.cpp:98] Deleting linear solver petsc
+I0705 10:12:12.771961   334 backendpetsc.cpp:102] Deleting backend petsc
+I0705 10:12:12.771980   334 preconditionerpetsc.cpp:1127] PreconditionerPetsc<T>::clear
+I0705 10:12:12.771988   334 preconditionerpetsc.cpp:1137] calling PCDestroy
+I0705 10:12:12.775730   334 backend.cpp:139] Sending delete signal to all observers... 
+I0705 10:12:12.775759   334 preconditionerpetsc.cpp:1127] PreconditionerPetsc<T>::clear
+I0705 10:12:12.775890   334 preconditionerpetsc.cpp:1127] PreconditionerPetsc<T>::clear
+I0705 10:12:12.775902   334 backend.cpp:139] Sending delete signal to all observers... 
+I0705 10:12:12.775913   334 preconditionerpetsc.cpp:1127] PreconditionerPetsc<T>::clear
+I0705 10:12:12.776449   334 preconditionerpetsc.cpp:1127] PreconditionerPetsc<T>::clear
+I0705 10:12:12.777222   334 environment.cpp:2108] Environment::clearSomeMemory after: PETSC get current memory usage (resident memory): 142049  KBytes 142.049  MBytes 0.142049 GBytes
+I0705 10:12:12.777254   334 environment.cpp:2113] Environment::clearSomeMemory after: PETSC get current PETSC Malloc usage: 0  KBytes 0 MBytes 0 GBytes
+I0705 10:12:12.777267   334 environment.cpp:2115] Environment::clearSomeMemory after: PETSC get maximum PETSC Malloc usage(largest memory ever used so far): 0  KBytes 0 MBytes 0 GBytes

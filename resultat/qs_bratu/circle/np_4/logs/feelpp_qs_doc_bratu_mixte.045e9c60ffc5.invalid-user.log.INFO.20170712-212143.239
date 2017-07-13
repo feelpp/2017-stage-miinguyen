@@ -1,0 +1,228 @@
+Log file created at: 2017/07/12 21:21:43
+Running on machine: 045e9c60ffc5
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0712 21:21:43.236987   239 environment.cpp:1435] File /feel/bratu/bratu/testcase3/circle.geo found
+I0712 21:21:43.274853   239 environment.cpp:1435] File /feel/bratu/bratu/testcase3/circle.geo found
+I0712 21:21:43.280232   239 gmsh.cpp:328] [Gmsh::retrieveGeoParameter] New geometry parameter : h = 0.1
+I0712 21:21:43.280444   239 gmsh.cpp:444] Generate mesh on processor 0/4
+I0712 21:21:43.280498   239 gmsh.cpp:355] [Gmsh::generateGeo] Geo geometry parameter ElementOrder not found ! 
+I0712 21:21:43.280563   239 gmsh.cpp:355] [Gmsh::generateGeo] Geo geometry parameter h=0.1 now !
+I0712 21:21:43.280859   239 gmsh.cpp:376] [Gmsh::generateGeo] Parameter hsize  = (?1$1) = 0.025; now ! (overwrite geo param h !)
+I0712 21:21:43.287766   239 gmsh.cpp:422] "circle.geo" exists and its content correspond to the expected geometry
+I0712 21:21:43.287850   239 gmsh.cpp:461] Mesh file circle.msh generated from geometry circle.geo
+I0712 21:21:43.287930   239 gmsh.cpp:462]  - does mesh file name exists : true
+I0712 21:21:43.288779   239 gmsh.cpp:467] Generating circle.msh...
+I0712 21:21:43.292918   239 gmsh.cpp:617] [Gmsh::generate] env.part: 4
+I0712 21:21:43.294814   239 gmsh.cpp:618] [Gmsh::generate] env.part: 4
+I0712 21:21:43.294842   239 gmsh.cpp:619] [Gmsh::generate] partitions: 4
+I0712 21:21:43.294867   239 gmsh.cpp:620] [Gmsh::generate] partitioner: 1
+I0712 21:21:44.271944   239 gmsh.cpp:670] Mesh refinement levels : 0
+I0712 21:21:44.446130   239 gmsh.cpp:676] Mesh partitions : 4
+I0712 21:21:44.446966   239 gmsh.cpp:683] Writing GMSH file circle.msh in ascii format
+I0712 21:21:44.951179   239 gmsh.cpp:471] Generating circle.msh done.
+I0712 21:21:44.964784   239 gmsh.cpp:483] Broadcast mesh file circle.msh to all other mpi processes, (created: 1)
+I0712 21:21:44.965144   239 importergmsh.hpp:784] Reading Msh file circle.msh
+I0712 21:21:44.967288   239 importergmsh.hpp:821] GMSH mesh file version : 2.2 format: ascii size of double: 8
+I0712 21:21:44.967419   239 importergmsh.hpp:918] Reading 6018 nodes
+I0712 21:21:44.993625   239 importergmsh.hpp:998] Reading 12034 elements...
+I0712 21:21:45.017472   239 importergmsh.hpp:1177] Read 71 Line 2 elements
+I0712 21:21:45.017556   239 importergmsh.hpp:1177] Read 3125 Triangle 3 elements
+I0712 21:21:45.074868   239 meshimpl.hpp:1027] We have 71 faces in the database
+I0712 21:21:45.115991   239 meshimpl.hpp:1446] We have now 71 faces on the boundary in the database
+I0712 21:21:45.129528   239 meshimpl.hpp:1761] update boundary points...
+I0712 21:21:45.129555   239 meshimpl.hpp:1762] Initially we have 0 boundary points
+I0712 21:21:45.130182   239 meshimpl.hpp:1780] We have now 72 boundary points
+I0712 21:21:45.130395   239 meshimpl.hpp:1781] update boundary elements...
+I0712 21:21:45.131096   239 meshimpl.hpp:1822] [updateOnBoundary] We have 144 elements sharing a point, a edge or a face with the boundary in the database
+I0712 21:21:45.175336   239 meshimpl.hpp:470] h average : 0.0267573
+I0712 21:21:45.175376   239 meshimpl.hpp:471]     h min : 0.0197202
+I0712 21:21:45.175390   239 meshimpl.hpp:472]     h max : 0.0336277
+I0712 21:21:45.175470   239 geomap.hpp:527] [Geomap] start caching J,K,B for 3125 elements
+I0712 21:21:45.179276   239 partitionio.hpp:306] writing mesh in HDF5 format in /feel/qs_bratu/circle/np_4/circle.h5
+I0712 21:21:45.311785   239 element_impl.hpp:240] creating element u : u
+I0712 21:21:45.311820   239 element_impl.hpp:240] creating element u : u
+I0712 21:21:45.311866   239 ginac.cpp:149] Parsing 0:x:y using GiNaC
+I0712 21:21:45.312000   239 ginac.cpp:166]  . Number of symbols 2
+I0712 21:21:45.312021   239 ginac.cpp:167]  . symbols : (x,y)
+I0712 21:21:45.312074   239 ginac.cpp:168]  . Number of params 0
+I0712 21:21:45.312093   239 ginac.cpp:169]  . symbols : ()
+I0712 21:21:45.312108   239 ginac.cpp:172] Inserting symbols in symbol table
+I0712 21:21:45.312162   239 ginac.cpp:192] Inserting params and in symbol table : (x,y)
+I0712 21:21:45.312180   239 ginac.cpp:203]  . table : (x, x) (y, y)
+I0712 21:21:45.312446   239 ginac.cpp:206] Defining parser
+I0712 21:21:45.312705   239 ginac.cpp:209] parse expression: 0
+I0712 21:21:45.313146   239 ginac.cpp:228] e=0
+I0712 21:21:45.949865   239 ginac.cpp:149] Parsing sin(pi*x)*cos(pi*y):x:y using GiNaC
+I0712 21:21:45.949928   239 ginac.cpp:166]  . Number of symbols 2
+I0712 21:21:45.949939   239 ginac.cpp:167]  . symbols : (x,y)
+I0712 21:21:45.949954   239 ginac.cpp:168]  . Number of params 0
+I0712 21:21:45.949962   239 ginac.cpp:169]  . symbols : ()
+I0712 21:21:45.949980   239 ginac.cpp:172] Inserting symbols in symbol table
+I0712 21:21:45.950008   239 ginac.cpp:192] Inserting params and in symbol table : (x,y)
+I0712 21:21:45.950023   239 ginac.cpp:203]  . table : (x, x) (y, y)
+I0712 21:21:45.950038   239 ginac.cpp:206] Defining parser
+I0712 21:21:45.950280   239 ginac.cpp:209] parse expression: sin(pi*x)*cos(pi*y)
+I0712 21:21:45.951505   239 ginac.cpp:228] e=sin(x*pi)*cos(y*pi)
+I0712 21:21:45.972291   239 ginac.cpp:149] Parsing (pi^2)*cos(pi*y)*sin(pi*x) + (pi^2)*sin(pi*x)*cos(pi*y):x:y using GiNaC
+I0712 21:21:45.972364   239 ginac.cpp:166]  . Number of symbols 2
+I0712 21:21:45.972385   239 ginac.cpp:167]  . symbols : (x,y)
+I0712 21:21:45.972410   239 ginac.cpp:168]  . Number of params 0
+I0712 21:21:45.972429   239 ginac.cpp:169]  . symbols : ()
+I0712 21:21:45.972450   239 ginac.cpp:172] Inserting symbols in symbol table
+I0712 21:21:45.972477   239 ginac.cpp:192] Inserting params and in symbol table : (x,y)
+I0712 21:21:45.972499   239 ginac.cpp:203]  . table : (x, x) (y, y)
+I0712 21:21:45.972524   239 ginac.cpp:206] Defining parser
+I0712 21:21:45.972650   239 ginac.cpp:209] parse expression: (pi^2)*cos(pi*y)*sin(pi*x) + (pi^2)*sin(pi*x)*cos(pi*y)
+I0712 21:21:45.972914   239 ginac.cpp:228] e=2*cos(y*pi)*sin(x*pi)*pi^2
+I0712 21:21:46.486249   239 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0712 21:21:46.486338   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:46.563094   239 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0712 21:21:46.563127   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:46.700300   239 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0712 21:21:46.737197   239 element_impl.hpp:240] creating element u : u
+I0712 21:21:46.763155   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:46.793498   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:46.858778   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:46.941434   239 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0712 21:21:46.941469   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:46.959442   239 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0712 21:21:46.959480   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:47.028712   239 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0712 21:21:47.107779   239 functionspetsc.cpp:38] mat solver package before 6
+I0712 21:21:47.107825   239 functionspetsc.cpp:194] mat solver package is mumps
+I0712 21:21:47.268637   239 element_impl.hpp:240] creating element u : u
+I0712 21:21:47.292990   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:47.316561   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:47.402151   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:47.449841   239 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0712 21:21:47.449870   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:47.478039   239 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0712 21:21:47.478080   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:47.592972   239 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0712 21:21:47.614781   239 functionspetsc.cpp:38] mat solver package before 6
+I0712 21:21:47.614815   239 functionspetsc.cpp:194] mat solver package is mumps
+I0712 21:21:47.694900   239 element_impl.hpp:240] creating element u : u
+I0712 21:21:47.713486   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:47.741423   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:47.800074   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:47.854086   239 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0712 21:21:47.854115   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:47.888136   239 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0712 21:21:47.888178   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:47.982915   239 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0712 21:21:47.995509   239 functionspetsc.cpp:38] mat solver package before 6
+I0712 21:21:47.995544   239 functionspetsc.cpp:194] mat solver package is mumps
+I0712 21:21:48.077546   239 element_impl.hpp:240] creating element u : u
+I0712 21:21:48.093098   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:48.121119   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:48.192289   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:48.255908   239 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0712 21:21:48.255937   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:48.302924   239 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0712 21:21:48.302960   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:48.377516   239 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0712 21:21:48.399283   239 functionspetsc.cpp:38] mat solver package before 6
+I0712 21:21:48.399322   239 functionspetsc.cpp:194] mat solver package is mumps
+I0712 21:21:48.480237   239 element_impl.hpp:240] creating element u : u
+I0712 21:21:48.492004   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:48.534200   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:48.598242   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:48.654728   239 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0712 21:21:48.654754   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:48.686512   239 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0712 21:21:48.686553   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:48.786396   239 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0712 21:21:48.798502   239 functionspetsc.cpp:38] mat solver package before 6
+I0712 21:21:48.798534   239 functionspetsc.cpp:194] mat solver package is mumps
+I0712 21:21:48.883981   239 element_impl.hpp:240] creating element u : u
+I0712 21:21:48.893307   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:48.920155   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:48.994137   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:49.047148   239 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0712 21:21:49.047178   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:49.079488   239 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0712 21:21:49.079533   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:49.181774   239 integrator.hpp:909] [integrator::assemble bilinear form] with_relation_mesh (same_mesh: 1 test_related_to_trial: 1)
+I0712 21:21:49.191263   239 functionspetsc.cpp:38] mat solver package before 6
+I0712 21:21:49.191295   239 functionspetsc.cpp:194] mat solver package is mumps
+I0712 21:21:49.272289   239 element_impl.hpp:240] creating element u : u
+I0712 21:21:49.283500   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:49.321954   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:49.385341   239 integrator.hpp:973] [integrator::assemble FormType& __form, mpl::int_<MESH_ELEMENTS> /**/, mpl::bool_<true>
+I0712 21:21:49.423341   239 solvernonlinearpetsc.cpp:964] [SolverNonLinearPetsc] number of nonlinear iterations = 6
+I0712 21:21:49.423382   239 solvernonlinearpetsc.cpp:977] iteration 0: Linear iterations : 0 Function norm = 0.42815
+I0712 21:21:49.423470   239 solvernonlinearpetsc.cpp:977] iteration 1: Linear iterations : 1 Function norm = 0.0065172
+I0712 21:21:49.423486   239 solvernonlinearpetsc.cpp:977] iteration 2: Linear iterations : 1 Function norm = 0.000402886
+I0712 21:21:49.423496   239 solvernonlinearpetsc.cpp:977] iteration 3: Linear iterations : 1 Function norm = 1.68011e-05
+I0712 21:21:49.423506   239 solvernonlinearpetsc.cpp:977] iteration 4: Linear iterations : 1 Function norm = 1.06897e-06
+I0712 21:21:49.423516   239 solvernonlinearpetsc.cpp:977] iteration 5: Linear iterations : 1 Function norm = 4.61911e-08
+I0712 21:21:49.423524   239 solvernonlinearpetsc.cpp:977] iteration 6: Linear iterations : 1 Function norm = 2.92214e-09
+I0712 21:21:49.423601   239 solvernonlinearpetsc.cpp:977] iteration 7: Linear iterations : 0 Function norm = 0
+I0712 21:21:49.423616   239 solvernonlinearpetsc.cpp:977] iteration 8: Linear iterations : 0 Function norm = -2
+I0712 21:21:49.423625   239 solvernonlinearpetsc.cpp:977] iteration 9: Linear iterations : 0 Function norm = 0
+I0712 21:21:49.423635   239 solvernonlinearpetsc.cpp:977] iteration 10: Linear iterations : 0 Function norm = 0
+I0712 21:21:49.423645   239 solvernonlinearpetsc.cpp:977] iteration 11: Linear iterations : 0 Function norm = 0
+I0712 21:21:49.423655   239 solvernonlinearpetsc.cpp:977] iteration 12: Linear iterations : -500134854 Function norm = 0
+I0712 21:21:49.423738   239 solvernonlinearpetsc.cpp:977] iteration 13: Linear iterations : 1044740494 Function norm = 0
+I0712 21:21:49.423753   239 solvernonlinearpetsc.cpp:977] iteration 14: Linear iterations : 0 Function norm = 0
+I0712 21:21:49.423763   239 solvernonlinearpetsc.cpp:977] iteration 15: Linear iterations : 0 Function norm = 0
+I0712 21:21:49.423771   239 solvernonlinearpetsc.cpp:977] iteration 16: Linear iterations : 0 Function norm = 0
+I0712 21:21:49.423781   239 solvernonlinearpetsc.cpp:977] iteration 17: Linear iterations : 0 Function norm = 0
+I0712 21:21:49.423791   239 solvernonlinearpetsc.cpp:977] iteration 18: Linear iterations : -342860288 Function norm = 0
+I0712 21:21:49.423866   239 solvernonlinearpetsc.cpp:977] iteration 19: Linear iterations : 32598 Function norm = 0
+I0712 21:21:49.423879   239 solvernonlinearpetsc.cpp:977] iteration 20: Linear iterations : 260140408 Function norm = 1.9119e+214
+I0712 21:21:49.423892   239 solvernonlinearpetsc.cpp:977] iteration 21: Linear iterations : 32767 Function norm = 7.87705e+276
+I0712 21:21:49.423902   239 solvernonlinearpetsc.cpp:977] iteration 22: Linear iterations : 260147200 Function norm = 0
+I0712 21:21:49.423913   239 solvernonlinearpetsc.cpp:977] iteration 23: Linear iterations : 0 Function norm = 0
+I0712 21:21:49.423923   239 solvernonlinearpetsc.cpp:977] iteration 24: Linear iterations : 1 Function norm = 0
+I0712 21:21:49.424000   239 solvernonlinearpetsc.cpp:977] iteration 25: Linear iterations : 0 Function norm = 0
+I0712 21:21:49.424013   239 solvernonlinearpetsc.cpp:977] iteration 26: Linear iterations : 260140412 Function norm = 0
+I0712 21:21:49.424023   239 solvernonlinearpetsc.cpp:977] iteration 27: Linear iterations : 32767 Function norm = 0
+I0712 21:21:49.424032   239 solvernonlinearpetsc.cpp:977] iteration 28: Linear iterations : 1 Function norm = 1.59567e-316
+I0712 21:21:49.424048   239 solvernonlinearpetsc.cpp:977] iteration 29: Linear iterations : 0 Function norm = 5.96733e-154
+I0712 21:21:49.424602   239 solvernonlinearpetsc.cpp:977] iteration 30: Linear iterations : -342750284 Function norm = 0
+I0712 21:21:49.424628   239 solvernonlinearpetsc.cpp:977] iteration 31: Linear iterations : 32598 Function norm = 1e-50
+I0712 21:21:49.424711   239 solvernonlinearpetsc.cpp:977] iteration 32: Linear iterations : 5 Function norm = 2.47033e-323
+I0712 21:21:49.424721   239 solvernonlinearpetsc.cpp:977] iteration 33: Linear iterations : 0 Function norm = 2.22523e-306
+I0712 21:21:49.424731   239 solvernonlinearpetsc.cpp:977] iteration 34: Linear iterations : 0 Function norm = 0
+I0712 21:21:49.424741   239 solvernonlinearpetsc.cpp:977] iteration 35: Linear iterations : 0 Function norm = 2.47033e-322
+I0712 21:21:49.424751   239 solvernonlinearpetsc.cpp:977] iteration 36: Linear iterations : 0 Function norm = 0
+I0712 21:21:49.424831   239 solvernonlinearpetsc.cpp:977] iteration 37: Linear iterations : 0 Function norm = 0
+I0712 21:21:49.424845   239 solvernonlinearpetsc.cpp:977] iteration 38: Linear iterations : -876535784 Function norm = 4.94066e-324
+I0712 21:21:49.424854   239 solvernonlinearpetsc.cpp:977] iteration 39: Linear iterations : 32598 Function norm = 4.94066e-324
+I0712 21:21:49.424865   239 solvernonlinearpetsc.cpp:977] iteration 40: Linear iterations : 260140368 Function norm = 1.2327e-316
+I0712 21:21:49.424875   239 solvernonlinearpetsc.cpp:977] iteration 41: Linear iterations : 32767 Function norm = 0
+I0712 21:21:49.424885   239 solvernonlinearpetsc.cpp:977] iteration 42: Linear iterations : -342718045 Function norm = 6.95316e-310
+I0712 21:21:49.424960   239 solvernonlinearpetsc.cpp:977] iteration 43: Linear iterations : 32598 Function norm = 6.95316e-310
+I0712 21:21:49.424975   239 solvernonlinearpetsc.cpp:977] iteration 44: Linear iterations : 0 Function norm = 1.59974e-316
+I0712 21:21:49.424985   239 solvernonlinearpetsc.cpp:977] iteration 45: Linear iterations : 0 Function norm = 6.91748e-310
+I0712 21:21:49.424994   239 solvernonlinearpetsc.cpp:977] iteration 46: Linear iterations : 0 Function norm = 1.59565e-316
+I0712 21:21:49.425004   239 solvernonlinearpetsc.cpp:977] iteration 47: Linear iterations : 0 Function norm = 6.91748e-310
+I0712 21:21:49.425014   239 solvernonlinearpetsc.cpp:977] iteration 48: Linear iterations : 0 Function norm = 1.48467e-320
+I0712 21:21:49.425091   239 solvernonlinearpetsc.cpp:977] iteration 49: Linear iterations : 0 Function norm = 6.91748e-310
+I0712 21:21:49.425123   239 solvernonlinearpetsc.cpp:982] [solvernonlinearpetsc] convergence reason : 3
+I0712 21:21:49.428952   239 exporterimpl.hpp:224] [Exporter] format :  ensightgold
+I0712 21:21:49.428972   239 exporterimpl.hpp:225] [Exporter] N      :  1
+I0712 21:21:49.483062   239 element_impl.hpp:240] creating element u : u
+I0712 21:21:49.516217   239 exporterensightgold_impl.hpp:947] nMarkers 2
+I0712 21:21:49.516258   239 exporterensightgold_impl.hpp:1026] 0 partid 8(3125)
+I0712 21:21:49.517371   239 exporterensightgold_impl.hpp:1055] 0 parts/markers 8 (2946)
+I0712 21:21:49.517401   239 exporterensightgold_impl.hpp:671] GEO: Static geo mode
+I0712 21:21:49.555176   239 exporterensightgold_impl.hpp:1399] writing part 9
+I0712 21:21:49.616997   239 exporterensightgold_impl.hpp:1679] NodalScalar: 1
+I0712 21:21:49.763289   239 environment.cpp:2108] Environment::clearSomeMemory before: PETSC get current memory usage (resident memory): 165077  KBytes 165.077  MBytes 0.165077 GBytes
+I0712 21:21:49.763367   239 environment.cpp:2113] Environment::clearSomeMemory before: PETSC get current PETSC Malloc usage: 0  KBytes 0 MBytes 0 GBytes
+I0712 21:21:49.763455   239 environment.cpp:2115] Environment::clearSomeMemory before: PETSC get maximum PETSC Malloc usage(largest memory ever used so far): 0  KBytes 0 MBytes 0 GBytes
+I0712 21:21:49.763571   239 backendpetsc.cpp:98] Deleting linear solver petsc
+I0712 21:21:49.763583   239 backendpetsc.cpp:102] Deleting backend petsc
+I0712 21:21:49.763592   239 preconditionerpetsc.cpp:1127] PreconditionerPetsc<T>::clear
+I0712 21:21:49.763600   239 preconditionerpetsc.cpp:1137] calling PCDestroy
+I0712 21:21:49.768016   239 backend.cpp:139] Sending delete signal to all observers... 
+I0712 21:21:49.768054   239 preconditionerpetsc.cpp:1127] PreconditionerPetsc<T>::clear
+I0712 21:21:49.768263   239 preconditionerpetsc.cpp:1127] PreconditionerPetsc<T>::clear
+I0712 21:21:49.768276   239 backend.cpp:139] Sending delete signal to all observers... 
+I0712 21:21:49.768285   239 preconditionerpetsc.cpp:1127] PreconditionerPetsc<T>::clear
+I0712 21:21:49.794791   239 preconditionerpetsc.cpp:1127] PreconditionerPetsc<T>::clear
+I0712 21:21:49.808023   239 environment.cpp:2108] Environment::clearSomeMemory after: PETSC get current memory usage (resident memory): 165425  KBytes 165.425  MBytes 0.165425 GBytes
+I0712 21:21:49.808059   239 environment.cpp:2113] Environment::clearSomeMemory after: PETSC get current PETSC Malloc usage: 0  KBytes 0 MBytes 0 GBytes
+I0712 21:21:49.808074   239 environment.cpp:2115] Environment::clearSomeMemory after: PETSC get maximum PETSC Malloc usage(largest memory ever used so far): 0  KBytes 0 MBytes 0 GBytes

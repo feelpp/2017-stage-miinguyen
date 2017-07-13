@@ -1,0 +1,6 @@
+Log file created at: 2017/07/05 13:55:35
+Running on machine: d2f84d321aa8
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+W0705 13:55:35.908846   528 loadmesh.hpp:118] Invalid filename untitled.geo it should have either the .geo. .json or .msh extension
+W0705 13:55:35.914794   528 loadmesh.hpp:261] File "hypercube" not found, generating instead an hypercube in 2D geometry and mesh...
+W0705 13:55:36.250383   528 ginac.hpp:441] invalid symbol u in expression 1:x:y

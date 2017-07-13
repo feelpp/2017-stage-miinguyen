@@ -1,0 +1,13 @@
+{
+    "application": {
+        "name": "nlda",
+        "date": {
+            "start": "2017-Jul-05 13:55:35"
+        },
+        "directories": {
+            "exports": "\/feel\/nlda\/np_4\/exports",
+            "logs": "\/feel\/nlda\/np_4\/logs",
+            "exprs": "\/feel\/nlda\/np_4\/exprs"
+        }
+    }
+}

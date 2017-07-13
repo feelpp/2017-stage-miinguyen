@@ -1,0 +1,7 @@
+Log file created at: 2017/07/05 10:12:12
+Running on machine: d2f84d321aa8
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+E0705 10:12:12.575600   334 solvernonlinearpetsc.cpp:989] Nonlinear solve did not converge due to DIVERGED_MAX_IT iterations 50
+E0705 10:12:12.585443   334 backend.cpp:464] 
+[backend] non-linear solver fail
+E0705 10:12:12.586701   334 backend.cpp:465] Backend  : non-linear solver failed to converge

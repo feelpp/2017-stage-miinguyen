@@ -1,0 +1,11 @@
+{
+    "mesh": {
+        "h5": "square.h5",
+        "partition": {
+            "n": "1"
+        },
+        "physicals": {
+            "Dirichlet": "1 1"
+        }
+    }
+}

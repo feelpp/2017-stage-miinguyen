@@ -1,0 +1,9 @@
+FORMAT:
+type: master_server gold 
+SERVERS
+number of servers: 1 
+#Server 1
+machine id: 045e9c60ffc5
+executable: /usr/local/bin/ensight76/bin/ensight7.server
+data_path: /feel/qs_bratu/feelpp2d/np_4
+casefile: bratu.case

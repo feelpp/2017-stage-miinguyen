@@ -1,0 +1,12 @@
+{
+    "mesh": {
+        "h5": "circle.h5",
+        "partition": {
+            "n": "1"
+        },
+        "physicals": {
+            "Dirichlet": "1 1",
+            "Neumann": "2 1"
+        }
+    }
+}

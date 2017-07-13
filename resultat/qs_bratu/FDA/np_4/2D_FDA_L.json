@@ -1,0 +1,15 @@
+{
+    "mesh": {
+        "h5": "2D_FDA_L.h5",
+        "partition": {
+            "n": "1"
+        },
+        "physicals": {
+            "inlet": "1 1",
+            "inletThroat": "4 1",
+            "outlet": "2 1",
+            "outletThroat": "5 1",
+            "wall": "3 1"
+        }
+    }
+}

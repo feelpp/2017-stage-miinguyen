@@ -1,0 +1,12 @@
+# Do not edit
+SET(CMAKE_INSTALL_PREFIX "/feel/bratu/build" CACHE PATH "Installation directory" FORCE)
+SET(CMAKE_SKIP_RPATH ON)
+SET(BUILDROOT /feel/bratu/build CACHE PATH "Compilation directory")
+SET(CMAKE_INSTALL_PREFIX "/feel/bratu/build" CACHE PATH "Installation directory" FORCE)
+SET(FEELPP_STD_CPP "14" CACHE PATH "Feel++ c++ standard c++14 or c++1z")
+SET(FEELPP_STDLIB_CPP "stdc++" CACHE PATH "Feel++ c++ standard library stdc++ or c++")
+SET(FEELPP_INSTANTIATION_ORDER_MAX "3" CACHE PATH "Feel++ maximum polynomial order instantiation")
+SET(PROJECT_ROOT .. CACHE PATH "Project root")
+SET(ARCH "x86_64" CACHE STRING "Project ARCH" FORCE)
+SET(ENABLE_NUMA TRUE CACHE BOOL "Project enable numa" FORCE)
+SET(ENABLE_CUDA TRUE CACHE BOOL "Project enable cuda" FORCE)

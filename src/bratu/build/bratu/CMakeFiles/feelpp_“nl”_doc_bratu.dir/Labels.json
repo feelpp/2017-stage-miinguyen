@@ -1,0 +1,16 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/feel/bratu/bratu/bratu.cpp"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"doc"
+		],
+		"name" : "feelpp_“nl”_doc_bratu"
+	}
+}
