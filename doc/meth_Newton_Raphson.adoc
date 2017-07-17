@@ -58,4 +58,134 @@ initial guess x0 for a particular problem.
 
 ==  Matrix problem
 
-Consider the system of m equation and 
+Consider the system of n equation and n variable
+
+[stem]
+++++
+\begin{cases}
+f_1 (x_1, \cdots, x_n) = 0
+\\
+\vdots
+\\
+f_n (x_1, \cdots, x_n) = 0
+\end{cases}
+
+++++
+
+The system can be written in a single expression using vectors, i.e.,
+
+[stem]
+++++
+f(x) = 0
+++++
+
+where the vector x contains the independent variables, and the vector f contains the
+functions fi(x):
+
+[stem]
+++++
+x =
+\begin{bmatrix}
+x_1
+\\
+x_2
+\\
+\vdots
+\\
+x_n
+\end{bmatrix} ,
+
+f(x) =
+\begin{bmatrix}
+f_1(x_1, x_2, \cdots, x_n)
+\\
+f_2(x_1, x_2, \cdots, x_n)
+\\
+\vdots
+\\
+f_n(x_1, x_2, \cdots, x_n)
+\end{bmatrix} =
+
+\begin{bmatrix}
+f_1(x)
+\\
+f_2(x)
+\\
+\vdots
+\\
+f_n(x)
+\end{bmatrix}
+
+++++
+
+
+A Newton-Raphson method for solving the system of linear equations requires the
+evaluation of a matrix, known as the Jacobian of the system, which is defined as:
+
+[stem]
+++++
+J = \frac{\partial (f_1, f_2, \cdots , f_n)}{\partial(x_1, x_2, \cdots, x_n)}
+=
+\begin{bmatrix}
+\frac{\partial f_1}{\partial x_s1} &  \frac{\partial f_1}{\partial x_2} & \cdots & \frac{\partial f_1}{\partial x_n}
+\\
+\frac{\partial f_2}{\partial x_1} &  \frac{\partial f_2}{\partial x_2} & \cdots & \frac{\partial f_2}{\partial x_n}
+\\
+\vdots & \vdots & \ddots & \vdots
+\\
+\frac{\partial f_n}{\partial x_1} &  \frac{\partial f_n}{\partial x_2} & \cdots & \frac{\partial f_n}{\partial x_n}
+
+\end{bmatrix}
+
+= \left[ \frac{\partial f_i}{\partial x_j} \right]_{n \times n}
+
+++++
+
+If stem:[x = x_0] (a vector) represents the first guess for the solution, we can discretize the expression
+
+[stem]
+++++
+f_i \left( {x}^{(1)} \right) - f_i \left( {x}^{(0)} \right) = \sum_{i=1}^{n} \left( \frac{\partial f_i}{\partial x_j} \right) (x_j^{(1)} - x_j^{(0)})
+\quad i = 1, \cdots, n
+++++
+
+We want to stem:[f_i \left( {x}^{(1)} \right) = 0], so the successive approximations to the solution ate obtained from
+
+[stem]
+++++
+J^{(k)} \delta x^{(k)} = - R^{(k)}
+++++
+
+where stem:[R^{(k)}] is the vector of residual in the k-th iteration
+
+[stem]
+++++
+R^{(k)} = f\left( x^{(k)} \right)
+++++
+
+and stem:[J^{(k)}] is the Jacobian matrix in the k-th iteration
+
+[stem]
+++++
+\left(J^{(k)} \right)_{ij} = \frac{\partial f^{(k)}_i}{\partial x^{(k)}_j}
+++++
+
+and stem:[\delta x^{(k)} = x^{(k+1)} - x^{(k)} ]
+
+So we obtain the new estimation
+
+[stem]
+++++
+x^{(k+1)} = x^{(k)} + \delta x^{(k)}
+++++
+
+A convergence criterion for the solution of a system of non-linear equation could be, for
+example, that the maximum of the absolute values of the functions stem:[fi(x)] is smaller than a
+certain tolerance stem:[\epsilon], i.e.,
+
+[stem]
+++++
+max _{i}| f_i(x)  |< \epsilon
+++++
+
+[NOTE]: Remarque sur la convergence de la méthode !!
