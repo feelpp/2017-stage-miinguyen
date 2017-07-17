@@ -13,12 +13,49 @@ f(x) = 0 \quad (1)
 k=k,,
 We will construct a good approximation towards the root stem:[x_r] of the equation (1)
 by a proceeding called iterative.
-We start with a  good estimate stem:[x_0] of stem:[x_r]. From stem:[x_0], we produce an improved
-estimate stem:[x_1] by using the linear approximation
+We start with a  good estimate stem:[x_0] (initial guess) of stem:[x_r]. From stem:[x_0], we produce an improved
+estimate stem:[x_1] by using the linear approximation (tangent line)
 
 [stem]
 ++++
 f(x) \simeq f(x_0) + f'(x_0)(x - x_0)
 ++++
 
-ik
+this approximation must satisfies equation (1), which mean
+
+[stem]
+++++
+0 \simeq f(x_0) + f'(x_0)(x - x_0)
+++++
+
+the new improved estimate stem:[x_1] is therefore given by
+
+[stem]
+++++
+x_1 = x_0 - \frac{f(x_0)}{f'(x_0)}
+++++
+
+the next estimate stem:[x_2] is obtained from stem:[x_1] in exactly the same way as
+stem:[x_1] was obtained from stem:[x_0]
+
+[stem]
+++++
+x_2 = x_1 - \frac{f(x_1)}{f'(x_1)}
+++++
+
+and, more generally
+
+[stem]
+++++
+x_{n + 1} = x_n - \frac{f(x_n)}{f'(x_n)}
+++++
+
+[NOTE]: This method is guaranteed to converge if the initial guess stem:[x_0] is close enough, but it is hard to
+make a clear statement about what we mean by ‘close enough’ because this is highly
+problem specific. A sketch of the graph of f(x) can help us decide on an appropriate
+initial guess x0 for a particular problem.
+
+
+==  Matrix problem
+
+Consider the system of m equation and 
