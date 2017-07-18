@@ -1,0 +1,94 @@
+= Bratu's problem
+:icons: font
+:stem: latexmath
+
+== Nonlinear equation
+
+Consider the Bratu's problem
+
+[stem]
+++++
+\begin{cases}
+- \nabla \cdot (\nabla u ) + \lambda e^{u} = 0 \text{ in } \Omega \quad (1)
+\\
+u = 0 \text{ on } \partial \Omega
+\end{cases}
+
+++++
+
+=== Continue
+
+Multiply (1) by stem:[v] chosen so that it satisfies the same
+boundary conditions as the trial solution stem:[u] and integrate on stem:[\Omega]
+
+[stem]
+++++
+\displaystyle\int_{\Omega} - \nabla \cdot (\nabla u ) v + \int_{\Omega} \lambda e^{u} v = 0 \quad
+\forall v \in H^1_0(\Omega)
+
+++++
+
+By using the formula of Green, we obtain
+
+[stem]
+++++
+\displaystyle\int_{\Omega}  \nabla u \nabla v - \int_{\partial \Omega} (\nabla u \cdot n ) v + \int_{\Omega} \lambda e^{u} v = 0 \quad
+\forall v \in H^1_0(\Omega)
+
+++++
+
+Hence from that stem:[v] is null on the boundary, we have the variational formulation
+
+[stem]
+.The variational problem
+++++
+\text{Determine u } \in H^1_0(\Omega) \text{ satisfying}
+\\
+\displaystyle\int_{\Omega} \nabla u \nabla v + \int_{\Omega} \lambda e^{u} v = 0 \quad \forall v \in H^1_0(\Omega)
+++++
+
+=== Discrete
+
+Conformal Approximation:
+
+We use the Galerkin approximation method:
+
+Let stem:[\{ \mathcal{T}_h \}] a family of meshes of stem:[\Omega].
+
+Let stem:[\{ \mathcal{K}, P, \sum \}] a finite Lagrange element of degree stem:[k \geq 1].
+
+Let stem:[P^k_{c,h}] The approximate approximation space defined by
+
+[stem]
+++++
+P^k_{ c,h} = \{ v \in C^0(\Omega), \forall \mathcal{K} \in \mathcal{T}_h, v|_{\mathcal{K}} \in \mathbb{P}_k(\mathcal{K}) \}
+
+++++
+
+To obtain a conformal approximation, we add the boundary conditions
+
+[stem]
+++++
+V_h = P^k_{c,h} \cap H^1_0(\Omega)
+
+++++
+
+The problem variable approximation is therefore
+
+[stem
+.Discreet problem
+++++
+\text{Determine u_h } \in V_h \text{ satisfying}
+\\
+A(u_h, v_h) = \displaystyle\int_{\Omega} \nabla u_h \nabla v_h + \int_{\Omega} \lambda e^{u_h} v_h = 0 \quad \forall v_h \in V_h
+
+++++
+
+=== Algebraic:
+
+Let stem:[\varphi_1, \varphi_2, ..., \varphi_m] a base of stem:[V_h]. An element stem:[u_h \in V_h] is written as
+
+[stem]
+++++
+u_h = \sum^{m}_{i=1} u_j \varphi_j
+++++
