@@ -100,7 +100,7 @@ By using stem:[v] as the functions base of stem:[V_h], the problem variable appr
 ++++
 \text{Determine } u_i \text{ satisfying}
 \\
-A(\varphi_i, \varphi_j) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \varphi_j
+A(\varphi_i, \varphi_j) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \nabla \varphi_j
 + \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} \varphi_j = 0 \quad \forall j = 1, \cdots, N
 
 ++++
@@ -112,16 +112,101 @@ We can rewrite algebraic problem in the form of system
 [stem]
 ++++
 \begin{cases}
-A_1(u_1, \cdots , u_N) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \varphi_1
+A_1(u_1, \cdots , u_N) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \nabla \varphi_1
 + \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} \varphi_1 = 0
 \\
-A_2(u_1, \cdots , u_N) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \varphi_2
+A_2(u_1, \cdots , u_N) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \nabla \varphi_2
 + \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} \varphi_2 = 0
 \\
 \vdots
 \\
-A_N(u_1, \cdots , u_N) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \varphi_N
+A_N(u_1, \cdots , u_N) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \nabla\varphi_N
 + \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} \varphi_N = 0
 \end{cases}
 
+++++
+
+Calculate the Jacobian
+
+[stem]
+++++
+J =
+\begin{bmatrix}
+\frac{\partial A_1}{\partial u_1} & \frac{\partial A_1}{\partial u_2} & \cdots & \frac{\partial A_1}{\partial u_N}
+\\
+\frac{\partial A_2}{\partial u_1} & \frac{\partial A_2}{\partial u_2} & \cdots & \frac{\partial A_2}{\partial u_N}
+\\
+\vdots & \vdots & \ddots & \vdots
+\\
+\frac{\partial A_N}{\partial u_1} & \frac{\partial A_N}{\partial u_2} & \cdots & \frac{\partial A_N}{\partial u_N}
+
+\end{bmatrix}
+
+++++
+
+Consider stem:[u^{(k)} = (u_1^{(k)}, \cdots , u_N^{(k)})] is the vector de stem:[u_h] in k-th iteration.
+We evaluate
+
+[stem]
+++++
+J(u^{(k)}) = \{ J_{lj} (u^{(k)}) \}_{lj = 1, \cdots, N}
+\\
+\text{where}
+\\
+J_{lj} (u^{(k)}) = \frac{\partial A_l}{\partial u_j} (u^{(k)})
+\displaystyle\int_{\Omega_h} \nabla \varphi_l \nabla \varphi_j
++ \int_{\Omega_h} \lambda \varphi_l e^{\sum_{i=1}^N u_i \varphi_i} \varphi_j
+
+++++
+
+We determine the k-th residua
+
+[stem]
+++++
+R^{(k)} =
+\begin{bmatrix}
+A_1(u^{(k)})
+\\
+A_2(u^{(k)})
+\\
+\vdots
+\\
+A_N(u^{(k)})
+\end{bmatrix}
+++++
+
+and
+
+[stem]
+++++
+\delta u^{(k+1)} = u^{(k)} - u^{(k)}
+++++
+
+We start with a  good estimate stem:[u^{(0)} \in V_h] (initial guess), then
+calculate the new estimate stem:[u^{(1)}] by solving the system of linear equation
+
+[stem]
+++++
+J(u^{(0)}) \delta u^{(0)} = - R^{(0)}
+++++
+
+and then determine
+
+[stem]
+++++
+u^{(1)} = \delta u^{(0)} - u^{(0)} 
+++++
+
+and so on, in k-th iteration, we find stem:[\delta u^{(k)}] by solving
+
+[stem]
+++++
+J(u^{(k)}) \delta u^{(k)} = - R^{(k)}
+++++
+
+then determine the better estimate
+
+[stem]
+++++
+u^{(k+1)} = \delta u^{(k)} - u^{(k)}
 ++++
