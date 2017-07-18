@@ -299,3 +299,13 @@ On a besoin alors de mettre le second membre
 ----
 l = form1(X_h)
 ----
+
+Comme stem:[u^{(k+1)}] doit satisfaire aussi la condition aux limits, il faut donner
+l'initiale stem:[u^{(0)}]
+
+[source, cpp]
+----
+a.on(_range=elements( mesh ), expr = cst(0.) );
+----
+
+IL reste un dernier point, ici on a modifié le système linéair
