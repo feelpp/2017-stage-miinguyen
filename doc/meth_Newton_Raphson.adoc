@@ -149,11 +149,11 @@ f_i \left( {x}^{(1)} \right) - f_i \left( {x}^{(0)} \right) = \sum_{i=1}^{n} \le
 \quad i = 1, \cdots, n
 ++++
 
-We want to stem:[f_i \left( {x}^{(1)} \right) = 0], so the successive approximations to the solution ate obtained from
+We want stem:[f_i \left( {x}^{(1)} \right) = 0], so the successive approximations to the solution ate obtained from
 
 [stem]
 ++++
-J^{(k)} \delta x^{(k)} = - R^{(k)}
+J(x^{(k)}) \delta x^{(k)} = - R^{(k)}
 ++++
 
 where stem:[R^{(k)}] is the vector of residual in the k-th iteration
@@ -163,11 +163,11 @@ where stem:[R^{(k)}] is the vector of residual in the k-th iteration
 R^{(k)} = f\left( x^{(k)} \right)
 ++++
 
-and stem:[J^{(k)}] is the Jacobian matrix in the k-th iteration
+and stem:[J(x^{(k)})] is the Jacobian matrix in the k-th iteration
 
 [stem]
 ++++
-\left(J^{(k)} \right)_{ij} = \frac{\partial f^{(k)}_i}{\partial x^{(k)}_j}
+\left(JJ(x^{(k)}) \right)_{ij} = \frac{\partial f_i}{\partial x^{(k)}_j}
 ++++
 
 and stem:[\delta x^{(k)} = x^{(k+1)} - x^{(k)} ]
