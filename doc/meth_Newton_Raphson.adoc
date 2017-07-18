@@ -10,7 +10,7 @@ Consider the problem non-linear of one-variable
 ++++
 f(x) = 0 \quad (1)
 ++++
-k=k,,
+
 We will construct a good approximation towards the root stem:[x_r] of the equation (1)
 by a proceeding called iterative.
 We start with a  good estimate stem:[x_0] (initial guess) of stem:[x_r]. From stem:[x_0], we produce an improved
@@ -127,7 +127,7 @@ evaluation of a matrix, known as the Jacobian of the system, which is defined as
 J = \frac{\partial (f_1, f_2, \cdots , f_n)}{\partial(x_1, x_2, \cdots, x_n)}
 =
 \begin{bmatrix}
-\frac{\partial f_1}{\partial x_s1} &  \frac{\partial f_1}{\partial x_2} & \cdots & \frac{\partial f_1}{\partial x_n}
+\frac{\partial f_1}{\partial x_1} &  \frac{\partial f_1}{\partial x_2} & \cdots & \frac{\partial f_1}{\partial x_n}
 \\
 \frac{\partial f_2}{\partial x_1} &  \frac{\partial f_2}{\partial x_2} & \cdots & \frac{\partial f_2}{\partial x_n}
 \\
@@ -167,7 +167,7 @@ and stem:[J(x^{(k)})] is the Jacobian matrix in the k-th iteration
 
 [stem]
 ++++
-\left(JJ(x^{(k)}) \right)_{ij} = \frac{\partial f_i}{\partial x^{(k)}_j}
+\left(J(x^{(k)}) \right)_{ij} = \frac{\partial f_i}{\partial x^{(k)}_j}
 ++++
 
 and stem:[\delta x^{(k)} = x^{(k+1)} - x^{(k)} ]
