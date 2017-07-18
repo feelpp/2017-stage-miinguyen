@@ -49,7 +49,7 @@ Hence from that stem:[v] is null on the boundary, we have the variational formul
 
 === Discrete
 
-Conformal Approximation:
+Conformal approximation:
 
 We use the Galerkin approximation method:
 
@@ -75,20 +75,53 @@ V_h = P^k_{c,h} \cap H^1_0(\Omega)
 
 The problem variable approximation is therefore
 
-[stem
+[stem]
 .Discreet problem
 ++++
 \text{Determine u_h } \in V_h \text{ satisfying}
 \\
-A(u_h, v_h) = \displaystyle\int_{\Omega} \nabla u_h \nabla v_h + \int_{\Omega} \lambda e^{u_h} v_h = 0 \quad \forall v_h \in V_h
+A(u_h, v_h) = \displaystyle\int_{\Omega_h} \nabla u_h \nabla v_h + \int_{\Omega_h} \lambda e^{u_h} v_h = 0 \quad \forall v_h \in V_h
 
 ++++
 
 === Algebraic:
 
-Let stem:[\varphi_1, \varphi_2, ..., \varphi_m] a base of stem:[V_h]. An element stem:[u_h \in V_h] is written as
+Let stem:[\{ \varphi_1, \varphi_2, ..., \varphi_N \}] a base of stem:[V_h]. An element stem:[u_h \in V_h] is written as
 
 [stem]
 ++++
-u_h = \sum^{m}_{i=1} u_j \varphi_j
+u_h = \sum^{N}_{i=1} u_i \varphi_i
+++++
+
+By using stem:[v] as the functions base of stem:[V_h], the problem variable approximation is equivalent to the system
+
+[stem]
+.Algebraic problem
+++++
+\text{Determine } u_i \text{ satisfying}
+\\
+A(\varphi_i, \varphi_j) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \varphi_j
++ \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} \varphi_j = 0 \quad \forall j = 1, \cdots, N
+
+++++
+
+=== Apply Newton-Raphson's method
+
+We can rewrite algebraic problem in the form of system
+
+[stem]
+++++
+\begin{cases}
+A_1(u_1, \cdots , u_N) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \varphi_1
++ \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} \varphi_1 = 0
+\\
+A_2(u_1, \cdots , u_N) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \varphi_2
++ \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} \varphi_2 = 0
+\\
+\vdots
+\\
+A_N(u_1, \cdots , u_N) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \varphi_N
++ \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} \varphi_N = 0
+\end{cases}
+
 ++++
