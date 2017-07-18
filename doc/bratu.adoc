@@ -153,7 +153,7 @@ J(u^{(k)}) = \{ J_{lj} (u^{(k)}) \}_{lj = 1, \cdots, N}
 \\
 \text{where}
 \\
-J_{lj} (u^{(k)}) = \frac{\partial A_l}{\partial u_j} (u^{(k)}) = 
+J_{lj} (u^{(k)}) = \frac{\partial A_l}{\partial u_j} (u^{(k)}) =
 \displaystyle\int_{\Omega_h} \nabla \varphi_l \nabla \varphi_j
 + \int_{\Omega_h} \lambda \varphi_l e^{\sum_{i=1}^N u_i \varphi_i} \varphi_j
 
@@ -213,4 +213,89 @@ u^{(k+1)} = \delta u^{(k)} - u^{(k)}
 
 [NOTE]: à completer
 
+=== Implementation
+
+The Jacobian's matrix
+
+[source, cpp]
+----
+auto Jacobian = [=](const vector_ptrtype& X, sparse_matrix_ptrtype& J)
+        {
+            if (!J) J = backend()->newMatrix( Vh, Vh );
+            auto a = form2( _test=Vh, _trial=Vh, _matrix=J );
+            a = integrate( elements( mesh ), gradt( u )*trans( grad( v ) ) );
+            a += integrate( elements( mesh ), lambda*( exp( idv( u ) ) )*idt( u )*id( v ) );
+----
+
+The residual
+
+[source, cpp]
+----
+auto Residual = [=](const vector_ptrtype& X, vector_ptrtype& R)
+        {
+            auto u = Vh->element();
+            u = *X;
+            auto r = form1( _test=Vh, _vector=R );
+            r = integrate( elements( mesh ), gradv( u )*trans( grad( v ) ) );
+            r += integrate( elements( mesh ),  lambda*exp( idv( u ) )*id( v ) );
+            //r += integrate(_range=markedfaces(mesh,"Dirichlet"), _expr=cst(0.) );
+            r +=  integrate( boundaryfaces( mesh ),
+                             ( - trans( id( v ) )*( gradv( u )*N() )
+                               - trans( idv( u ) )*( grad( v )*N() )
+                               + penalbc*trans( idv( u ) )*id( v )/hFace() ) );
+        };
+
+----
+
+Solveur
+
+[source, cpp]
+----
+u.zero();
+    backend()->nlSolver()->residual = Residual;
+    backend()->nlSolver()->jacobian = Jacobian;
+    backend()->nlSolve( _solution=u );
+----
+
+
 === Implement fort boundary condition of Dirichlet
+
+Traitement des conditions aux limits sous forme forte c'est à dire on impose
+fortement les valeurs de la fonction aux sommets (aux degrées liberté) du maillage
+où il y a des conditions de Dirichlet.
+
+On résoud à chaque itération le system linéaire avec stem:[u^{(k)}] connu
+
+[stem]
+++++
+J(u^{(k)}) \delta u^{(k)} = - R^{(k)}
+++++
+
+et on calcule
+
+[stem]
+++++
+u^{(k+1)} = \delta u^{(k)} - u^{(k)}
+++++
+
+Si des itérations de stem:[u^{(k)}] satisfait des conditions de Dirichlet, le terme
+stem:[\delta u^{(k)}] doit s'annuler aux bord de Dirichlet.
+
+Donc comment implémenter les conditions aux limits forte?
+
+L'operateur `on` permet de rajouter le valeur de la fonction du condtion au limit
+de Dirichlet.
+
+On rajoute dans le Jacobian
+
+[source, cpp]
+----
+a +=on(_range=markedfaces(mesh,"Dirichlet"), _element=u, _rhs = l, _expr = cst(0.) );
+----
+
+On a besoin alors de mettre le second membre
+
+[source, cpp]
+----
+l = form1(X_h)
+----
