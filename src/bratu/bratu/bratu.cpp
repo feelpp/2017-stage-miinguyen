@@ -65,6 +65,7 @@ main( int argc, char** argv )
     auto Vh = Pch<1>( mesh );
     auto u = Vh->element();
     auto v = Vh->element();
+    auto w = Vh->element();	
     double penalbc = doption(_name="penalbc");
     double lambda = doption(_name="lambda");
 
@@ -80,18 +81,30 @@ main( int argc, char** argv )
                               - trans( idt( u ) )*( grad( v )*N() )
                               + penalbc*trans( idt( u ) )*id( v )/hFace() ) );
         };
+
     auto Residual = [=](const vector_ptrtype& X, vector_ptrtype& R)
         {
-            auto u = Vh->element();
-            u = *X;
+            w = *X;
             auto r = form1( _test=Vh, _vector=R );
-            r = integrate( elements( mesh ), gradv( u )*trans( grad( v ) ) );
-            r += integrate( elements( mesh ),  lambda*exp( idv( u ) )*id( v ) );
+            r = integrate( elements( mesh ), gradv( w )*trans( grad( v ) ) );
+            r += integrate( elements( mesh ),  lambda*exp( idv( w ) )*id( v ) );
             //r += integrate(_range=markedfaces(mesh,"Dirichlet"), _expr=cst(0.) );
+	    if ( weak )
+	    {
             r +=  integrate( boundaryfaces( mesh ),
-                             ( - trans( id( v ) )*( gradv( u )*N() )
-                               - trans( idv( u ) )*( grad( v )*N() )
-                               + penalbc*trans( idv( u ) )*id( v )/hFace() ) );
+                             ( - trans( id( v ) )*( gradv( w )*N() )
+                               - trans( idv( w ) )*( grad( v )*N() )
+                               + penalbc*trans( idv( w ) )*id( v )/hFace() ) );
+		    
+	    }
+	    else
+	    {
+	      v=*R; // copy residual in v
+              // set the unknowns on the boundary to 0
+              v.on(_range=boundaryfaces(mesh),_expr=cst(0.));
+              // copy back to R
+	      *R=v;
+            }
         };
     u.zero();
     backend()->nlSolver()->residual = Residual;
