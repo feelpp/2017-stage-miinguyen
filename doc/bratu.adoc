@@ -57,7 +57,7 @@ Let stem:[\{ \mathcal{T}_h \}] a family of meshes of stem:[\Omega].
 
 Let stem:[\{ \mathcal{K}, P, \sum \}] a finite Lagrange element of degree stem:[k \geq 1].
 
-Let stem:[P^k_{c,h}] The approximate approximation space defined by
+Let stem:[P^k_{c,h}] The approximate space defined by
 
 [stem]
 ++++
@@ -144,7 +144,7 @@ J =
 
 ++++
 
-Consider stem:[u^{(k)} = (u_1^{(k)}, \cdots , u_N^{(k)})] is the vector de stem:[u_h] in k-th iteration.
+Consider stem:[u^{(k)} = (u_1^{(k)}, \cdots , u_N^{(k)})] is the vector of stem:[u_h] in k-th iteration.
 We evaluate
 
 [stem]
@@ -179,7 +179,7 @@ and
 
 [stem]
 ++++
-\delta u^{(k+1)} = u^{(k)} - u^{(k)}
+\delta u^{(k)} = u^{(k+1)} - u^{(k)}
 ++++
 
 We start with a  good estimate stem:[u^{(0)} \in V_h] (initial guess), then
@@ -194,7 +194,7 @@ and then determine
 
 [stem]
 ++++
-u^{(1)} = \delta u^{(0)} - u^{(0)}
+u^{(1)} = \delta u^{(0)} + u^{(0)}
 ++++
 
 and so on, in k-th iteration, we find stem:[\delta u^{(k)}] by solving
@@ -208,7 +208,7 @@ then determine the better estimate
 
 [stem]
 ++++
-u^{(k+1)} = \delta u^{(k)} - u^{(k)}
+u^{(k+1)} = \delta u^{(k)} + u^{(k)}
 ++++
 
 [NOTE]: à completer
