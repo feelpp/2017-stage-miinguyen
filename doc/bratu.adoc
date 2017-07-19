@@ -257,6 +257,14 @@ u.zero();
     backend()->nlSolve( _solution=u );
 ----
 
+To execute on 4 processors
+
+----
+mpirun -np 4 feelpp_doc_bratu --snes-monitor=true
+----
+
+The option `--snes-monitor=true` displays the Newton iteration residual.
+To visualize the results type paraview `bratu-4.sos`.
 
 === Implement fort boundary condition of Dirichlet
 
