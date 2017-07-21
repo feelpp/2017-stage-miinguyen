@@ -66,7 +66,7 @@ main( int argc, char** argv )
     auto Vh = Pch<1>( mesh );
     auto u = Vh->element();
     auto v = Vh->element();
-    auto w = Vh->element();
+    
     double penalbc = doption(_name="penalbc");
     double lambda = doption(_name="lambda");
 
