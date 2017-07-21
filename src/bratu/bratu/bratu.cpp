@@ -41,6 +41,7 @@ makeOptions()
     ( "hsize", Feel::po::value<double>()->default_value( 0.1 ), "first h value to start convergence" )
 
     ( "export-matlab", "export matrix and vectors in matlab" )
+    
     ( "weak-method", Feel::po::value<bool>()->default_value( false ), "weak/fort method for Dirichlet's boudary condition   fort=0, weak=1" )
     ;
     return bratuoptions.add( Feel::feel_options() );
@@ -63,7 +64,7 @@ main( int argc, char** argv )
                                   _email="christophe.prudhomme@feelpp.org"));
     //auto mesh = unitSquare();
     auto mesh = loadMesh(_mesh=new Mesh<Simplex<FEELPP_DIM,1>>);
-    auto Vh = Pch<1>( mesh );
+    auto Vh = Pch<2>( mesh );
     auto u = Vh->element();
     auto v = Vh->element();
     
@@ -100,22 +101,22 @@ main( int argc, char** argv )
             r = integrate( elements( mesh ), gradv( u )*trans( grad( v ) ) );
             r += integrate( elements( mesh ),  lambda*exp( idv( u ) )*id( v ) );
             
-	    if ( boption("weak-method") )
-	    {
-            r +=  integrate( boundaryfaces( mesh ),
-                             ( - trans( id( v ) )*( gradv( u )*N() )
-                               - trans( idv( u ) )*( grad( v )*N() )
-                               + penalbc*trans( idv( u ) )*id( v )/hFace() ) );
+            if ( boption("weak-method") )
+            {
+                r +=  integrate( boundaryfaces( mesh ),
+                                ( - trans( id( v ) )*( gradv( u )*N() )
+                                 - trans( idv( u ) )*( grad( v )*N() )
+                                 + penalbc*trans( idv( u ) )*id( v )/hFace() ) );
 		    
-	    }
-	    else
-	    {
-	      auto v = Vh->element();
-          v=*R; // copy residual in v
-          // set the unknowns on the boundary to 0
-          v.on(_range=boundaryfaces(mesh),_expr=cst(0.));
-          // copy back to R
-	      *R=v;
+            }
+            else
+            {
+                auto v = Vh->element();
+                v=*R; // copy residual in v
+                // set the unknowns on the boundary to 0
+                v.on(_range=boundaryfaces(mesh),_expr=cst(0.));
+                // copy back to R
+                *R=v;
             }
         };
     u.zero();
