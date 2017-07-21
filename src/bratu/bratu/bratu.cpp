@@ -74,13 +74,22 @@ main( int argc, char** argv )
         {
             if (!J) J = backend()->newMatrix( Vh, Vh );
             auto a = form2( _test=Vh, _trial=Vh, _matrix=J );
+            auto l = form1(_test=Vh);
             a = integrate( elements( mesh ), gradt( u )*trans( grad( v ) ) );
             a += integrate( elements( mesh ), lambda*( exp( idv( u ) ) )*idt( u )*id( v ) );
-            //a += integrate(_range=markedfaces(mesh,"Dirichlet"), _expr=cst(0.) );
-            a += integrate( boundaryfaces( mesh ),
-                            ( - trans( id( v ) )*( gradt( u )*N() )
-                              - trans( idt( u ) )*( grad( v )*N() )
-                              + penalbc*trans( idt( u ) )*id( v )/hFace() ) );
+           
+            if ( boption("weak-method") )
+            {
+                a += integrate( boundaryfaces( mesh ),
+                              ( - trans( id( v ) )*( gradt( u )*N() )
+                                - trans( idt( u ) )*( grad( v )*N() )
+                                + penalbc*trans( idt( u ) )*id( v )/hFace() ) );
+                
+            }
+            else
+            {
+                a +=on(_range=boundaryfaces( mesh ),_rhs = l, _element=u, _expr=cst(0.) );
+            }
         };
 
     auto Residual = [=](const vector_ptrtype& X, vector_ptrtype& R)
@@ -90,7 +99,7 @@ main( int argc, char** argv )
             auto r = form1( _test=Vh, _vector=R );
             r = integrate( elements( mesh ), gradv( u )*trans( grad( v ) ) );
             r += integrate( elements( mesh ),  lambda*exp( idv( u ) )*id( v ) );
-            //r += integrate(_range=markedfaces(mesh,"Dirichlet"), _expr=cst(0.) );
+            
 	    if ( boption("weak-method") )
 	    {
             r +=  integrate( boundaryfaces( mesh ),
