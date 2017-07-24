@@ -57,7 +57,7 @@ Let stem:[\{ \mathcal{T}_h \}] a family of meshes of stem:[\Omega].
 
 Let stem:[\{ \mathcal{K}, P, \sum \}] a finite Lagrange element of degree stem:[k \geq 1].
 
-Let stem:[P^k_{c,h}] the approximate space associated to the finite element stem:[\mathbb{P}_k] defined by
+Let stem:[P^k_{c,h}] the approximate space associated to the finite elements stem:[\mathbb{P}_k]
 
 [stem]
 ++++
@@ -65,7 +65,7 @@ P^k_{ c,h} = \{ v \in C^0(\Omega), \forall \mathcal{K} \in \mathcal{T}_h, v|_{\m
 
 ++++
 
-To obtain a conformal approximation, we add the boundary conditions
+To obtain a conformal approximation, we add the boundary conditions to the space
 
 [stem]
 ++++
@@ -73,7 +73,7 @@ V_h = P^k_{c,h} \cap H^1_0(\Omega)
 
 ++++
 
-
+It's a vector space whose dimenstion
 The problem variable approximation is therefore
 
 [stem]
@@ -267,6 +267,10 @@ mpirun -np 4 feelpp_doc_bratu --snes-monitor=true
 The option `--snes-monitor=true` displays the Newton iteration residual.
 To visualize the results type paraview `bratu-4.sos`.
 
+----
+mpirun -np 4 /feel/2017-stage-miinguyen/src/bratu/build/bratu/feelpp_qs_doc_bratu --config-file circle.cfg --snes-monitor=true --weak-meth=true --snes-rtol=1e-10
+----
+
 === Implement fort boundary condition of Dirichlet
 
 Traitement des conditions aux limits sous forme forte c'est à dire on impose
@@ -318,3 +322,11 @@ a.on(_range=elements( mesh ), expr = cst(0.) );
 ----
 
 IL reste un dernier point, ici on a modifié le système linéair
+
+... à completer
+
+=== Implement weak Dirichlet's boundary condition:
+
+En ce moment, trouver ci joint les stratégies ici
+
+http://book.feelpp.org/math/fem/#weakly_imposed_dirichlet_boundary_conditions_nitsche_method
