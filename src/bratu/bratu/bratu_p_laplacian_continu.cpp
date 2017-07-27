@@ -44,7 +44,7 @@ main( int argc, char** argv )
     
 	Environment env( _argc=argc, _argv=argv,
                      _desc=makeOptions(),
-                     _about=about(_name="bratu p-laplacian",
+                     _about=about(_name="bratu_p-laplacian",
                                   _author=" ",
                                   _email=" "));
     //auto mesh = unitSquare();
