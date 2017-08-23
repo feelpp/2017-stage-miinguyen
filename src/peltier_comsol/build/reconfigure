@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "Execute: CC=\"clang-3.9\" CXX=\"clang++-3.9\" ../configure -r"
+CC="clang-3.9" CXX="clang++-3.9" ../configure -r
