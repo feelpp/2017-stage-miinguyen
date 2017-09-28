@@ -25,3 +25,6 @@
 
 feelpp_add_application( peltier_comsol SRCS peltier_comsol.cpp INCLUDE_IN_ALL DEFS FEELPP_DIM=3)
 
+#feelpp_add_application( peltier_comsol_2d SRCS peltier_comsol.cpp INCLUDE_IN_ALL DEFS FEELPP_DIM=2)
+
+#feelpp_add_application( peltier_2d SRCS peltier.cpp INCLUDE_IN_ALL DEFS FEELPP_DIM=2)

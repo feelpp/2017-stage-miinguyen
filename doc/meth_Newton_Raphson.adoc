@@ -1,8 +1,8 @@
-= Newton - Raphson's method
+== Newton - Raphson's method
 :icons: font
 :stem: latexmath
 
-== Unidimensional problem
+=== Unidimensional problem
 
 Consider the problem non-linear of one-variable
 
@@ -50,15 +50,20 @@ and, more generally
 x_{n + 1} = x_n - \frac{f(x_n)}{f'(x_n)}
 ++++
 
-[NOTE]: This method is guaranteed to converge if the initial guess stem:[x_0] is close enough, but it is hard to
+.Illustration
+image: image/n1.png[]
+
+
+This method is guaranteed to converge if the initial guess stem:[x_0] is close enough, but it is hard to
 make a clear statement about what we mean by ‘close enough’ because this is highly
 problem specific. A sketch of the graph of f(x) can help us decide on an appropriate
 initial guess x0 for a particular problem.
 
 
-==  Matrix problem
 
-Consider the system of n equation and n variable
+===  Matrix problem
+
+Consider the system of n equations and n variables
 
 [stem]
 ++++
@@ -188,4 +193,23 @@ certain tolerance stem:[\epsilon], i.e.,
 max _{i}| f_i(x)  |< \epsilon
 ++++
 
-[NOTE]: Remarque sur la convergence de la méthode !!
+Newton's method is an extremely powerful technique—in general the convergence is
+ quadratic: as the method converges on the root, the difference between the root
+ and the approximation is squared (the number of accurate digits roughly doubles)
+  at each step. However, there are some difficulties with the method.
+
+* Difficulty in calculating derivative of a function
+
+Newton's method requires that the derivative be calculated directly. An analytical
+ expression for the derivative may not be easily obtainable and could be expensive
+ to evaluate. In these situations, it may be appropriate to approximate the
+ derivative by using the slope of a line through two nearby points on the function.
+
+* Failure of the method to converge to the root
+
+A large error in the initial estimate can contribute to non-convergence of the algorithm.
+
+* Non-quadratic convergence
+
+In some cases the iterates converge but do not converge as quickly as promised.
+In these cases simpler methods converge just as quickly as Newton's method.

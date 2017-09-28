@@ -11,5 +11,6 @@ Line(3) = {3,4};
 Line(4) = {4,1};
 Line Loop(6) = {1, 2, 3, 4};
 Plane Surface(7) = {6};
-Physical Line("Dirichlet") = {1, 2,3,4};
+Physical Line("Dirichlet") = {1,3};
+Physical Line("Neumann") = {2,4};
 Physical Surface(8) = {7};

@@ -1,0 +1,39 @@
+== Conclusion
+:icons: font
+:stem: latexmath
+
+
+Les expériences numériques permet de donner quelque conclusion sur la méthode de
+ Newton-Raphson:
+
+* La méthode est 'délicate', elle nécessite une grand précision dans le cacule
+pour qu'elle soit converge.
+
+* Le choix d'initial guess est très important. Il demande que l'initial guess
+soit proche du résolution. Il y a des techniques spécifique pour le traiter comme
+l'algorithme de continuation
+
+* Le grand erreur dans la première estimate peut conduire à la non convergence
+de l'algorithme.
+
+* En générale, la convergence est quadratique.
+
+* Le calcule coût cher quand le maillage est fin et les conditions sont compliqué.
+
+* Les fonctions de faire mettre à jour le matrice Jacobien et le vecteur résidul
+demandent de faire attention sur les références des variables.
+
+
+
+Ensuit, je voudrais parler de ce que j'ai obtenu dans ce stage. J'ai eu l'occasion
+d'approcher à une nouvelle type de problème, problème nonlinéaire, et d'apprendre
+une nouvelle méthode numérique efficace pour résoudre ce genre de problème. En
+plus, dans tout au long de mon travail, j'accumule des expériances informatiques,
+expériences numériques, surtous c'est le méthode de travail.
+
+
+Enfin, pour le perspective, on pourrait annalyser plus profondement la vistess
+de convergent de la méthode dans plusieurs cases et de comparer avec les autres
+méthodes. En suit, pour l'implémentation, on pourrait utiliser GINAC pour faciliter
+les calcules dérivées et pour construire un programme plus générale pour plusieurs
+modèle.

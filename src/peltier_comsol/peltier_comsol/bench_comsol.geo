@@ -155,3 +155,7 @@ Physical Surface("Internal-Boundaries") = {1,2};
 
 Physical Volume("Material0") = {1};
 Physical Volume("Material1") = {2,3};
+//+
+Physical Volume("Electrode1") = {3};
+//+
+Physical Volume("Electrode2") = {2};

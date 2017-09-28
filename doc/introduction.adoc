@@ -1,0 +1,64 @@
+== Introduction
+:icons: font
+:stem: latexmath
+
+Ce travail porte sur la resolution des problèmes non-linéairs en utilisant méthode de
+ Newton-Raphson.
+
+
+Dans ce rapport, j'ai rédigé en anglais sauf  la première partie, `Introduction`, et la dernière, `Conclusion`.
+Ce rapport comporte quatre chapitres principales.
+
+
+* La première chapitre `Newton-Raphson's method` présent le principe de cette méthode et
+en plus, précise les étapes de cet algorithme pour résoudre un system non-linéaire.
+
+* Dans chapitre `Bratu's problem`, je prends le problem de Bratu avec la Dirichlet condition comme le premier exemple
+pour appliquer l'algorithme. Ce problème est simple au point de calculer les dérivéés
+et de traiter la condition au limit. Cependant, la difficulté en premier temps est
+d'implémentation. Il me faut de comprendre la lambda expression qui est une fonction
+de C++ de haut niveau, et d'utiliser le backend pour résoudre un system non-lineair.
+En plus, j'ai eu l'occasion d'apprendre les deux méthodes pour implémenter Dirichlet condition qui s'appellent
+forte et faible méthode pour imposer boundary condition.
+
+
+* Ensuit, je complique le Bratu problem en rajoutant la condition de Neumann et une terme
+de source. Et cela devient un problem mixte. Le strategy pour ce nouveau problème
+est le même mais la grand difficulté est de traiter la condition de Dirichlet non-homogene
+et surtout dans l'implémentation. Cette partie se trouve dans le sous chapitre
+`Problem with mixed boundary condition`.
+
+
+* Chapitre `Bratu p-laplacian problem` est la troisème exemple. Je complique le
+premier problème avec une terme de diffusion non-linéaire, c’est un problème de
+type p-laplacien avec comme valeur par défaut pour p=2.
+ Cela cause un peu différent dans le strategie mais il pose un grand problème sur la convergence de l'algorithme.
+ Le calcule coûte cher and le solveur ne converge plus quand p est plus grand que 2.1 .
+ Cela me faut d'utiliser l'algorithme de continuation. Elle permet de d'incrementer
+p et de prendre le résultat précédent comme l'initiale valeur de l'étape suivant.
+
+
+* Chapitre `Peltier-Seebeck’s model` se présent comme l'application dans une vrai modèle
+physique. C'est un problème non-linéaire causé par la mutiphysique, c.à.d les deux
+ variables unconnues s'intervient dans les mêmes équations, et cela conduit à un système
+ non-linéair. Les difficultés maintenant devient plus compliqués: les calcules mathématiques
+ sont 'délicats' et l'implémentation demande de faire attention sur les références
+ des variables. Cependant, on peut dire que les résultats méritent les difficultés,
+  comme le problème vient d'un vrai phénomène physique, on peut faire les simulations
+  et vérifier les résultats.
+
+
+* La dernière chapitre, `Conclusion`, s'agit mes avis dans ce stage.
+
+
+L'objective de ce stage est d'étudier une méthode numérique pour résoudre les problèmes non-linéaires de différents types.
+ En plus, ce travail peut servir à documenter au manuel de Feel++ et
+permet de vérifier le modèle thermo-electrique en prenent en compte l'effet Seebeck et Peltier
+sur un semi-conducteur.
+
+
+
+_Je tiens à remercier M.Prud’Homme, mon responsable pédagogique pour m’avoir aidé à trouver ce stage et
+pour son soutien et les connaissances qu'il m'a apporté tout au longe de ces deux
+mois. Je tiens également à remercier M.Chabanne qui m'a aidé beaucoup sur le travail
+d'implémentation, pour le temps qu'il m'a consacré et ainsi que pour les expériences informatiques._

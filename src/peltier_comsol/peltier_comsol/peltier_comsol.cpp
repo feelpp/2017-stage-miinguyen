@@ -39,6 +39,7 @@ main( int argc, char** argv )
 {
 
     using namespace Feel;
+    using Feel::cout;
 	Environment env( _argc=argc, _argv=argv,
                      _desc=makeOptions(),
                      _about=about(_name="peltier_comsol",
@@ -72,11 +73,11 @@ main( int argc, char** argv )
     
     //auto V_N = expr( soption(_name="functions.V_N"), "V_N" ); //Neumann condition nonhomogene
     
-    auto P1 = -alpha1*idv(T);
-    auto P2 = -alpha2*idv(T);
+    auto P1 = alpha1*idv(T);
+    auto P2 = alpha2*idv(T);
     
-    auto d_P1 = -alpha1*idt(T);
-    auto d_P2 = -alpha2*idt(T);
+    auto d_P1 = alpha1*idt(T);
+    auto d_P2 = alpha2*idt(T);
     
     auto E = -gradv(V);
     auto d_E = -gradt(V);
@@ -87,11 +88,11 @@ main( int argc, char** argv )
     auto j2 = sigma2*(E - alpha2*gradv(T));
     auto d_j2 = sigma2*(d_E - alpha2*gradt(T));
     
-    auto q1 = -k1*gradv(T) - P1*j1;
-    auto q2 = -k2*gradv(T) - P2*j2;
+    auto q1 = -k1*gradv(T) + P1*j1;
+    auto q2 = -k2*gradv(T) + P2*j2;
     
-    auto d_q1 = -k1*gradt(T)-(d_P1*j1+P1*d_j1);
-    auto d_q2 = -k2*gradt(T)-(d_P2*j2+P2*d_j2);
+    auto d_q1 = -k1*gradt(T)+(d_P1*j1+P1*d_j1);
+    auto d_q2 = -k2*gradt(T)+(d_P2*j2+P2*d_j2);
     
     // Joule effect
     auto Q1 = sigma1*inner( gradv(V) + alpha1*gradv(T) , gradv(V));
@@ -108,11 +109,13 @@ main( int argc, char** argv )
     auto fluxElectric2 = -sigma2*(gradv(V)+alpha2*gradv(T));
     
 
-    auto Jacobian = [=](const vector_ptrtype& X, sparse_matrix_ptrtype& J)
+    auto Jacobian = [&](const vector_ptrtype& X, sparse_matrix_ptrtype& J)
         {
             if (!J) J = backend()->newMatrix( Vh, Vh );
             auto l = form1(_test=Vh);
             auto a = form2( _test=Vh, _trial=Vh, _matrix=J );
+            
+            TV = *X;
             
             // energy equation
             a = integrate( _range=markedelements(mesh, "Material0"), _expr= -inner(d_q1,grad(t)) );
@@ -121,21 +124,21 @@ main( int argc, char** argv )
             a += integrate( _range=markedelements(mesh,"Material0"), _expr= -inner( d_Q1,id(t) ) );
             a += integrate( _range=markedelements(mesh,"Material1"), _expr= -inner( d_Q2,id(t) ) );
             
-            a +=on(_range=markedfaces(mesh,"Ground"),_rhs = l, _element=T, _expr = cst(0.) );
             
             // electric charge equation
             a += integrate( _range=markedelements(mesh,"Material0"),
-                           _expr= -inner(d_fluxElectric1 ,grad(v)) );
+                           _expr= -inner(d_fluxElectric1 ,grad(v)) ); //
             a += integrate( _range=markedelements(mesh,"Material1"),
-                           _expr= -inner(d_fluxElectric2 ,grad(v)) );
+                           _expr= -inner(d_fluxElectric2 ,grad(v)) ); //
             
+            a +=on(_range=markedfaces(mesh,"Ground"),_rhs = l, _element=T, _expr = cst(0.) );
             a += on(_range=markedfaces(mesh,"Ground"),_rhs = l, _element=V, _expr = cst(0.) );
             
         };
     
-    auto Residual = [=](const vector_ptrtype& X, vector_ptrtype& R)
+    auto Residual = [&](const vector_ptrtype& X, vector_ptrtype& R)
         {
-            auto TV = Vh->element();
+            //auto TV = Vh->element();
             
             TV = *X;
             auto r = form1( _test=Vh, _vector=R );
@@ -145,7 +148,7 @@ main( int argc, char** argv )
             r += integrate( _range=markedelements(mesh,"Material1"), _expr= -inner(q2,grad(t)) );
             
             r += integrate( _range=markedelements(mesh,"Material0"), _expr= -inner(Q1,id(t)) );
-            r += integrate( _range=markedelements(mesh,"Material1"), _expr= -inner(Q2,id(T)) );
+            r += integrate( _range=markedelements(mesh,"Material1"), _expr= -inner(Q2,id(t)) );
             
             // electric charge equation
             r += integrate( _range=markedelements(mesh,"Material0"), _expr= -inner(fluxElectric1 ,grad(v)) );
@@ -165,17 +168,39 @@ main( int argc, char** argv )
             *R=w;
             
         };
-    T.on(_range = elements(mesh), _expr = cst(0.));
+    T.on(_range = elements(mesh), _expr = cst(273.15));
     V.on(_range = elements(mesh), _expr = cst(0.));
-    //TV.zero();
     
     backend()->nlSolver()->residual = Residual;
     backend()->nlSolver()->jacobian = Jacobian;
     backend()->nlSolve( _solution= TV );
-
+    
+    auto T1 = mean(_range = markedelements(mesh,"Electrode1"), _expr  = idv(T))(0,0);
+    
+    cout << "T_electrode1 = " << T1<< std::endl;
+    
+    auto T2 = mean(_range = markedelements(mesh,"Electrode2"), _expr  = idv(T))(0,0);
+    
+    cout << "T_electrode2 = " << T2<< std::endl;
+    
+    auto T3 = mean(_range = markedelements(mesh,"Material1"), _expr  = idv(T))(0,0);
+    
+    cout << "T_Adiabatic = " << T3<< std::endl;
+    
+    auto T4 = mean(_range = markedelements(mesh), _expr  = idv(T))(0,0) ;
+    
+    cout << "T_mean = " << T2<< std::endl;
+    
+    
+    // Exporter le gradient de V
+    auto XhVec = Pdhv<1>(mesh);
+    auto electricField = XhVec->element();
+    electricField.on(_range=elements(mesh),_expr=trans(gradv(V)));
+    
     auto e = exporter( _mesh=mesh );
     e->add( "T", T );
     e->add( "V", V );
+    e->add( "electric-field", electricField );
     e->save();
 }
 

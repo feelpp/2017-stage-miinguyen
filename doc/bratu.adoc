@@ -1,10 +1,12 @@
-= Bratu's problem
+== Bratu's problem
 :icons: font
 :stem: latexmath
 
-== Nonlinear equation
+=== Problem with Dirichlet boundary condition
 
-Consider the Bratu's problem
+As a simple example, let stem:[\Omega] be a subset of stem:[\mathbb{R}^d, d=1,2,3]
+(i.e stem:[\Omega=[-1,1\]^d)] with boundary stem:[\partial
+\Omega]. Consider now the following equation and Dirichlet boundary condition
 
 [stem]
 ++++
@@ -16,7 +18,11 @@ u = 0 \text{ on } \partial \Omega
 
 ++++
 
-=== Continue
+where stem:[]\lambda] is a given parameter. This is generally call the Bratu's
+ problem and appears when simplifying non-linear diffusion process models for example
+ in the combustion field.
+
+==== Continue
 
 Multiply (1) by stem:[v] chosen so that it satisfies the same
 boundary conditions as the trial solution stem:[u] and integrate on stem:[\Omega]
@@ -32,7 +38,7 @@ By using the formula of Green, we obtain
 
 [stem]
 ++++
-\displaystyle\int_{\Omega}  \nabla u \nabla v - \int_{\partial \Omega} (\nabla u \cdot n ) v + \int_{\Omega} \lambda e^{u} v = 0 \quad
+\displaystyle\int_{\Omega}  \nabla u \cdot \nabla v - \int_{\partial \Omega} (\nabla u \cdot n ) v + \int_{\Omega} \lambda e^{u} v = 0 \quad
 \forall v \in H^1_0(\Omega)
 
 ++++
@@ -44,10 +50,10 @@ Hence from that stem:[v] is null on the boundary, we have the variational formul
 ++++
 \text{Determine u } \in H^1_0(\Omega) \text{ satisfying}
 \\
-\displaystyle\int_{\Omega} \nabla u \nabla v + \int_{\Omega} \lambda e^{u} v = 0 \quad \forall v \in H^1_0(\Omega)
+\displaystyle\int_{\Omega} \nabla u \cdot \nabla v + \int_{\Omega} \lambda e^{u} v = 0 \quad \forall v \in H^1_0(\Omega)
 ++++
 
-=== Discrete
+==== Discrete
 
 Conformal approximation:
 
@@ -73,7 +79,6 @@ V_h = P^k_{c,h} \cap H^1_0(\Omega)
 
 ++++
 
-It's a vector space whose dimenstion
 The problem variable approximation is therefore
 
 [stem]
@@ -81,11 +86,11 @@ The problem variable approximation is therefore
 ++++
 \text{Determine u_h } \in V_h \text{ satisfying}
 \\
-A(u_h, v_h) = \displaystyle\int_{\Omega_h} \nabla u_h \nabla v_h + \int_{\Omega_h} \lambda e^{u_h} v_h = 0 \quad \forall v_h \in V_h
+A(u_h, v_h) = \displaystyle\int_{\Omega_h} \nabla u_h \cdot \nabla v_h + \int_{\Omega_h} \lambda e^{u_h} v_h = 0 \quad \forall v_h \in V_h
 
 ++++
 
-=== Algebraic:
+==== Algebraic:
 
 Let stem:[\{ \varphi_1, \varphi_2, ..., \varphi_N \}] a base of stem:[V_h]. An element stem:[u_h \in V_h] is written as
 
@@ -101,33 +106,33 @@ By using stem:[v] as the functions base of stem:[V_h], the problem variable appr
 ++++
 \text{Determine } u_i \text{ satisfying}
 \\
-A(\varphi_i, \varphi_j) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \nabla \varphi_j
+A(\varphi_i, \varphi_j) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \cdot \nabla \varphi_j
 + \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} \varphi_j = 0 \quad \forall j = 1, \cdots, N
 
 ++++
 
-=== Apply Newton-Raphson's method
+==== Apply Newton-Raphson's method
 
 We can rewrite algebraic problem in the form of system
 
 [stem]
 ++++
 \begin{cases}
-A_1(u_1, \cdots , u_N) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \nabla \varphi_1
+A_1(u_1, \cdots , u_N) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \cdot \nabla \varphi_1
 + \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} \varphi_1 = 0
 \\
-A_2(u_1, \cdots , u_N) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \nabla \varphi_2
+A_2(u_1, \cdots , u_N) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \cdot \nabla \varphi_2
 + \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} \varphi_2 = 0
 \\
 \vdots
 \\
-A_N(u_1, \cdots , u_N) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \nabla\varphi_N
+A_N(u_1, \cdots , u_N) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \cdot \nabla\varphi_N
 + \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} \varphi_N = 0
 \end{cases}
 
 ++++
 
-Calculate the Jacobian
+Calculate the jacobian matrix
 
 [stem]
 ++++
@@ -150,7 +155,7 @@ We evaluate
 
 [stem]
 ++++
-J(u^{(k)}) = \{ J_{lj} (u^{(k)}) \}_{lj = 1, \cdots, N}
+J(u^{(k)}) = \{ J_{lj} (u^{(k)}) \}_{l,j = 1, \cdots, N}
 \\
 \text{where}
 \\
@@ -160,7 +165,7 @@ J_{lj} (u^{(k)}) = \frac{\partial A_l}{\partial u_j} (u^{(k)}) =
 
 ++++
 
-We determine the k-th residua
+We determine the k-th residual
 
 [stem]
 ++++
@@ -175,6 +180,9 @@ A_2(u^{(k)})
 A_N(u^{(k)})
 \end{bmatrix}
 ++++
+
+where stem:[A_j(u^{(k)}) = \displaystyle\int_{\Omega_h}  \nabla u^{(k)} \cdot \nabla \varphi_j
++ \int_{\Omega_h} \lambda e^{u^{(k)}} \varphi_j]
 
 and
 
@@ -212,11 +220,20 @@ then determine the better estimate
 u^{(k+1)} = \delta u^{(k)} + u^{(k)}
 ++++
 
-[NOTE]: à completer
+The solution will be the estimate as closed as possible to the exact solution.
+In practice, we use a tolerant of stem:[10e-16] to estimate the convergence.
+Otherwise, in case it can't find the good estimate, the algorithm will stop after a
+tolerant of stem:[N_{max} = 50] iterations.
 
-=== Implementation
+==== Implementation
 
-The Jacobian's matrix
+Feelpp allows to solve nonlinear equations thanks to its interface to
+the interface to the PETSc nonlinear solver library. It requires the
+implementation of two extra functions in our application that will
+update the jacobian matrix associated to the tangent problem and the
+residual.
+
+The function to update jacobian matrix
 
 [source, cpp]
 ----
@@ -228,7 +245,7 @@ auto Jacobian = [=](const vector_ptrtype& X, sparse_matrix_ptrtype& J)
             a += integrate( elements( mesh ), lambda*( exp( idv( u ) ) )*idt( u )*id( v ) );
 ----
 
-The residual
+The function to update vector residual
 
 [source, cpp]
 ----
@@ -248,7 +265,7 @@ auto Residual = [=](const vector_ptrtype& X, vector_ptrtype& R)
 
 ----
 
-Solveur
+Solver
 
 [source, cpp]
 ----
@@ -265,68 +282,999 @@ mpirun -np 4 feelpp_doc_bratu --snes-monitor=true
 ----
 
 The option `--snes-monitor=true` displays the Newton iteration residual.
-To visualize the results type paraview `bratu-4.sos`.
+`--ksp-monitor=1` displays the iteration of linear solver.
+
+To edit the valeur of the torerance or the number stem:[N_{max}], we can use option
+`--snes-rtol` and `--snes-maxit`.
+
 
 ----
-mpirun -np 4 /feel/2017-stage-miinguyen/src/bratu/build/bratu/feelpp_qs_doc_bratu --config-file circle.cfg --snes-monitor=true --weak-meth=true --snes-rtol=1e-10
+mpirun -np 4 ../build/bratu/feelpp_qs_doc_bratu --config-file circle.cfg --snes-monitor=true --weak-meth=true --snes-rtol=1e-10
 ----
 
-=== Implement fort boundary condition of Dirichlet
+==== Implement strong boundary condition of Dirichlet
 
-Traitement des conditions aux limits sous forme forte c'est à dire on impose
-fortement les valeurs de la fonction aux sommets (aux degrées liberté) du maillage
-où il y a des conditions de Dirichlet.
+Implement strong boundary condition of Dirichlet, ie the values of the function are strongly
+imposed on the vertices of the mesh where there are Dirichlet condition.
 
-On résoud à chaque itération le system linéaire avec stem:[u^{(k)}] connu
+We solve at each iteration the linear system with stem:[u^{(k)}] is known
 
 [stem]
 ++++
 J(u^{(k)}) \delta u^{(k)} = - R^{(k)}
 ++++
 
-et on calcule
+and we calculate
 
 [stem]
 ++++
 u^{(k+1)} = \delta u^{(k)} - u^{(k)}
 ++++
 
-Si des itérations de stem:[u^{(k)}] satisfait des conditions de Dirichlet, le terme
-stem:[\delta u^{(k)}] doit s'annuler aux bord de Dirichlet.
+If iterations of stem: [u^{(k)}] satisfies Dirichlet conditions,
+the term stem: [\ delta u^{(k)}] must be null at the edges where there are Dirichlet condition.
 
-Donc comment implémenter les conditions aux limits forte?
+So how to implement strongly the conditions to limits?
 
-L'operateur `on` permet de rajouter le valeur de la fonction du condtion au limit
-de Dirichlet.
+In non- linear problem when using Newton's method and we have Dirichlet boundary conditions,
+we need to set the Dirichlet entries of the Jacobian and residual to zero except
+of cours the diagonal which is set to one. If the solution has Dirichlet boundary condition
+then the increment has zero Dirichlet condition.
 
-On rajoute dans le Jacobian
+Lets stem:[i, j, k] the three points adjoints in the border. We want the value imposed in these three
+points to be constant over each iteration. So we only put 1 in the positions stem:[J_{ii}, J_{jj}, J_{kk}]
+and 0 in others.
+
+[stem]
+++++
+
+\begin{bmatrix}
+
+    \cdots\\
+    0   & \cdots & 0 & 1 & 0 & \cdots & 0 & & \\
+        &  0    & \cdots & 0 & 1 & 0 & \cdots & 0 & \\
+        &      &  0    & \cdots & 0 & 1 & 0 & \cdots & 0 \\
+    \cdots
+
+\end{bmatrix}
+
+\begin{bmatrix}
+\cdots\\
+\delta u_i\\
+\delta u_j\\
+\delta u_k\\
+\cdots
+\end{bmatrix}
+
+=
+
+\begin{bmatrix}
+\cdots\\
+0\\
+0\\
+0\\
+\cdots
+\end{bmatrix}
+
+++++
+
+The `on` operator is used to add the value of the Dirichlet condition in positions of border.
+
+We add to the jacobian matrix
 
 [source, cpp]
 ----
 a +=on(_range=markedfaces(mesh,"Dirichlet"), _element=u, _rhs = l, _expr = cst(0.) );
 ----
 
-On a besoin alors de mettre le second membre
+It is then necessary to put the second member
 
 [source, cpp]
 ----
 l = form1(X_h)
 ----
 
-Comme stem:[u^{(k+1)}] doit satisfaire aussi la condition aux limits, il faut donner
-l'initiale stem:[u^{(0)}]
+As stem:[u^{(k + 1)}] must also satisfy the boundary condition,
+we must give the initial stem: u^{(0)}]
 
 [source, cpp]
 ----
 a.on(_range=elements( mesh ), expr = cst(0.) );
 ----
 
-IL reste un dernier point, ici on a modifié le système linéair
+Then we have to edit the vector residual. The problem is that this vector is only a
+representation algebraic.
 
-... à completer
+Use the technical of copy an element of function space Vh in order to use
+the operation on in each increment of the residual:
 
-=== Implement weak Dirichlet's boundary condition:
+[source,cpp]
+----
+auto v = Vh->element();
+                v=*R; // copy residual in v
+                // set the unknowns on the boundary to 0
+                v.on(_range=boundaryfaces(mesh),_expr=cst(0.));
+                // copy back to R
+                *R=v;
 
-En ce moment, trouver ci joint les stratégies ici
+----
+
+===== Implement weakly Dirichlet's boundary condition:
+
+[NOTE]
+====
+The detail of this method is found in
 
 http://book.feelpp.org/math/fem/#weakly_imposed_dirichlet_boundary_conditions_nitsche_method
+====
+
+Apply to this problem, let stem:[\gamma] the coefficient of penalisation,  we rewrite the system
+
+[stem]
+++++
+A_j(u^{(k)}) = \displaystyle\int_{\Omega_h}  \nabla u^{(k)} \cdot \nabla \varphi_j
++ \displaystyle\int_{\partial \Omega_h} - \left( \nabla u^{(k)} \cdot n \right) \varphi_j
++ \displaystyle\int_{\partial \Omega_h} - \left( \nabla \varphi_j \cdot n \right) u^{(k)}
++ \displaystyle\int_{\partial \Omega_h} \frac{1}{hFace} \gamma u^{(k)} \varphi_j
++ \displaystyle\int_{\Omega_h} \lambda e^{u^{(k)}} \varphi_j = 0
+
+++++
+
+So in implementation, we have to edit the function update jacobian matrix and update residual:
+
+[source,cpp]
+----
+a += integrate( boundaryfaces( mesh ),
+                               ( - trans( id( v ) )*( gradt( u )*N() )
+                                - trans( idt( u ) )*( grad( v )*N() )
+                                + penalbc*trans( idt( u ) )*id( v )/hFace() ) );
+
+----
+
+[source,cpp]
+----
+r +=  integrate( boundaryfaces( mesh ),
+                                ( - trans( id( v ) )*( gradv( u )*N() )
+                                 - trans( idv( u ) )*( grad( v )*N() )
+                                 + penalbc*trans( idv( u ) )*id( v )/hFace() ) );
+
+----
+
+Otherwise, in oder to compare the two method of imposing the Dirichlet's boundary condition,
+we add the option `--weak-meth = false` which indicate the strong method.
+
+
+=== Problem with mixed boundary condition:
+
+In this case, we consider the problem of non-linear diffusion process models with
+Dirichlet and Neumann boundary condition
+
+[stem]
+++++
+\begin{cases}
+- \nabla \cdot (\nabla u ) + \lambda e^{u} = f \text{ in } \Omega \quad (2)
+\\
+u = q \text{ on } \partial \Omega_D \text{ (non homogene Dirichlet boundary)}
+\\
+\nabla u \cdot n = g \text{ on } \partial \Omega_N \text{ (Neumann boundary condition)}
+\end{cases}
+
+++++
+
+The function stem:[f] present as a source of energy in the model.
+
+We have stem:[q \in H^1(\Omega)] and that stem:[q] is regular enough so that
+ there exist stem:[u_q = q] in stem:[\partial \Omega_D]. One reduces to the problem
+ with homogeneous Dirichlet condition by making:
+
+[stem]
+++++
+u = u_q + \phi , \quad \phi \in \{ w \in H^1(\Omega), w|_{\partial \Omega_D} = 0 \}
+++++
+
+For simplify the calculate and in order to make it similar as the previous problem,
+we can now consider stem:[\phi] as stem:[u], the unknown of the problem.
+
+Replaces in (2), the problem become:
+
+[stem]
+++++
+\begin{cases}
+\text{Find } u \in H^1_0(\Omega) \text{ such that }
+\\
+- \nabla \cdot (\nabla u ) + \lambda e^{u} e^{q} = f
+\\
+u = 0 \text{ on } \partial \Omega_D
+\\
+\nabla u \cdot n = g \text{ on } \partial \Omega_N
+\end{cases}
+++++
+
+Now, we treat with the same strategy as the previous problem.
+
+[stem]
+.The variational problem
+++++
+\text{Determine u } \in H^1_0(\Omega) \text{ satisfying}
+\\
+\displaystyle\int_{\Omega} \nabla u \cdot \nabla v - \int_{\partial \Omega_N} g v
+ + \int_{\Omega} \lambda e^{u} e^{q} v = \int_{\Omega} f v \quad \forall v \in H^1_0(\Omega)
+++++
+
+Hence by choosing functional space stem:[V_h = P^k_{c,h} \cap H^1_0(\Omega)], we have
+
+[stem]
+.Discreet problem
+++++
+\text{Determine u_h } \in V_h \text{ satisfying}
+\\
+A(u_h, v_h) = \displaystyle\int_{\Omega_h} \nabla u_h \cdot \nabla v_h
+- \int_{\partial \Omega_N} g v_h
++ \int_{\Omega_h} \lambda e^{u_h} e^{q} v_h = \int_{\Omega_h} f v_h \quad \forall v_h \in V_h
+
+++++
+
+Let stem:[\{ \varphi_1, \varphi_2, ..., \varphi_N \}] a base of stem:[V_h]. An element stem:[u_h \in V_h] is written as
+
+[stem]
+++++
+u_h = \sum^{N}_{i=1} u_i \varphi_i
+++++
+
+By using stem:[v] as the functions base of stem:[V_h], the problem variable approximation is equivalent to the system
+
+[stem]
+.Algebraic problem
+++++
+\text{Determine } u_i \text{ satisfying}
+\\
+A(\varphi_i, \varphi_j) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \cdot \nabla \varphi_j
+- \int_{\partial \Omega_N} g \varphi_j
++ \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} e^{q} \varphi_j = \int_{\Omega_h} f \varphi_j \quad \forall j = 1, \cdots, N
+
+++++
+
+We can rewrite algebraic problem in the form of system
+
+[stem]
+++++
+\begin{cases}
+A_1(u_1, \cdots , u_N) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \cdot \nabla \varphi_1
+- \int_{\partial \Omega_N} g \varphi_1
++ \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} e^{q} \varphi_1
+- \int_{\Omega_h} f \varphi_1 = 0
+\\
+A_2(u_1, \cdots , u_N) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \cdot \nabla \varphi_2
+- \int_{\partial \Omega_N} g \varphi_2
++ \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} e^{q} \varphi_2
+- \int_{\Omega_h} f \varphi_2 = 0
+\\
+\vdots
+\\
+A_N(u_1, \cdots , u_N) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \cdot \nabla\varphi_N
+- \int_{\partial \Omega_N} g \varphi_N
++ \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} e^{q} \varphi_N
+- \int_{\Omega_h} f \varphi_N = 0
+\end{cases}
+
+++++
+
+Consider stem:[u^{(k)} = (u_1^{(k)}, \cdots , u_N^{(k)})] is the vector of stem:[u_h] in k-th iteration.
+We evaluate the jacobian matrix
+
+[stem]
+++++
+J(u^{(k)}) = \{ J_{lj} (u^{(k)}) \}_{l,j = 1, \cdots, N}
+\\
+\text{where}
+\\
+J_{lj} (u^{(k)}) = \frac{\partial A_l}{\partial u_j} (u^{(k)}) =
+\displaystyle\int_{\Omega_h} \nabla \varphi_l \nabla \varphi_j
++ \int_{\Omega_h} \lambda \varphi_l e^{\sum_{i=1}^N u_i \varphi_i} e^{q} \varphi_j
+
+++++
+
+We determine the k-th residual
+
+[stem]
+++++
+R^{(k)} =
+\begin{bmatrix}
+A_1(u^{(k)})
+\\
+A_2(u^{(k)})
+\\
+\vdots
+\\
+A_N(u^{(k)})
+\end{bmatrix}
+++++
+
+where stem:[A_j(u^{(k)}) = \displaystyle\int_{\Omega_h}  \nabla u^{(k)} \cdot \nabla \varphi_j - \int_{\partial \Omega_N} g \varphi_j + \int_{\Omega_h} \lambda e^{u^{(k)}} e^{q} \varphi_j - \int_{\Omega_h} f \varphi_j]
+
+and
+
+[stem]
+++++
+\delta u^{(k)} = u^{(k+1)} - u^{(k)}
+++++
+
+We start with a  good estimate stem:[u^{(0)} \in V_h] (initial guess), then
+calculate the new estimate stem:[u^{(1)}] by solving the system of linear equation
+
+[stem]
+++++
+J(u^{(0)}) \delta u^{(0)} = - R^{(0)}
+++++
+
+and then determine
+
+[stem]
+++++
+u^{(1)} = \delta u^{(0)} + u^{(0)}
+++++
+
+and so on, in k-th iteration, we find stem:[\delta u^{(k)}] by solving
+
+[stem]
+++++
+J(u^{(k)}) \delta u^{(k)} = - R^{(k)}
+++++
+
+then determine the better estimate
+
+[stem]
+++++
+u^{(k+1)} = \delta u^{(k)} + u^{(k)}
+++++
+
+The solution will be the estimate as closed as possible to the exact solution.
+In practice, we use a tolerant of stem:[10e-16] to estimate the convergence.
+Otherwise, in case it can't find the good estimate, the algorithm will stop after a
+tolerant of stem:[N_{max} = 50] iterations.
+
+We implement the two functions to update the jacobian matrix and the residual in
+both of strong and weak method of imposing Dirichlet condition.
+
+[source,cpp]
+.Function to update jacobian matrix
+----
+auto v = Vh->element(q,"q");
+
+auto Jacobian = [=](const vector_ptrtype& X, sparse_matrix_ptrtype& J)
+        {
+            if (!J) J = backend()->newMatrix( Vh, Vh );
+            auto l = form1(_test=Vh);
+            auto a = form2( _test=Vh, _trial=Vh, _matrix=J );
+            a = integrate( elements( mesh ), gradt( u )*trans( grad( v ) ) );
+            a += integrate( elements( mesh ), lambda*( exp( idv( u ) ) )*idt( u )*id( v ) * exp(q) );
+
+
+            if ( boption("weak-method") )
+            {
+                a += integrate( boundaryfaces( mesh ),
+                               ( - trans( id( v ) )*( gradt( u )*N() )
+                                - trans( idt( u ) )*( grad( v )*N() )
+                                + penalbc*trans( idt( u ) )*id( v )/hFace() ) );
+
+            }
+            else
+            {
+                a +=on(_range=markedfaces(mesh,"Dirichlet"),_rhs = l, _element=u, _expr = cst(0.) );
+            }
+        };
+----
+
+[source,cpp]
+.Function to update residual
+----
+auto Residual = [=](const vector_ptrtype& X, vector_ptrtype& R)
+        {
+            auto u = Vh->element();
+            u = *X;
+            auto r = form1( _test=Vh, _vector=R );
+            //r.on(_range=markedfaces(mesh,"Dirichlet", _expr = cst(0)); --> problematique
+            r  = integrate( elements( mesh ), gradv( u )*trans( grad( v ) ) );
+            r += integrate( elements( mesh ),  lambda*exp( idv( u ) )*id( v ) * exp(q));
+            r += integrate( _range=markedfaces(mesh,"Neumann"), _expr= - g * id(v));
+            r += integrate( elements( mesh ), _expr= - f*id(v));
+
+            if ( boption("weak-method") )
+            {
+                r +=  integrate( boundaryfaces( mesh ),
+                                ( - trans( id( v ) )*( gradv( u )*N() )
+                                 - trans( idv( u ) )*( grad( v )*N() )
+                                 + penalbc*trans( idv( u ) )*id( v )/hFace() ) );
+
+            }
+            else
+            {
+                auto w = Vh->element();
+                w=*R; // copy residual in v
+                // set the unknowns on the boundary to 0
+                w.on(_range=markedfaces(mesh,"Dirichlet"),_expr = cst(0.));
+                // copy back to R
+                *R=w;
+            }
+        };
+----
+
+The initial guess
+
+[source,cpp]
+----
+u.on(_range = elements(mesh), _expr = q);
+----
+
+
+=== Numerical experience
+
+==== Case 2D
+
+* Example 1: stem:[\Omega] is a unit circle with stem:[\lambda = 1]
+
+[cols="^,^"]
+.Geometry
+|======
+|image:image/b1.png[]
+|image:image/b2.png[]
+|Geometrie | Mesh with stem:[hsize = 0.1]
+|======
+
+The result show all the iterations of Newton's method in case of strongly imposed
+Dirichlet condition
+
+[source,bash]
+.Result in case of strongly imposed Dirichlet condition
+----
+0  SNES Function norm 1.533744e-01
+1  SNES Function norm 1.526050e-03
+2  SNES Function norm 3.503014e-05
+3  SNES Function norm 8.021951e-07
+4  SNES Function norm 1.833466e-08
+5  SNES Function norm 4.188840e-10
+[env] Time : 5.442774e+00s
+----
+
+[cols="^,^"]
+.Solution in case of strongly imposed Dirichlet condition
+|======
+|image:image/b3.png[]
+|image:image/b4.png[]
+|geometrie | with line of contour
+|======
+
+
+In case of weakly imposed Dirichlet condition, we use stem:[\gamma = 30] and stem:[hsize = 0.1]
+
+[source,bash]
+.Result in case of weakly imposed Dirichlet condition
+----
+0  SNES Function norm 1.565416e-01
+1  SNES Function norm 1.526007e-03
+2  SNES Function norm 3.502907e-05
+3  SNES Function norm 8.021703e-07
+4  SNES Function norm 1.833408e-08
+5  SNES Function norm 4.188708e-10
+[env] Time : 1.443950e+00s
+----
+
+[cols="^,^"]
+.Solution in case of weakly imposed Dirichlet condition
+|======
+|image:image/b5.png[]
+|image:image/b6.png[]
+|geometrie | with line of contour
+|======
+
+Observing the two result, we find that the strong method cost more in time of
+calculate than the weak one. And the line of contour in second method seem more
+'slippery' than the other. Otherwise, the speed of convergence over each iteration
+in two method is quite similar.
+
+[cols="^,^"]
+.Speed of convergence in log log scale
+|======
+|image:image/b7.png[]
+|image:image/b8.png[]
+| Strong method of imposing Dirrichlet condition
+| Weak method of imposing Dirrichlet condition
+|======
+
+[cols="^,^"]
+.Speed of convergence in normal plot
+|======
+|image:image/b13.png[]
+|image:image/b12.png[]
+| Strong method of imposing Dirrichlet condition
+| Weak method of imposing Dirrichlet condition
+|======
+
+We notice the speed of convergence is quadratic over each iteration followed the theory.
+
+Now, by reducing the size of the mesh, we obtain
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/b4.png[]
+|image:image/b9.png[]
+| hsize = 0.1 | hsize = 0.05
+|image:image/b10.png[]
+|image:image/b11.png[]
+| hsize = 0.025 | hsize = 0.0125
+|======
+
+
+* Example 2: stem:[\Omega] is in form of FEELPP with stem:[\lambda = 1]
+
+In this case, we will test this program to a more complicated geometry.
+
+[cols="^,^"]
+.Geometry
+|======
+|image:image/fpp1.png[]
+|image:image/fpp2.png[]
+|Geometrie | Mesh with stem:[hsize = 0.1]
+|======
+
+[source,bash]
+.Result in case of strongly imposed Dirichlet condition
+----
+0  SNES Function norm 3.875950e-01
+1  SNES Function norm 2.519610e-03
+2  SNES Function norm 6.339889e-05
+3  SNES Function norm 1.643958e-06
+4  SNES Function norm 4.276540e-08
+5  SNES Function norm 1.113989e-09
+[env] Time : 3.512586e+00s
+----
+
+[source,bash]
+.Result in case of weakly imposed Dirichlet condition
+----
+0  SNES Function norm 4.019374e-01
+1  SNES Function norm 2.529817e-03
+2  SNES Function norm 6.385980e-05
+3  SNES Function norm 1.661264e-06
+4  SNES Function norm 4.335364e-08
+5  SNES Function norm 1.132891e-09
+[env] Time : 2.936435e+00s
+----
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/fpp4.png[]
+|image:image/fpp6.png[]
+| Strong method of imposing Dirrichlet condition
+| Weak method of imposing Dirrichlet condition
+|======
+
+[cols="^,^"]
+.Solution with line of contour
+|======
+|image:image/fpp5.png[]
+|image:image/fpp3.png[]
+| Strong method of imposing Dirrichlet condition
+| Weak method of imposing Dirrichlet condition
+|======
+
+==== Case 2D with mixed condition
+
+Consider the domain of an unit square dtem:[\Omega]
+
+.Geometry
+image:image/m1.png[]
+
+* Example 1:
+
+[source,bash]
+----
+g = 0:x:y
+f = 0:x:y
+q = 0
+----
+
+Using strong methode of imposing boundary condition with stem:[hsize = 0.1], we obtain
+
+[source,bash]
+.Result
+----
+0  SNES Function norm 8.601097e-02
+1  SNES Function norm 3.547906e-04
+2  SNES Function norm 3.060074e-06
+3  SNES Function norm 2.633270e-08
+4  SNES Function norm 2.265028e-10
+[env] Time : 1.936892e+00s
+----
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/m2.png[]
+|image:image/m3.png[]
+| Solution
+| Solution with line of contour
+|======
+
+* Example 2:
+
+[source,bash]
+----
+g = 0:x:y
+f = 0:x:y
+q = 2:x:y
+----
+
+Using strong method of imposing boundary condition with stem:[hsize = 0.1], we obtain
+
+[source,bash]
+.Result
+----
+0  SNES Function norm 4.696040e+00
+1  SNES Function norm 2.435605e+00
+2  SNES Function norm 4.867167e-01
+3  SNES Function norm 4.270286e-02
+4  SNES Function norm 1.393261e-02
+5  SNES Function norm 4.844162e-03
+6  SNES Function norm 1.609185e-03
+7  SNES Function norm 5.262403e-04
+8  SNES Function norm 1.714626e-04
+9  SNES Function norm 5.580652e-05
+10  SNES Function norm 1.815940e-05
+11  SNES Function norm 5.908626e-06
+12  SNES Function norm 1.922498e-06
+13  SNES Function norm 6.255228e-07
+14  SNES Function norm 2.035262e-07
+15  SNES Function norm 6.622123e-08
+16  SNES Function norm 2.154638e-08
+[env] Time : 3.146386e+00s
+----
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/m4.png[]
+|image:image/m5.png[]
+| Solution
+| Solution with line of contour
+|======
+
+* Example 3:
+
+[source,bash]
+----
+g = 0:x:y
+f = 0:x:y
+q=sin(pi*x)*cos(pi*y):x:y
+----
+
+[source,bash]
+.Result
+----
+0  SNES Function norm 9.130287e-01
+1  SNES Function norm 2.650988e-02
+2  SNES Function norm 4.161965e-03
+3  SNES Function norm 6.305129e-04
+4  SNES Function norm 9.543921e-05
+5  SNES Function norm 1.440296e-05
+6  SNES Function norm 2.172523e-06
+7  SNES Function norm 3.276372e-07
+8  SNES Function norm 4.940857e-08
+9  SNES Function norm 7.450841e-09
+[env] Time : 2.707165e+00s
+----
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/m13.png[]
+|image:image/m14.png[]
+| Solution
+| Solution with line of contour
+|======
+
+
+* Example 4:
+
+[source,bash]
+----
+g = 0:x:y
+f = 10:x:y
+q=sin(pi*x)*cos(pi*y):x:y
+----
+
+[source,bash]
+.Result
+----
+0  SNES Function norm 8.300803e-01
+1  SNES Function norm 9.314155e-03
+2  SNES Function norm 2.425090e-04
+3  SNES Function norm 6.506138e-06
+4  SNES Function norm 1.786254e-07
+5  SNES Function norm 4.926732e-09
+[env] Time : 1.982191e+00s
+----
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/m11.png[]
+|image:image/m12.png[]
+| Solution
+| Solution with line of contour
+|======
+
+
+* Example 5:
+
+[source,bash]
+----
+g = 5:x:y
+f = exp(x^2):x:y
+q=sin(pi*x)*cos(pi*y):x:y
+----
+
+[source,bash]
+.Result
+----
+0  SNES Function norm 1.754930e+00
+1  SNES Function norm 4.671978e-02
+2  SNES Function norm 8.991028e-03
+3  SNES Function norm 1.701252e-03
+4  SNES Function norm 3.275019e-04
+5  SNES Function norm 6.297181e-05
+6  SNES Function norm 1.211576e-05
+7  SNES Function norm 2.330937e-06
+8  SNES Function norm 4.484491e-07
+9  SNES Function norm 8.627582e-08
+10  SNES Function norm 1.659820e-08
+[env] Time : 2.385708e+00s
+----
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/m9.png[]
+|image:image/m10.png[]
+| Solution
+| Solution with line of contour
+|======
+
+* Example 6:
+
+[source,bash]
+----
+g = x^2 + y^2:x:y
+f = exp(x^2):x:y
+q=sin(pi*x)*cos(pi*y):x:y
+----
+
+[source,bash]
+.Result
+----
+0  SNES Function norm 8.234561e-01
+1  SNES Function norm 8.242994e-03
+2  SNES Function norm 2.013958e-04
+3  SNES Function norm 6.408645e-06
+4  SNES Function norm 2.411853e-07
+5  SNES Function norm 9.791356e-09
+6  SNES Function norm 4.093998e-10
+[env] Time : 2.011367e+00s
+----
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/m6.png[]
+|image:image/m7.png[]
+| Solution
+| Solution with line of contour
+|======
+
+[NOTE]
+====
+* The calculated time is reasonable
+* The speed of convergent is quadratic
+* pc-type=gasm and pc-type=lu give the same result
+* The program seem give the good result by observing the value in borde
+
+====
+
+==== Case 3D
+
+In this case, stem:[\Omega] is a cube and we consider the mixed problem
+
+* Exemple1:
+
+[source,bash]
+----
+f = 0:x:y:z
+q=sin(pi*x)*cos(pi*y):x:y:z
+----
+
+[source,bash]
+.Result
+----
+0  SNES Function norm 1.501713e-01
+1  SNES Function norm 2.574555e-03
+2  SNES Function norm 4.628360e-05
+3  SNES Function norm 8.023050e-07
+4  SNES Function norm 1.374467e-08
+5  SNES Function norm 2.341493e-10
+[env] Time : 3.968799e+01s
+----
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/d1.png[]
+|image:image/d2.png[]
+|======
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/d3.png[]
+|image:image/d4.png[]
+|======
+
+* Exemple 2:
+
+[source,bash]
+----
+Physical Surface("Dirichlet") = {6,15,19};
+Physical Surface("Neumann") = {23, 27,28};
+----
+
+[source,bash]
+----
+g = x^2 + y^2 +z^2:x:y:z
+f = 0:x:y:z
+q=sin(pi*x)*cos(pi*y):x:y:z
+----
+
+[source,bash]
+.Result
+----
+0  SNES Function norm 2.304001e-01
+1  SNES Function norm 5.415787e-03
+2  SNES Function norm 4.168578e-04
+3  SNES Function norm 6.551548e-05
+4  SNES Function norm 1.237700e-05
+5  SNES Function norm 2.399950e-06
+6  SNES Function norm 4.678230e-07
+7  SNES Function norm 9.129960e-08
+8  SNES Function norm 1.782352e-08
+9  SNES Function norm 3.479791e-09
+10  SNES Function norm 6.793947e-10
+[env] Time : 7.274972e+01s
+----
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/d5.png[]
+|image:image/d6.png[]
+|======
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/d7.png[]
+|image:image/d8.png[]
+|======
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/d9.png[]
+|image:image/d10.png[]
+|======
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/d11.png[]
+|image:image/d12.png[]
+|======
+
+
+* Exemple 3: hsize = 0.05
+
+[source,bash]
+----
+g = x^2 + y^2 +z^2:x:y:z
+f = 5:x:y:z
+q=sin(pi*x)*cos(pi*y):x:y:z
+----
+
+[source,bash]
+.Result
+----
+0  SNES Function norm 1.080133e-01
+ 1  SNES Function norm 7.185541e-03
+ 2  SNES Function norm 3.615229e-03
+ 3  SNES Function norm 1.611439e-03
+ 4  SNES Function norm 7.703491e-04
+ 5  SNES Function norm 3.568556e-04
+ 6  SNES Function norm 1.677840e-04
+ 7  SNES Function norm 7.834347e-05
+ 8  SNES Function norm 3.669990e-05
+ 9  SNES Function norm 1.716596e-05
+ 10  SNES Function norm 8.034888e-06
+ 11  SNES Function norm 3.759649e-06
+ 12  SNES Function norm 1.759472e-06
+ 13  SNES Function norm 8.233522e-07
+ 14  SNES Function norm 3.853043e-07
+ 15  SNES Function norm 1.803080e-07
+ 16  SNES Function norm 8.437807e-08
+ 17  SNES Function norm 3.948595e-08
+ 18  SNES Function norm 1.847806e-08
+ 19  SNES Function norm 8.647083e-09
+ 20  SNES Function norm 4.046534e-09
+ 21  SNES Function norm 1.893636e-09
+ 22  SNES Function norm 8.861558e-10
+[env] Time : 1.556372e+03s
+----
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/p13.png[]
+|image:image/p14.png[]
+|======
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/p15.png[]
+|image:image/p16.png[]
+|======
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/p17.png[]
+|image:image/p18.png[]
+|======
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/p19.png[]
+|image:image/p20.png[]
+|======
+
+Times of calculation in the case of smaller hsize is longer and take more iterations.
+However, the line of contour of solution are more slippery ,i.e the
+solution is more regular.
+
+As discuss at first, this method is guaranteed to converge if the initial guess
+ is close enough. Try to have a little change to impose the initial guess, we
+ fall easily in a case that the non-linear is not converge.
+
+Voici the error I made in this implementation at first
+
+ [source,cpp]
+ ----
+a +=on(_range=markedfaces(mesh,"Dirichlet"),_rhs = l, _element=u, _expr = q
+ ----
+
+And the result we obtain
+
+ [source,bash]
+ ----
+ 45  SNES Function norm 1.011135e-05
+ 46  SNES Function norm 9.330719e-06
+ 47  SNES Function norm 9.069190e-06
+ 48  SNES Function norm 7.897080e-06
+ 49  SNES Function norm 6.676722e-06
+ 50  SNES Function norm 6.599377e-06
+E0824 01:44:15.905316  1066 solvernonlinearpetsc.cpp:989] Nonlinear solve did not converge due to DIVERGED_MAX_IT iterations 50
+E0824 01:44:15.905508  1066 backend.cpp:464]
+[backend] non-linear solver fail
+E0824 01:44:15.906250  1066 backend.cpp:465] Backend  : non-linear solver failed to converge
+E0824 01:44:15.907737  1068 solvernonlinearpetsc.cpp:989] Nonlinear solve did not converge due to DIVERGED_MAX_IT iterations 50
+ ----

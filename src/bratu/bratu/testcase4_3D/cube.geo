@@ -36,6 +36,7 @@ Physical Line(1) = {1};
 Physical Line(2) = {2};
 Physical Line(3) = {3};
 Physical Line(4) = {4};
-Physical Surface("Dirichlet") = {6,15,19,23, 27,28};
+Physical Surface("Dirichlet") = {6,15,19};
+Physical Surface("Neumann") = {23, 27,28};
 
 Physical Volume(30) = {1};

@@ -1,0 +1,14 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {french}
+\beamer@sectionintoc {1}{INTRODUCTION}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Objective du stage}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Stat\IeC {\'e}gie de l'\IeC {\'e}tude}{4}{0}{1}
+\beamer@sectionintoc {2}{M\IeC {\'E}THODE DE NEWTON-RAPHSON}{5}{0}{2}
+\beamer@subsectionintoc {2}{1}{Unidimention}{5}{0}{2}
+\beamer@subsectionintoc {2}{2}{Matrice probl\IeC {\`e}me}{6}{0}{2}
+\beamer@sectionintoc {3}{BRATU PROBL\IeC {\`E}ME}{8}{0}{3}
+\beamer@subsectionintoc {3}{1}{Probl\IeC {\`e}me avec Dirichlet condition}{8}{0}{3}
+\beamer@subsectionintoc {3}{2}{Bratu probl\IeC {\`e}me mixte}{19}{0}{3}
+\beamer@sectionintoc {4}{BRATU P-LAPLACIEN}{35}{0}{4}
+\beamer@sectionintoc {5}{MOD\IeC {\`E}LE DE L'EFFET PELTIER-SEEBECK}{43}{0}{5}
+\beamer@sectionintoc {6}{CONCLUSION}{53}{0}{6}

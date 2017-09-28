@@ -24,10 +24,28 @@
 
 
 #feelpp_add_application( bratu_2d SRCS qs_bratu.cpp INCLUDE_IN_ALL DEFS FEELPP_DIM=2)
-#feelpp_add_application(doc_bratu SRCS bratu.cpp INCLUDE_IN_ALL DEFS FEELPP_DIM=2)
-feelpp_add_application(doc_bratu_mixte SRCS bratu_mixte.cpp INCLUDE_IN_ALL DEFS FEELPP_DIM=2)
+
+#feelpp_add_application(bratu_2d SRCS bratu.cpp INCLUDE_IN_ALL DEFS FEELPP_DIM=2)
+
+#feelpp_add_application(bratu_3d SRCS bratu.cpp INCLUDE_IN_ALL DEFS FEELPP_DIM=3)
+
+#feelpp_add_application(bratu_mixte SRCS bratu_mixte.cpp INCLUDE_IN_ALL DEFS FEELPP_DIM=2)
+
+feelpp_add_application(bratu_fort_3d SRCS bratu_fort.cpp INCLUDE_IN_ALL DEFS FEELPP_DIM=3)
+
+#feelpp_add_application(bratu_fort_3D SRCS bratu_fort_3D.cpp INCLUDE_IN_ALL DEFS FEELPP_DIM=3)
+
+#feelpp_add_application(bratu_p_laplacian SRCS bratu_p_laplacian.cpp INCLUDE_IN_ALL DEFS FEELPP_DIM=3)
+
+#feelpp_add_application(bratu_p_laplacian_continu_3d SRCS bratu_p_laplacian_continu.cpp INCLUDE_IN_ALL DEFS FEELPP_DIM=3)
+
+#feelpp_add_application(bratu_p_laplacian_3d SRCS bratu_p_laplacian_3D.cpp INCLUDE_IN_ALL DEFS FEELPP_DIM=3)
+
+
 #feelpp_add_application(doc_nonlinearpow SRCS nonlinearpow.cpp LABELS doc)
+
 #feelpp_add_application(doc_nlda SRCS nlda.cpp INCLUDE_IN_ALL DEFS FEELPP_DIM=2)
+
 #feelpp_add_application(doc_steadynavierstokes SRCS navierstokes.cpp CFG passerni.cfg kovasnay.cfg GEO kovasnaystraight2.geo 2D_FDA_L.geo LABELS doc )
 
 #feelpp_add_application(doc_steadynavierstokes SRCS navierstokes.cpp CFG passerni.cfg GEO 2D_FDA_L.geo LABELS doc )

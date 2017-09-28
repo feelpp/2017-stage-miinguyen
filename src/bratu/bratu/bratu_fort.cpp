@@ -2,31 +2,10 @@
 
   This file is part of the Feel library
 
-  Author(s): Christophe Prud'homme <christophe.prudhomme@feelpp.org>
-       Date: 2008-01-09
-
-  Copyright (C) 2008-2009 Université Joseph Fourier (Grenoble I)
-  Copyright (C) 2013-2016 Feel++ Consortium
-
-  This library is free software; you can redistribute it and/or
-  modify it under the terms of the GNU Lesser General Public
-  License as published by the Free Software Foundation; either
-  version 3.0 of the License, or (at your option) any later version.
-
-  This library is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-  Lesser General Public License for more details.
-
-  You should have received a copy of the GNU Lesser General Public
-  License along with this library; if not, write to the Free Software
-  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 */
 /**
-   \file bratu.cpp
-   \author Christophe Prud'homme <christophe.prudhomme@feelpp.org>
-   \date 2013-02-04
  */
+
 #include <feel/feel.hpp>
 
 inline
@@ -64,10 +43,7 @@ main( int argc, char** argv )
                                   _email="christophe.prudhomme@feelpp.org"));
     //auto mesh = unitSquare();
     auto mesh = loadMesh(_mesh=new Mesh<Simplex<FEELPP_DIM,1>>);
-    auto Vh = Pch<1>( mesh );
-    
-    auto u = Vh->element();
-    auto v = Vh->element();
+    auto Vh = Pch<2>( mesh );
     
     double penalbc = doption(_name="penalbc");
     double lambda = doption(_name="lambda");
@@ -75,6 +51,9 @@ main( int argc, char** argv )
     auto q = expr( soption(_name="functions.q"), "q" ); //Dirichlet condition homogene ou non-homogene
     auto g = expr( soption(_name="functions.g"), "g" ); //Neumann condition
     auto f = expr( soption(_name="functions.f"), "f" ); //source
+    
+    auto u = Vh->element();
+    auto v = Vh->element(q,"q");
 
     auto Jacobian = [=](const vector_ptrtype& X, sparse_matrix_ptrtype& J)
         {
@@ -83,7 +62,6 @@ main( int argc, char** argv )
             auto a = form2( _test=Vh, _trial=Vh, _matrix=J );
             a = integrate( elements( mesh ), gradt( u )*trans( grad( v ) ) );
             a += integrate( elements( mesh ), lambda*( exp( idv( u ) ) )*idt( u )*id( v ) * exp(q) );
-            //a +=on(_range=markedfaces(mesh,"Dirichlet"),_rhs = l, _element=u, _expr=q );
             
             if ( boption("weak-method") )
             {
@@ -95,7 +73,7 @@ main( int argc, char** argv )
             }
             else
             {
-                a +=on(_range=markedfaces(mesh,"Dirichlet"),_rhs = l, _element=u, _expr = q );
+                a +=on(_range=markedfaces(mesh,"Dirichlet"),_rhs = l, _element=u, _expr = cst(0.) );
             }
         };
     auto Residual = [=](const vector_ptrtype& X, vector_ptrtype& R)
@@ -119,12 +97,12 @@ main( int argc, char** argv )
             }
             else
             {
-                auto v = Vh->element();
-                v=*R; // copy residual in v
+                auto w = Vh->element();
+                w=*R; // copy residual in v
                 // set the unknowns on the boundary to 0
-                v.on(_range=markedfaces(mesh,"Dirichlet"),_expr = q);
+                w.on(_range=markedfaces(mesh,"Dirichlet"),_expr = cst(0.));
                 // copy back to R
-                *R=v;
+                *R=w;
             }
         };
     u.on(_range = elements(mesh), _expr = q);

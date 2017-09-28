@@ -45,7 +45,7 @@ main( int argc, char** argv )
                                   _email=" "));
     //auto mesh = unitSquare();
     auto mesh = loadMesh(_mesh=new Mesh<Simplex<FEELPP_DIM,1>>);
-    auto Vh = Pch<1>( mesh );
+    auto Vh = Pch<2>( mesh );
     auto u = Vh->element();
     auto v = Vh->element();
     

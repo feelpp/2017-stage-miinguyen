@@ -30,7 +30,7 @@ Line Loop(5) = {2,3,4,1};
 Plane Surface(6) = {5};
 
 Extrude Surface {6, {0,0,zmax-zmin} } {
-  Layers { {(zmax-zmin)/h}, {1.0} };
+  Layers { {(zmax-zmin)/h}, {1.0} }
 };
 Physical Line(1) = {1};
 Physical Line(2) = {2};

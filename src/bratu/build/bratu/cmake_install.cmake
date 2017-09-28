@@ -1,8 +1,8 @@
-# Install script for directory: /feel/bratu/bratu
+# Install script for directory: /feel/2017-stage-miinguyen/src/bratu/bratu
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/feel/bratu/build")
+  set(CMAKE_INSTALL_PREFIX "/feel/2017-stage-miinguyen/src/bratu/build")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

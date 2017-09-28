@@ -1,8 +1,8 @@
-# Install script for directory: /feel/bratu
+# Install script for directory: /feel/2017-stage-miinguyen/src/bratu
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/feel/bratu/build")
+  set(CMAKE_INSTALL_PREFIX "/feel/2017-stage-miinguyen/src/bratu/build")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -34,7 +34,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/feel/bratu/build/bratu/cmake_install.cmake")
+  include("/feel/2017-stage-miinguyen/src/bratu/build/bratu/cmake_install.cmake")
 
 endif()
 
@@ -46,5 +46,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/feel/bratu/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/feel/2017-stage-miinguyen/src/bratu/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

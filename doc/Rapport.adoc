@@ -1,0 +1,57 @@
+= Apply Newton Raphson's method to solve non-linear problem
+:author: NGUYEN Thi Tra My
+:icons: font
+:stem: latexmath
+:feelpp: Feel++
+:nofooter:
+:toc: left
+
+
+//== Introduction
+include::introduction.adoc[]
+
+
+
+
+//== Newton-Raphson's method
+
+include::meth_Newton_Raphson.adoc[]
+
+
+
+
+//== Bratu's problem
+
+include::bratu.adoc[]
+
+
+
+
+//== Non-linear problem of type p-laplacian
+
+include::bratu_p_laplacian.adoc[]
+
+
+
+
+//== Peltier-Seebeck's model
+
+include::peltier_comsol.adoc[]
+
+
+
+//== Conclusion
+
+include::conclusion.adoc[]
+
+
+
+== Bibliography
+
+https://en.wikipedia.org/wiki/Newton%27s_method
+
+http://book.feelpp.org/programming/reference/
+
+https://github.com/feelpp/gazomat/
+
+http://book.feelpp.org/math/fem/

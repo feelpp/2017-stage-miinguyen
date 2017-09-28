@@ -1,0 +1,508 @@
+== Bratu p-laplacian's problem
+:icons: font
+:stem: latexmath
+
+=== Nonlinear equation
+
+Consider the problem of type p-laplacian
+
+[stem]
+++++
+\begin{cases}
+- \nabla \cdot (\eta \nabla u ) + \lambda e^{u} = 0 \text{ in } \Omega \quad (1)
+\\
+\text{with } \eta = \left( \epsilon^2 + \gamma  \right)^{\frac{p-2}{2}}
+\text{ and } \eta = 1/2 | \nabla u|^2
+\\
+u = 0 \text{ on } \partial \Omega
+\end{cases}
+++++
+
+by default stem:[p = 2, \epsilon = 1e-5]. We notice that with stem:[p=2] we get the ordinary
+bratu's problem.
+
+[NOTE]
+====
+Denote stem:[|w|^2 = (w,w)] which is the scalar product.
+====
+
+==== Continue
+
+Multiply (1) by stem:[v] chosen so that it satisfies the same
+boundary conditions as the trial solution stem:[u] and integrate on stem:[\Omega]
+
+[stem]
+++++
+\displaystyle\int_{\Omega} - \nabla \cdot (\eta \nabla u ) v + \int_{\Omega} \lambda e^{u} v = 0 \quad
+\forall v \in H^1_0(\Omega)
+
+++++
+
+By using the formula of Green, we obtain
+
+[stem]
+++++
+\displaystyle\int_{\Omega} \eta \nabla u \cdot \nabla v - \int_{\partial \Omega} (\eta \nabla u \cdot n ) v + \int_{\Omega} \lambda e^{u} v = 0 \quad
+\forall v \in H^1_0(\Omega)
+
+++++
+
+Hence from that stem:[v] is null on the boundary, we have
+
+[stem]
+++++
+\displaystyle\int_{\Omega} \eta \nabla u \cdot \nabla v + \int_{\Omega} \lambda e^{u} v = 0 \quad \forall v \in H^1_0(\Omega)
+++++
+
+So the variational formulation is
+
+[stem]
+.The variational problem
+++++
+\text{Determine u } \in H^1_0(\Omega) \text{ satisfying}
+\\
+\displaystyle\int_{\Omega} \left( \epsilon^2 + 1/2 |\nabla u|^2 \right)^{\frac{p-2}{2}} \nabla u \cdot \nabla v + \int_{\Omega} \lambda e^{u} v = 0 \quad \forall v \in H^1_0(\Omega)
+++++
+
+==== Discrete
+
+Conformal approximation:
+
+We use the Galerkin approximation method:
+
+Let stem:[\{ \mathcal{T}_h \}] a family of meshes of stem:[\Omega].
+
+Let stem:[\{ \mathcal{K}, P, \sum \}] a finite Lagrange element of degree stem:[k \geq 1].
+
+Let stem:[P^k_{c,h}] the approximate space associated to the finite elements stem:[\mathbb{P}_k]
+
+[stem]
+++++
+P^k_{ c,h} = \{ v \in C^0(\Omega), \forall \mathcal{K} \in \mathcal{T}_h, v|_{\mathcal{K}} \in \mathbb{P}_k(\mathcal{K}) \}
+
+++++
+
+To obtain a conformal approximation, we add the boundary conditions to the space
+
+[stem]
+++++
+V_h = P^k_{c,h} \cap H^1_0(\Omega)
+
+++++
+
+The problem variable approximation is therefore
+
+[stem]
+.Discreet problem
+++++
+\text{Determine } u_h \in V_h \text{ satisfying}
+\\
+A(u_h, v_h) = \displaystyle\int_{\Omega_h} \left( \epsilon^2 + 1/2 |\nabla u_h|^2 \right)^{\frac{p-2}{2}}  \nabla u_h \cdot \nabla v_h + \int_{\Omega_h} \lambda e^{u_h} v_h = 0 \quad \forall v_h \in V_h
+
+++++
+
+==== Algebraic:
+
+Let stem:[\{ \varphi_1, \varphi_2, ..., \varphi_N \}] a base of stem:[V_h]. An element stem:[u_h \in V_h] is written as
+
+[stem]
+++++
+u_h = \sum^{N}_{i=1} u_i \varphi_i
+++++
+
+By using stem:[v] as the functions base of stem:[V_h] which mean stem:[v = \varphi_j] for stem:[j \in (1, \cdots , N )], the problem variable approximation is equivalent to the system
+
+[stem]
+.Algebraic problem
+++++
+\text{Determine } u_i \text{ satisfying}
+\\
+A(\varphi_i, \varphi_j) = \displaystyle\int_{\Omega_h} \left( \epsilon^2 + 1/2 \left| \sum_{i=1}^N u_i \nabla \varphi_i \right|^2 \right)^{\frac{p-2}{2}} \sum_{i=1}^N u_i \nabla \varphi_i \cdot \nabla \varphi_j
++ \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} \varphi_j = 0 \quad \forall j = 1, \cdots, N
+
+++++
+
+==== Apply Newton-Raphson's method
+
+We can rewrite algebraic problem in the form of system
+
+[stem]
+++++
+\begin{cases}
+A_1(\varphi_i, \varphi_j) = \displaystyle\int_{\Omega_h} \left( \epsilon^2 + 1/2 \left| \sum_{i=1}^N u_i \nabla \varphi_i \right|^2 \right)^{\frac{p-2}{2}} \sum_{i=1}^N u_i \nabla \varphi_i \cdot \nabla \varphi_1
++ \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} \varphi_1 = 0
+
+\\
+\vdots
+\\
+A_N(\varphi_i, \varphi_j) = \displaystyle\int_{\Omega_h} \left( \epsilon^2 + 1/2 \left| \sum_{i=1}^N u_i \nabla \varphi_i \right|^2 \right)^{\frac{p-2}{2}} \sum_{i=1}^N u_i \nabla \varphi_i \cdot \nabla \varphi_N
++ \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} \varphi_N = 0
+\end{cases}
+
+++++
+
+Calculate the Jacobian
+
+[stem]
+++++
+J =
+\begin{bmatrix}
+\frac{\partial A_1}{\partial u_1} & \frac{\partial A_1}{\partial u_2} & \cdots & \frac{\partial A_1}{\partial u_N}
+\\
+\frac{\partial A_2}{\partial u_1} & \frac{\partial A_2}{\partial u_2} & \cdots & \frac{\partial A_2}{\partial u_N}
+\\
+\vdots & \vdots & \ddots & \vdots
+\\
+\frac{\partial A_N}{\partial u_1} & \frac{\partial A_N}{\partial u_2} & \cdots & \frac{\partial A_N}{\partial u_N}
+
+\end{bmatrix}
+
+++++
+
+Consider stem:[u^{(k)} = (u_1^{(k)}, \cdots , u_N^{(k)})] is the vector of stem:[u_h] in k-th iteration.
+We evaluate
+
+[stem]
+++++
+J(u^{(k)}) = \{ J_{lj} (u^{(k)}) \}_{l,j = 1, \cdots, N}
+\\
+\text{where}
+\\
+J_{lj} (u^{(k)}) = \frac{\partial A_l}{\partial u_j} (u^{(k)}) =
+\displaystyle\int_{\Omega_h} \left( \epsilon^2 + 1/2 \left| \nabla u^{(k)} \right|^2 \right)^{\frac{p-2}{p}} \nabla \varphi_l \cdot \varphi_j
++ \displaystyle\int_{\Omega_h} \frac{p-2}{2} \left( \epsilon^2 + 1/2 \left| \nabla u^{(k)} \right|^2 \right)^{\frac{p-4}{2}} (\nabla \varphi_l , \nabla u^{(k)}) \nabla u^{(k)} \cdot \nabla \varphi_j
++ \int_{\Omega_h} \lambda \varphi_l e^{u^{(k)}} \varphi_j
+
+++++
+
+We determine the k-th residua
+
+[stem]
+++++
+R^{(k)} =
+\begin{bmatrix}
+A_1(u^{(k)})
+\\
+A_2(u^{(k)})
+\\
+\vdots
+\\
+A_N(u^{(k)})
+\end{bmatrix}
+++++
+
+where stem:[A_j(u^{(k)}) = \displaystyle\int_{\Omega_h} \left( \epsilon^2 + 1/2 \left| \nabla u^{(k)} \right|^2 \right)^{\frac{p-2}{2}} \nabla u^{(k)} \cdot \nabla \varphi_j
++ \displaystyle\int_{\Omega_h} \lambda e^{u^{(k)}} \varphi_j]
+
+and
+
+[stem]
+++++
+\delta u^{(k)} = u^{(k+1)} - u^{(k)}
+++++
+
+We start with a  good estimate stem:[u^{(0)} \in V_h] (initial guess), then
+calculate the new estimate stem:[u^{(1)}] by solving the system of linear equation
+
+[stem]
+++++
+J(u^{(0)}) \delta u^{(0)} = - R^{(0)}
+++++
+
+and then determine
+
+[stem]
+++++
+u^{(1)} = \delta u^{(0)} + u^{(0)}
+++++
+
+and so on, in k-th iteration, we find stem:[\delta u^{(k)}] by solving
+
+[stem]
+++++
+J(u^{(k)}) \delta u^{(k)} = - R^{(k)}
+++++
+
+then determine the better estimate
+
+[stem]
+++++
+u^{(k+1)} = \delta u^{(k)} + u^{(k)}
+++++
+
+The solution will be the estimate as closed as possible to the exact solution.
+In practice, we use a tolerant of stem:[10e-16] to estimate the convergence.
+Otherwise, in case it can't find the good estimate, the algorithm will stop after a
+tolerant of stem:[N_{max} = 50] iterations.
+
+=== Implementation
+
+We use the same technique as the bratu's problem for coding the matrix Jacobian and
+the vector Residual with strong Dirichlet condition.
+
+[source, cpp]
+----
+auto Jacobian = [=](const vector_ptrtype& X, sparse_matrix_ptrtype& J)
+            {
+                if (!J) J = backend()->newMatrix( Vh, Vh );
+                auto a = form2( _test=Vh, _trial=Vh, _matrix=J );
+                auto l = form1(_test=Vh);
+                auto gamma = 0.5* inner(gradv(u), gradv(u));
+                auto eta = pow( epsilon*epsilon + gamma, 0.5*(i - 2) );
+                a = integrate( elements( mesh ), eta * (gradt( u )*trans( grad( v ) ) ));
+                a += integrate( elements( mesh ), 0.5*(i - 2) * pow( epsilon*epsilon  + gamma, 0.5*(i - 4) ) *
+                                                    ( inner(gradt(u),gradv(u)) ) *
+                                                    ( gradv(u) * trans(grad(v)) )  );
+                a += integrate( elements( mesh ), lambda*( exp( idv( u ) ) )*idt( u )*id( v ) );
+
+                a +=on(_range=boundaryfaces( mesh ),_rhs = l, _element=u, _expr=cst(0.) );
+
+            };
+
+----
+
+[source, cpp]
+----
+auto Residual = [=](const vector_ptrtype& X, vector_ptrtype& R)
+           {
+               auto u = Vh->element();
+               u = *X;
+               auto r = form1( _test=Vh, _vector=R );
+               auto gamma = 0.5* inner(gradv(u), gradv(u));
+               auto eta = pow( epsilon*epsilon  + gamma, 0.5*(i - 2) );
+               r = integrate( elements( mesh ), eta * ( gradv( u )*trans( grad( v ) ) ) );
+               r += integrate( elements( mesh ),  lambda*exp( idv( u ) )*id( v ) );
+
+               auto v = Vh->element();
+               v=*R; // copy residual in v
+               // set the unknowns on the boundary to 0
+               v.on(_range=boundaryfaces(mesh),_expr=cst(0.));
+               // copy back to R
+               *R=v;
+
+           };
+----
+
+Solver
+
+[source, cpp]
+----
+u.zero();
+    backend()->nlSolver()->residual = Residual;
+    backend()->nlSolver()->jacobian = Jacobian;
+    backend()->nlSolve( _solution=u );
+----
+
+To execute on 4 processors
+
+----
+mpirun -np 4 /feel/2017-stage-miinguyen/src/bratu/build/bratu/feelpp_qs_bratu_p_laplacian_3d
+ --config-file cube.cfg --snes-monitor=true --p 2.1
+
+----
+
+Apply continuation algorithm in case p is large. We will increment p from 2
+and using the solution of previous step as the initial guess in the next step.
+
+[source,cpp]
+----
+for (double i = 2; i <= (p+step); i+=step)
+    {
+        auto Jacobian = [=](const vector_ptrtype& X, sparse_matrix_ptrtype& J)
+        {
+          ...
+        }
+
+        auto Residual = [=](const vector_ptrtype& X, vector_ptrtype& R)
+        {
+          ...
+        }
+
+        cout << "----------------------------------------------" <<std::endl;
+      cout << " p = " << i <<std::endl;
+      backend()->nlSolver()->residual = Residual;
+      backend()->nlSolver()->jacobian = Jacobian;
+      backend()->nlSolve( _solution=u );
+      cout << "----------------------------------------------" <<std::endl;
+
+  }
+
+----
+
+=== Numerical experience
+
+* In case stem:[p=2], we find the same resultat as the Bratu's problem
+
+[source,bash]
+----
+0  SNES Function norm 1.533744e-01
+1  SNES Function norm 1.526051e-03
+2  SNES Function norm 3.503016e-05
+3  SNES Function norm 8.021958e-07
+4  SNES Function norm 1.833468e-08
+5  SNES Function norm 4.188847e-10
+[env] Time : 2.346225e+00s
+----
+
+[cols="^,^"]
+|======
+|image:image/pl0.png[]
+|image:image/pl2.png[]
+|Solution | with contour lines
+|======
+
+* In case stem:[p=2.1] in 3D with stem:[hsize = 0.1]
+
+[source,bash]
+----
+0  SNES Function norm 1.346444e-02
+1  SNES Function norm 5.568333e-03
+2  SNES Function norm 1.985630e-03
+3  SNES Function norm 6.474841e-04
+4  SNES Function norm 1.983120e-04
+5  SNES Function norm 5.786200e-05
+6  SNES Function norm 1.621551e-05
+7  SNES Function norm 4.392633e-06
+8  SNES Function norm 1.155897e-06
+9  SNES Function norm 2.963089e-07
+10  SNES Function norm 7.401921e-08
+11  SNES Function norm 1.797350e-08
+12  SNES Function norm 4.215651e-09
+13  SNES Function norm 9.429141e-10
+14  SNES Function norm 1.960911e-10
+15  SNES Function norm 3.608911e-11
+[env] Time : 9.216519e+01s
+----
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/pl3.png[]
+|image:image/pl6.png[]
+|======
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/pl7.png[]
+|image:image/pl8.png[]
+|======
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/pl4.png[]
+|image:image/pl5.png[]
+|======
+
+We notice the speed of convergence is quadratic over each iteration
+
+[cols="^,^"]
+|======
+|image:image/pl9.png[]
+|image:image/pl10.png[]
+|loglog scale | plot
+|======
+
+* In case stem:[p=2.5] in 3D with stem:[hsize = 0.1]
+
+The program without using continuation algorithm is fail to converge :
+
+[source,bash]
+----
+48  SNES Function norm 7.897080e-06
+49  SNES Function norm 6.676722e-06
+50  SNES Function norm 6.599377e-06
+E0824 01:44:15.905316  1066 solvernonlinearpetsc.cpp:989] Nonlinear solve did not converge due to DIVERGED_MAX_IT iterations 50
+E0824 01:44:15.905508  1066 backend.cpp:464]
+[backend] non-linear solver fail
+E0824 01:44:15.906250  1066 backend.cpp:465] Backend  : non-linear solver failed to converge
+----
+
+And with continuation algorithm, we obtain
+
+[source,bash]
+----
+----------------------------------------------
+ p = 2
+ 0  SNES Function norm 1.346444e-02
+ 1  SNES Function norm 6.426829e-06
+ 2  SNES Function norm 8.296331e-09
+ 3  SNES Function norm 1.062175e-11
+----------------------------------------------
+----------------------------------------------
+ p = 2.100000e+00
+ 0  SNES Function norm 2.541644e-03
+ 1  SNES Function norm 2.680538e-05
+ 2  SNES Function norm 5.968808e-07
+ 3  SNES Function norm 1.421142e-08
+ 4  SNES Function norm 3.599604e-10
+ 5  SNES Function norm 9.757181e-12
+----------------------------------------------
+----------------------------------------------
+ p = 2.200000e+00
+ 0  SNES Function norm 2.323565e-03
+ 1  SNES Function norm 4.129687e-05
+ 2  SNES Function norm 1.563676e-06
+ 3  SNES Function norm 6.313324e-08
+ 4  SNES Function norm 2.708316e-09
+ 5  SNES Function norm 1.238703e-10
+ 6  SNES Function norm 6.137698e-12
+----------------------------------------------
+----------------------------------------------
+ p = 2.300000e+00
+ 0  SNES Function norm 2.138614e-03
+ 1  SNES Function norm 4.861285e-05
+ 2  SNES Function norm 2.372587e-06
+ 3  SNES Function norm 1.232303e-07
+ 4  SNES Function norm 6.785536e-09
+ 5  SNES Function norm 3.959835e-10
+ 6  SNES Function norm 2.478247e-11
+ 7  SNES Function norm 1.685814e-12
+----------------------------------------------
+----------------------------------------------
+ p = 2.400000e+00
+ 0  SNES Function norm 1.979887e-03
+ 1  SNES Function norm 5.171329e-05
+ 2  SNES Function norm 2.922163e-06
+ 3  SNES Function norm 1.756568e-07
+ 4  SNES Function norm 1.118735e-08
+ 5  SNES Function norm 7.539912e-10
+ 6  SNES Function norm 5.434951e-11
+ 7  SNES Function norm 4.241166e-12
+----------------------------------------------
+----------------------------------------------
+ p = 2.500000e+00
+ 0  SNES Function norm 1.842258e-03
+ 1  SNES Function norm 5.236900e-05
+ 2  SNES Function norm 3.240482e-06
+ 3  SNES Function norm 2.132028e-07
+ 4  SNES Function norm 1.485830e-08
+ 5  SNES Function norm 1.094177e-09
+ 6  SNES Function norm 8.602214e-11
+ 7  SNES Function norm 7.308388e-12
+----------------------------------------------
+[env] Time : 1.979212e+02s
+----
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/pl11.png[]
+|image:image/pl12.png[]
+|======
+
+[cols="^,^"]
+.Speed of converge
+|======
+|image:image/pl13.png[]
+|image:image/pl14.png[]
+|p = 2. |p = 2.1
+|======
+
+[cols="^,^"]
+|======
+|image:image/pl15.png[]
+|image:image/pl16.png[]
+|p = 2.3 |p = 2.5
+|======

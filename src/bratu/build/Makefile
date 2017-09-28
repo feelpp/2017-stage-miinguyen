@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /feel/bratu
+CMAKE_SOURCE_DIR = /feel/2017-stage-miinguyen/src/bratu
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /feel/bratu/build
+CMAKE_BINARY_DIR = /feel/2017-stage-miinguyen/src/bratu/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /feel/bratu/build/CMakeFiles /feel/bratu/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /feel/2017-stage-miinguyen/src/bratu/build/CMakeFiles /feel/2017-stage-miinguyen/src/bratu/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /feel/bratu/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /feel/2017-stage-miinguyen/src/bratu/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named feelpp_qs_doc_bratu_mixte
+# Target rules for targets named feelpp_qs_bratu_fort_3d
 
 # Build rule for target.
-feelpp_qs_doc_bratu_mixte: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 feelpp_qs_doc_bratu_mixte
-.PHONY : feelpp_qs_doc_bratu_mixte
+feelpp_qs_bratu_fort_3d: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 feelpp_qs_bratu_fort_3d
+.PHONY : feelpp_qs_bratu_fort_3d
 
 # fast build rule for target.
-feelpp_qs_doc_bratu_mixte/fast:
-	$(MAKE) -f bratu/CMakeFiles/feelpp_qs_doc_bratu_mixte.dir/build.make bratu/CMakeFiles/feelpp_qs_doc_bratu_mixte.dir/build
-.PHONY : feelpp_qs_doc_bratu_mixte/fast
+feelpp_qs_bratu_fort_3d/fast:
+	$(MAKE) -f bratu/CMakeFiles/feelpp_qs_bratu_fort_3d.dir/build.make bratu/CMakeFiles/feelpp_qs_bratu_fort_3d.dir/build
+.PHONY : feelpp_qs_bratu_fort_3d/fast
 
 # Help Target
 help:
@@ -131,7 +131,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... feelpp_qs_doc_bratu_mixte"
+	@echo "... feelpp_qs_bratu_fort_3d"
 .PHONY : help
 
 

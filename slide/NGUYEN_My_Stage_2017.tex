@@ -1,0 +1,1308 @@
+\documentclass[11pt]{beamer}
+\usetheme{Goettingen}
+\usepackage[utf8]{inputenc}
+\usepackage[frenchb]{babel}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{color}
+
+
+
+
+\title[STAGE DE M1 2017]{\textbf{Appliquer la méthode de Newton-Raphson pour résoudre le problème non-linéaire avec Feel++}}  
+\author{NGUYEN Thi Tra My} 
+\institute[CSMI-M1]{Stage de M1}
+\date{28 août 2017} 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+\begin{frame}
+\frametitle{}
+\tableofcontents
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{INTRODUCTION}
+\subsection{Objective du stage}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Objective du stage}
+\begin{itemize}
+\item Etudier une méthode numérique pour résoudre les problèmes non-linéaires de différents types.\\
+
+
+\item Documenter au manuel de Feel++\\
+
+
+\item Vérifier le modèle thermo-electrique en prenent en compt l’effet Seebeck et Peltier sur un semi-conducteur.\\
+
+
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\subsection{Statégie de l'étude}
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Statégie de l'étude}
+
+\begin{itemize}
+\begin{figure}
+\includegraphics[scale=0.35]{image/i1.png}
+\end{figure}
+ 
+
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{MÉTHODE DE NEWTON-RAPHSON}
+\subsection{Unidimention}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Méthode de Newton-Raphson}
+\begin{block}{Fonction d'une variable réelle}
+$f(x) = 0$
+ \end{block}
+ 
+\begin{figure}
+\includegraphics[scale=0.35]{image/n1.png}
+\end{figure}
+
+
+\fcolorbox{red}{white}{$x_{n + 1} = x_n - \frac{f(x_n)}{f'(x_n)}$}
+
+ 
+ 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection{Matrice problème}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Méthode de Newton-Raphson}
+\begin{block}{Systèmes d'équations à plusieurs variables}
+$F(X) = 0$
+\\
+Où
+\\
+$X =
+\begin{bmatrix}
+x_1
+\\
+x_2
+\\
+\vdots
+\\
+x_n
+\end{bmatrix} ,
+F(X) =
+\begin{bmatrix}
+f_1(x_1, x_2, \cdots, x_n)
+\\
+f_2(x_1, x_2, \cdots, x_n)
+\\
+\vdots
+\\
+f_n(x_1, x_2, \cdots, x_n)
+\end{bmatrix} =
+\begin{bmatrix}
+f_1(x)
+\\
+f_2(x)
+\\
+\vdots
+\\
+f_n(x)
+\end{bmatrix}$
+ \end{block}
+ 
+ 
+\begin{block}{Système linéaire}
+$ F'(X^k) (X^{k+1} - X^k) = -F(X^k)$
+ 
+\end{block}
+ 
+
+
+\begin{itemize}
+\item Jacobian matrice: $J(X^{(k)}) = F'(X^k)$
+
+\item Vecteur résidual: $ R^{(k)} = F(X^k)$
+
+\item $ \delta X^{(k)} = X^{(k+1)} - X^{(k)}  $
+\end{itemize}
+ 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+
+\begin{figure}
+\includegraphics[scale=0.3]{image/i2.png}
+\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{BRATU PROBLÈME}
+\subsection{Problème avec Dirichlet condition}
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Bratu problème avec Dirichlet condition}
+
+\begin{block}{Bratu problème}
+\begin{cases}
+- \nabla \cdot (\nabla u ) + \lambda e^{u} = 0 \text{ in } \Omega \quad (1)
+\\
+u = 0 \text{ on } \partial \Omega
+\end{cases}
+\end{block}
+
+\pause
+
+\begin{block}{Formulation variationnelle}
+\text{Determine u } \in H^1_0(\Omega) \text{ satisfying}
+\\
+\displaystyle\int_{\Omega} \nabla u \cdot \nabla v + \int_{\Omega} \lambda e^{u} v = 0 \quad \forall v \in H^1_0(\Omega)
+\end{block}
+
+\pause
+
+
+
+\begin{block}{Problème algébraique}
+\text{Determine } u_i \text{ satisfying}
+\\
+A(\varphi_i, \varphi_j) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \cdot \nabla \varphi_j
++ \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} \varphi_j = 0 \quad \forall j = 1, \cdots, N
+
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Applique Newton-Raphson méthode}
+
+
+\begin{block}{Système non-linéaire}
+\begin{cases}
+A_1(u_1, \cdots , u_N) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \cdot \nabla \varphi_1
++ \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} \varphi_1 = 0
+\\
+\vdots
+\\
+A_N(u_1, \cdots , u_N) = \displaystyle\int_{\Omega_h} \sum_{i=1}^N u_i \nabla \varphi_i \cdot \nabla\varphi_N
++ \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} \varphi_N = 0
+\end{cases}
+\end{block}
+
+
+\begin{block}{Jacobien matrice}
+J_{lj} (u^{(k)}) = \frac{\partial A_l}{\partial u_j} (u^{(k)}) =
+\displaystyle\int_{\Omega_h} \nabla \varphi_l \nabla \varphi_j
++ \int_{\Omega_h} \lambda \varphi_l e^{\sum_{i=1}^N u_i \varphi_i} \varphi_j
+
+\end{block}
+
+
+\begin{block}{Residule}
+A_j(u^{(k)}) = \displaystyle\int_{\Omega_h}  \nabla u^{(k)} \cdot \nabla \varphi_j
++ \int_{\Omega_h} \lambda e^{u^{(k)}} \varphi_j
+\end{block}
+
+
+\begin{block}{Initial guess}
+u^{(0)} = 0
+\end{block}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Implémentation}
+
+\begin{figure}
+\includegraphics[scale=0.5]{image/c2.png}
+\end{figure}
+
+\begin{figure}
+\includegraphics[scale=0.5]{image/c1.png}
+\end{figure}
+
+\begin{figure}
+\includegraphics[scale=0.5]{image/c3.png}
+\end{figure}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Méthode d'imposer Dirichlet condition}
+
+\begin{figure}
+\includegraphics[scale=0.5]{image/c4.png}
+\end{figure}
+
+\pause
+
+\begin{figure}
+\includegraphics[scale=0.5]{image/c5.png}
+\end{figure}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Expérience numérique}`
+
+\begin{block}{Forte méthode}
+
+\begin{verbatim}
+
+0  SNES Function norm 1.533744e-01
+\\
+1  SNES Function norm 1.526050e-03
+\\
+2  SNES Function norm 3.503014e-05
+\\
+3  SNES Function norm 8.021951e-07
+\\
+4  SNES Function norm 1.833466e-08
+\\
+5  SNES Function norm 4.188840e-10
+\\
+[env] Time : 5.442774e+00s
+
+\end{verbatim}
+\end{block}
+
+
+\begin{columns}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.15]{image/b3.png}
+\end{figure}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.15]{image/b4.png}
+\end{figure}
+\end{columns}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\begin{block}{Faible méthode}
+
+\begin{verbatim}
+0  SNES Function norm 1.565416e-01
+
+1  SNES Function norm 1.526007e-03
+
+2  SNES Function norm 3.502907e-05
+
+3  SNES Function norm 8.021703e-07
+
+4  SNES Function norm 1.833408e-08
+
+5  SNES Function norm 4.188708e-10
+
+[env] Time : 1.443950e+00s
+\end{verbatim}
+\end{block}
+
+\begin{columns}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.2]{image/b5.png}
+\end{figure}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.2]{image/b6.png}
+\end{figure}
+\end{columns}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\begin{columns}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.2]{image/b12.png}
+\end{figure}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.2]{image/b13.png}
+\end{figure}
+\end{columns}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\begin{figure}
+\includegraphics[scale=0.2]{image/fpp5.png}
+\end{figure}
+
+\begin{figure}
+\includegraphics[scale=0.2]{image/fpp3.png}
+\end{figure}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\subsection{Bratu problème mixte}
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Bratu problème mixte}
+
+\begin{block}{Equation non-linéaire avec les conditions mixte}
+\begin{cases}
+- \nabla \cdot (\nabla u ) + \lambda e^{u} = f \text{ in } \Omega \quad (2)
+\\
+u = q \text{ on } \partial \Omega_D \text{ (non homogene Dirichlet boundary)}
+\\
+\nabla u \cdot n = g \text{ on } \partial \Omega_N \text{ (Neumann boundary condition)}
+\end{cases}
+
+\end{block}
+
+
+\pause
+
+
+
+\begin{block}{Change variable}
+u = u_q + \phi , \quad \phi \in \{ w \in H^1(\Omega), w|_{\partial \Omega_D} = 0 \}
+\end{block}
+
+\pause
+
+
+\begin{block}{Equation non-linéaire avec le condition de Dirichlet homogène}
+\begin{cases}
+
+\text{Find } u \in H^1_0(\Omega) \text{ such that }
+\\
+- \nabla \cdot (\nabla u ) + \lambda e^{u} e^{q} = f
+\\
+u = 0 \text{ on } \partial \Omega_D
+\\
+\nabla u \cdot n = g \text{ on } \partial \Omega_N
+
+\end{cases}
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\begin{block}{Matrice Jacobien}
+J_{lj} (u^{(k)}) = \frac{\partial A_l}{\partial u_j} (u^{(k)}) =
+\displaystyle\int_{\Omega_h} \nabla \varphi_l \nabla \varphi_j
++ \int_{\Omega_h} \lambda \varphi_l e^{\sum_{i=1}^N u_i \varphi_i} e^{q} \varphi_j
+
+\end{block}
+
+
+\begin{block}{Residual}
+A_j(u^{(k)}) = \displaystyle\int_{\Omega_h}  \nabla u^{(k)} \cdot \nabla \varphi_j - \int_{\partial \Omega_N} g \varphi_j + \int_{\Omega_h} \lambda e^{u^{(k)}} e^{q} \varphi_j - \int_{\Omega_h} f \varphi_j
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\begin{block}{Matrice Jacobien}
+\begin{verbatim}
+
+a +=on(_range=markedfaces(mesh,"Dirichlet"),_rhs = l, _element=u, _expr = cst(0.) );
+
+\end{verbatim}
+\end{block}
+
+
+\begin{block}{Residual}
+\begin{verbatim}
+
+w.on(_range=markedfaces(mesh,"Dirichlet"),_expr = cst(0.));
+\end{verbatim}
+
+\end{block}
+
+
+\begin{block}{Initial guess}
+\begin{verbatim}
+
+u.on(_range = elements(mesh), _expr = q);
+\end{verbatim}
+\end{block}
+
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Exemple 1}
+\begin{figure}
+\includegraphics[scale=0.2]{image/m1.png}
+\end{figure}
+
+\begin{block}{Les conditions}
+\begin{verbatim}
+
+g = 0:x:y
+
+f = 0:x:y
+
+q = 0
+\end{verbatim}
+\end{block}
+
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+
+\begin{verbatim}
+
+0  SNES Function norm 8.601097e-02
+
+1  SNES Function norm 3.547906e-04
+
+2  SNES Function norm 3.060074e-06
+
+3  SNES Function norm 2.633270e-08
+
+4  SNES Function norm 2.265028e-10
+
+[env] Time : 1.936892e+00s
+\end{verbatim}
+
+
+\begin{columns}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.15]{image/m2.png}
+\end{figure}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.15]{image/m3.png}
+\end{figure}
+\end{columns}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Exemple 2}
+
+\begin{verbatim}
+
+g = 0:x:y; 
+f = 0:x:y; 
+q = 2:x:y
+\end{verbatim}
+
+
+\begin{verbatim}
+
+0  SNES Function norm 4.696040e+00
+
+1  SNES Function norm 2.435605e+00
+
+2  SNES Function norm 4.867167e-01
+
+3  SNES Function norm 4.270286e-02
+
+4  SNES Function norm 1.393261e-02
+
+5  SNES Function norm 4.844162e-03
+
+6  SNES Function norm 1.609185e-03
+
+7  SNES Function norm 5.262403e-04
+
+8  SNES Function norm 1.714626e-04
+
+9  SNES Function norm 5.580652e-05
+
+10  SNES Function norm 1.815940e-05
+
+11  SNES Function norm 5.908626e-06
+
+12  SNES Function norm 1.922498e-06
+
+13  SNES Function norm 6.255228e-07
+
+14  SNES Function norm 2.035262e-07
+
+15  SNES Function norm 6.622123e-08
+
+16  SNES Function norm 2.154638e-08
+
+[env] Time : 3.146386e+00s
+\end{verbatim}
+
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\begin{columns}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.15]{image/m4.png}
+\end{figure}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.15]{image/m5.png}
+\end{figure}
+\end{columns}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Exemple 3}
+
+\begin{verbatim}
+
+g = 0:x:y; 
+f = 0:x:y; 
+q=sin(pi*x)*cos(pi*y):x:y
+\end{verbatim}
+
+
+\begin{verbatim}
+
+0  SNES Function norm 9.130287e-01
+
+1  SNES Function norm 2.650988e-02
+
+2  SNES Function norm 4.161965e-03
+
+3  SNES Function norm 6.305129e-04
+
+4  SNES Function norm 9.543921e-05
+
+5  SNES Function norm 1.440296e-05
+
+6  SNES Function norm 2.172523e-06
+
+7  SNES Function norm 3.276372e-07
+
+8  SNES Function norm 4.940857e-08
+
+9  SNES Function norm 7.450841e-09
+
+[env] Time : 2.707165e+00s
+\end{verbatim}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\begin{columns}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.15]{image/m13.png}
+\end{figure}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.15]{image/m14.png}
+\end{figure}
+\end{columns}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Exemple 4}
+
+\begin{verbatim}
+
+g = x^2 + y^2:x:y; 
+f = exp(x^2):x:y; 
+q=sin(pi*x)*cos(pi*y):x:y
+\end{verbatim}
+
+
+\begin{verbatim}
+
+0  SNES Function norm 8.234561e-01
+
+1  SNES Function norm 8.242994e-03
+
+2  SNES Function norm 2.013958e-04
+
+3  SNES Function norm 6.408645e-06
+
+4  SNES Function norm 2.411853e-07
+
+5  SNES Function norm 9.791356e-09
+
+6  SNES Function norm 4.093998e-10
+
+[env] Time : 2.011367e+00s
+\end{verbatim}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\begin{columns}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.2]{image/m9.png}
+\end{figure}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.2]{image/m10.png}
+\end{figure}
+\end{columns}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Exemple 3D}
+
+\begin{verbatim}
+
+g = x^2 + y^2 +z^2:x:y:z; 
+f = 0:x:y:z; 
+q=sin(pi*x)*cos(pi*y):x:y:z
+\end{verbatim}
+
+
+\begin{verbatim}
+
+0  SNES Function norm 2.304001e-01
+
+1  SNES Function norm 5.415787e-03
+
+2  SNES Function norm 4.168578e-04
+
+3  SNES Function norm 6.551548e-05
+
+4  SNES Function norm 1.237700e-05
+
+5  SNES Function norm 2.399950e-06
+
+6  SNES Function norm 4.678230e-07
+
+7  SNES Function norm 9.129960e-08
+
+8  SNES Function norm 1.782352e-08
+
+9  SNES Function norm 3.479791e-09
+
+10  SNES Function norm 6.793947e-10
+
+[env] Time : 7.274972e+01s
+\end{verbatim}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\begin{columns}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.15]{image/p13.png}
+\end{figure}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.15]{image/p16.png}
+\end{figure}
+\end{columns}
+
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.15]{image/p17.png}
+\end{figure}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.15]{image/p18.png}
+\end{figure}
+\end{columns}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Le cas le solveur ne converge pas}
+\begin{verbatim}
+
+a +=on(_range=markedfaces(mesh,"Dirichlet"),_rhs = l, _element=u, _expr = q
+
+\end{verbatim}
+
+
+\begin{verbatim}
+
+ 48  SNES Function norm 7.897080e-06
+ 
+ 49  SNES Function norm 6.676722e-06
+ 
+ 50  SNES Function norm 6.599377e-06
+ 
+E0824 01:44:15.905316  1066 solvernonlinearpetsc.cpp:989] Nonlinear solve did not converge due to DIVERGED_MAX_IT iterations 50
+
+E0824 01:44:15.905508  1066 backend.cpp:464]
+[backend] non-linear solver fail
+
+E0824 01:44:15.906250  1066 backend.cpp:465] Backend  : non-linear solver failed to converge
+
+
+\end{verbatim}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+\section{BRATU P-LAPLACIEN}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Problème Bratu p-laplacien}
+\begin{cases}
+- \nabla \cdot (\eta \nabla u ) + \lambda e^{u} = 0 \text{ in } \Omega \quad (1)
+\\
+\text{with } \eta = \left( \epsilon^2 + \gamma  \right)^{\frac{p-2}{2}}
+\text{ and } \eta = 1/2 | \nabla u|^2
+\\
+u = 0 \text{ on } \partial \Omega
+\end{cases}
+
+\pause
+
+\begin{block}{ALgébraique problème}
+A(\varphi_i, \varphi_j) = \displaystyle\int_{\Omega_h} \left( \epsilon^2 + 1/2 \left| \sum_{i=1}^N u_i \nabla \varphi_i \right|^2 \right)^{\frac{p-2}{2}} \sum_{i=1}^N u_i \nabla \varphi_i \cdot \nabla \varphi_j
++ \int_{\Omega_h} \lambda e^{\sum_{i=1}^N u_i \varphi_i} \varphi_j = 0 \quad \forall j = 1, \cdots, N
+
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}{3D avec p = 2.1, h=0.1}
+
+\begin{verbatim}
+
+0  SNES Function norm 1.346444e-02
+
+1  SNES Function norm 5.568333e-03
+
+2  SNES Function norm 1.985630e-03
+
+3  SNES Function norm 6.474841e-04
+
+...
+
+14  SNES Function norm 1.960911e-10
+
+15  SNES Function norm 3.608911e-11
+
+[env] Time : 9.216519e+01s
+
+\end{verbatim}
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{columns}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.15]{image/pl3.png}
+\end{figure}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.15]{image/pl8.png}
+\end{figure}
+\end{columns}
+
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.15]{image/pl4.png}
+\end{figure}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.15]{image/pl5.png}
+\end{figure}
+\end{columns}
+
+%\begin{figure}
+%\includegraphics[scale=0.15]{image/pl10.png}
+%\end{figure}
+
+\end{frame}
+
+
+
+\begin{frame}{Case 3D avec p = 2.5, h=0.1}
+\begin{verbatim}
+
+48  SNES Function norm 7.897080e-06
+
+49  SNES Function norm 6.676722e-06
+
+50  SNES Function norm 6.599377e-06
+
+E0824 01:44:15.905316  1066 solvernonlinearpetsc.cpp:989] Nonlinear solve did not converge due to DIVERGED_MAX_IT iterations 50
+
+E0824 01:44:15.905508  1066 backend.cpp:464]
+[backend] non-linear solver fail
+
+E0824 01:44:15.906250  1066 backend.cpp:465] Backend  : non-linear solver failed to converge
+
+\end{verbatim}
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{figure}
+\includegraphics[scale=0.4]{image/i5.png}
+\end{figure}
+\end{frame}
+
+
+
+
+\begin{frame}
+
+\begin{columns}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.15]{image/pl11.png}
+\end{figure}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.15]{image/pl12.png}
+\end{figure}
+\end{columns}
+
+\end{frame}
+
+
+\begin{frame}{Première observation}
+
+\begin{itemize}
+\item Le temps calcule est raisonnable.
+
+\item pc-type=gasm and pc-type=lu donne la même résultat.
+
+\item Le résultat est fiable.
+
+\item Le calcule coût cher quand hsize est petit et les conditions sont compliqués
+
+\end{itemize}
+
+\end{frame}
+
+
+\section{MODÈLE DE L'EFFET PELTIER-SEEBECK}
+
+
+\begin{frame}{Module de l'effet Peltier-Seebeck}
+\begin{figure}
+\includegraphics[scale=0.3]{image/s1.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Module de l'effet Peltier-Seebeck}
+
+\begin{block}{La conservation de l'énergie}
+\nabla \cdot q = Q
+\end{block}
+
+\begin{block}{La conservation de la charge électrique}
+\nabla \cdot j = 0
+\end{block}
+
+\begin{block}{L'équation de potentiel électrique}
+E = - \nabla V
+\end{block}
+
+\begin{block}{L'équation de tranfert de chaleur}
+q = -k \nabla T + Pj
+\\
+j = \sigma(E - \alpha \nabla T)
+\end{block}
+
+\begin{block}{L'effet de Joule}
+Q = j \cdot E
+\end{block}
+
+
+\begin{block}{L'effet de JPeltier-Seebeck}
+P = \alpha T
+\end{block}
+
+\end{frame}
+
+
+
+\begin{frame}{Les conditions aux limits}
++ Thermic
+
+Ground : $T = T_g = 0°C$ (Dirichlet)
+
+Adiabatic: $\nabla T \cdot n = 0$ (Neumann)
+
+Intensity: $\nabla T \cdot n = 0$ (Neumann)
+
++ Electric
+
+Ground : $V = V_g = 0 V$ (Dirichlet)
+
+Adiabatic: $\nabla V \cdot n = 0$ (Neumann)
+
+Intensity: $\nabla V \cdot n = V_N = 0.7 A$ (Neumann)
+
+* Adjoint condition in $\Omega_i \cap \Omega_j$
+
+$q \cdot n_i = - q \cdot n_j$
+
+$j \cdot n_i = - j \cdot n_j$
+
+$T_i = T_j$
+
+$V_i = V_j$
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{block}{Formulation forte du problème}
+- \nabla \cdot \left( (\sigma \alpha^2 T + k) \nabla T + \alpha \sigma T \nabla V \right)
+= \sigma |\nabla V|^2 + \sigma \alpha \nabla T \cdot \nabla V
+\\
+- \nabla \cdot (\sigma \alpha \nabla T + \sigma \nabla V) = 0
+\end{block}
+
+
+\begin{block}{Forme matricielle}
+- \nabla \cdot
+\left(
+\begin{bmatrix}
+\sigma \alpha^2 T + k  & \sigma \alpha T
+\\
+\sigma \alpha & \sigma
+
+\end{bmatrix}
+\begin{bmatrix}
+\nabla T
+\\
+\nabla V
+\end{bmatrix}
+\right)
+=
+\begin{bmatrix}
+\sigma |\nabla V|^2 + \sigma \alpha \nabla T \cdot \nabla V
+\\
+0
+\end{bmatrix}
+\end{block}
+
+
+\begin{block}{Formuleation variationelle}
+\text{Find } \left( T , V\right) \in H^1_{\Gamma_D,T_g}(\Omega) \times H^1_{\Gamma_D,V_g}(\Omega)
+\text{ for all } \left( t , v \right) \in H^1_{\Gamma_D,0}(\Omega) \times H^1_{\Gamma_D,0}(\Omega)
+\text{ such that}
+\\
+\sum^{N_{mat}}_{i = 1} \left( - \displaystyle\int_{\Omega_i} q \cdot \nabla t
+\right)
+= \sum^{N_{mat}}_{i = 1} \left( \displaystyle\int_{\Omega_i} Q t \right)
+\\
+\sum^{N_{mat}}_{i = 1} \left( - \displaystyle\int_{\Omega_i} j \cdot \nabla v
+\right)
+= - \int_{Intensity} V_N v
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}{Implementation}
+\begin{block}{Definire l'espace de fonction}
+
+\begin{verbatim}
+
+typedef Mesh< Simplex< FEELPP_DIM,1 > > mesh_type;
+
+auto mesh = loadMesh(_mesh=new mesh_type);
+
+typedef FunctionSpace<mesh_type, bases<Lagrange<1,Scalar>,Lagrange<1,Scalar> > > space_type;
+
+
+\\
+
+
+auto Vh = space_type::New(_mesh=mesh);
+    
+auto TV = Vh->element();
+
+auto T = TV.element<0>();
+
+auto V = TV.element<1>();
+\end{verbatim}
+\end{block}
+
+
+\begin{figure}
+\includegraphics[scale=0.6]{image/i6.png}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+\begin{columns}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.2]{image/s2.png}
+\end{figure}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.2]{image/s3.png}
+\end{figure}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}
+\begin{columns}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.2]{image/s4.png}
+\end{figure}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.2]{image/s5.png}
+\end{figure}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}
+\begin{figure}
+\includegraphics[scale=0.2]{image/s61.png}
+\end{figure}
+
+\begin{verbatim}
+
+0  SNES Function norm 1.219878e-01
+
+1  SNES Function norm 6.870446e-03
+
+2  SNES Function norm 3.242836e-06
+
+3  SNES Function norm 5.515413e-11
+
+T_electrode1 = 2.285343e+02
+
+T_electrode2 = 2.731662e+02`
+
+T_Adiabatic = 2.508503e+02
+
+T_mean = 2.731662e+02
+
+[env] Time : 2.226648e+01s
+\end{verbatim}
+
+\end{frame}
+
+
+
+\begin{frame}{Rajouter l'option}
+
+\begin{columns}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.2]{image/s16.png}
+\end{figure}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.2]{image/s17.png}
+\end{figure}
+\end{columns}
+\end{frame}
+
+
+\end{frame}
+
+
+
+\begin{frame}
+
+\begin{columns}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.2]{image/i11.png}
+\end{figure}
+\column{0.5\textwidth}
+\begin{figure}
+\includegraphics[scale=0.2]{image/i12.png}
+\end{figure}
+\end{columns}
+\end{frame}
+
+
+\end{frame}
+
+
+
+
+\section{CONCLUSION}
+
+\begin{frame}{Conclusion}
+
+\begin{itemize}
+
+\item La méthode est 'délicate', elle nécessite une grand précision dans le cacule
+pour qu'elle soit converge.
+
+\item Le choix d'initial guess est très important. Il demande que l'initial guess
+soit proche du résolution. Il y a des techniques spécifique pour le traiter comme
+l'algorithme de continuation
+
+\item Le grand erreur dans la première estimate peut conduire à la non convergence
+de l'algorithme.
+
+\item En générale, la convergence est quadratique.
+
+\item Le calcule coût cher quand le maillage est fin et les conditions sont compliqué.
+
+\item Les fonctions de faire mettre à jour le matrice Jacobien et le vecteur résidul
+demandent de faire attention sur les références des variables.
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Perspective}
+
+\begin{itemize}
+
+\item Analyser plus profondement la vistess
+de convergent de la méthode dans plusieurs cases et de comparer avec les autres
+méthodes.
+
+\item on pourrait utiliser GINAC pour faciliter
+les calcules dérivées et pour construire un programme plus générale pour plusieurs
+modèle.
+
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}  
+\begin{center}
+\large MERCI DE VOTRE ATTENTION
+\end{center}
+\end{frame} 
+
+\end{document}
+
+ 
+
+%%0:11:27 2/3/2014Last Modification of contents
+%%0:14:32 2/3/2014Last Modification of contents

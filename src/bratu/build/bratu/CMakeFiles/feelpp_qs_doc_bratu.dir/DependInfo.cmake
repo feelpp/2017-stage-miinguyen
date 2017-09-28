@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/feel/bratu/bratu/bratu.cpp" "/feel/bratu/build/bratu/CMakeFiles/feelpp_qs_doc_bratu.dir/bratu.cpp.o"
+  "/feel/2017-stage-miinguyen/src/bratu/bratu/bratu.cpp" "/feel/2017-stage-miinguyen/src/bratu/build/bratu/CMakeFiles/feelpp_qs_doc_bratu.dir/bratu.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 
@@ -19,7 +19,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
   "BOOST_RESULT_OF_USE_TR1"
   "BOOST_TEST_DYN_LINK"
   "BOOST_UBLAS_SHALLOW_ARRAY_ADAPTOR"
-  "FEELPP_DIM=2"
+  "FEELPP_DIM=3"
   "FEELPP_HAS_DLFCN_H"
   "FEELPP_HAS_DLOPEN"
   "FEELPP_HAS_GMSH=1"

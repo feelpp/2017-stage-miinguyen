@@ -1,0 +1,863 @@
+== Peltier-Seebeck's model
+:icons: font
+:stem: latexmath
+
+=== Introduction of the model
+
+This part will present an implentation of thermoelectric effects in COMSOL
+Multiphysics. We consider a model 3D of a semiconductor element 1x1x5.8mm3 in size.
+It is contacted by two copper electrodes 0.1 mm in thickness.
+
+.Geometry
+image::image\s1.png[]
+
+
+The boundary conditions were set to 0V and 0°C at the base of the lower electrode.
+Adiabatic boundary conditions were taken on all other surfaces. At the top of
+the upper electrode a current of 0.7A was applied.
+
+
+
+
+
+
+Therefore the formal mathematic is the  coupled
+heat equation and Poisson's equation are extended by the thermoelectric effects
+and solved simultaneously, to get the solution for the field variables temperature
+T and voltage V.
+
+[sidebar]
+.The conservation of energy
+--
+[stem]
+++++
+\nabla \cdot q = Q
+++++
+--
+
+where stem:[Q] is the flux of heat and stem:[q] is the flux of energy.
+
+
+[sidebar]
+.The conservation of the electrical charge
+--
+[stem]
+++++
+\nabla \cdot j = 0
+++++
+--
+
+where stem:[j] est the electric current
+
+And we have the following constitutive equations:
+
+
+[stem]
+.Equation of potential electric
+++++
+E = - \nabla V
+++++
+
+where stem:[E] is a electric field, stem:[V] is a potential electric
+
+[stem]
+.The heat transfer equation
+++++
+q = -k \nabla T + Pj
+\\
+j = \sigma(E - \alpha \nabla T)
+++++
+
+the rule Thomson show the relationship between the Peltier's coefficient and
+Seebeck's coefficient stem:[P = \alpha T]
+
+[stem]
+.Effet of Jule
+++++
+Q = j \cdot E
+++++
+
+where the material properties stem:[\alpha, \sigma , k] denote the thermopower (Seebeck-coefficient),
+ the electric and the thermal conductivity, respectively.
+
+[sidebar]
+.Strong formulation of the problem
+--
+[stem]
+++++
+- \nabla \cdot \left( (\sigma \alpha^2 T + k) \nabla T + \alpha \sigma T \nabla V \right)
+= \sigma |\nabla V|^2 + \sigma \alpha \nabla T \cdot \nabla V
+\\
+- \nabla \cdot (\sigma \alpha \nabla T + \sigma \nabla V) = 0
+++++
+--
+
+We can rewrite the problem under the form of matrix:
+
+[stem]
+++++
+- \nabla \cdot
+\left(
+\begin{bmatrix}
+\sigma \alpha^2 T + k  & \sigma \alpha T
+\\
+\sigma \alpha & \sigma
+
+\end{bmatrix}
+\begin{bmatrix}
+\nabla T
+\\
+\nabla V
+\end{bmatrix}
+\right)
+=
+\begin{bmatrix}
+\sigma |\nabla V|^2 + \sigma \alpha \nabla T \cdot \nabla V
+\\
+0
+\end{bmatrix}
+++++
+
+* Boundary condition:
+
++ Thermic
+
+Ground : stem:[T = T_g = 0°C] (Dirichlet)
+
+Adiabatic: stem:[\nabla T \cdot n = 0] (Neumann)
+
+Intensity: stem:[\nabla T \cdot n = 0] (Neumann)
+
++ Electric
+
+Ground : stem:[V = V_g = 0 V] (Dirichlet)
+
+Adiabatic: stem:[\nabla V \cdot n = 0] (Neumann)
+
+Intensity: stem:[\nabla V \cdot n = V_N = 0.7 A] (Neumann)
+
+* Adjoint condition in stem:[\Omega_i \cap \Omega_j]
+
+stem:[q \cdot n_i = - q \cdot n_j]
+
+stem:[j \cdot n_i = - j \cdot n_j]
+
+stem:[T_i = T_j]
+
+stem:[V_i = V_j]
+
+
+
+=== Strategy of solving
+
+==== Continue
+
+Find stem:[\left( T , V\right) \in H^1_{\Gamma_D,T_g}(\Omega) \times H^1_{\Gamma_D,V_g}(\Omega)]
+for all stem:[\left( t , v \right) \in H^1_{\Gamma_D,0}(\Omega) \times H^1_{\Gamma_D,0}(\Omega)]
+such that
+
+[stem]
+++++
+\sum^{N_{mat}}_{i = 1} \left( - \displaystyle\int_{\Omega_i} \nabla \cdot q t \right)
+= \sum^{N_{mat}}_{i = 1} \left( \displaystyle\int_{\Omega_i} Q t \right)
+\\
+\sum^{N_{mat}}_{i = 1} \left( - \displaystyle\int_{\Omega_i} \nabla \cdot j v \right) = 0
+++++
+
+By using Green's formulation and decompose the border stem:[\partial \Omega_i],
+we have
+
+[stem]
+++++
+\sum^{N_{mat}}_{i = 1} \left( - \displaystyle\int_{\Omega_i} q \cdot \nabla t
++ \int_{\partial \Omega_i \backslash \partial \Omega_j} (\nabla q \cdot n) t
++ \int_{\partial \Omega_i \cap \partial \Omega_j} (\nabla q \cdot n) t
+\right)
+= \sum^{N_{mat}}_{i = 1} \left( \displaystyle\int_{\Omega_i} Q t \right)
+\\
+\sum^{N_{mat}}_{i = 1} \left( - \displaystyle\int_{\Omega_i} j \cdot \nabla v
++ \int_{\partial \Omega_i \backslash \partial \Omega_j} (\nabla j \cdot n) v
++ \int_{\partial \Omega_i \cap \partial \Omega_j} (\nabla j \cdot n) v
+\right)
+= 0
+++++
+
+As stem:[\left( t , v \right) \in H^1_{\Gamma_D,0}(\Omega) \times H^1_{\Gamma_D,0}(\Omega)]
+and by following the boundary condition with adjoint condition, we obtain
+
+[sidebar]
+.Variational formulation
+--
+[stem]
+++++
+\text{Find } \left( T , V\right) \in H^1_{\Gamma_D,T_g}(\Omega) \times H^1_{\Gamma_D,V_g}(\Omega)
+\text{ for all } \left( t , v \right) \in H^1_{\Gamma_D,0}(\Omega) \times H^1_{\Gamma_D,0}(\Omega)
+\text{ such that}
+\\
+\sum^{N_{mat}}_{i = 1} \left( - \displaystyle\int_{\Omega_i} q \cdot \nabla t
+\right)
+= \sum^{N_{mat}}_{i = 1} \left( \displaystyle\int_{\Omega_i} Q t \right)
+\\
+\sum^{N_{mat}}_{i = 1} \left( - \displaystyle\int_{\Omega_i} j \cdot \nabla v
+\right)
+= - \int_{Intensity} V_N v
+
+++++
+--
+
+
+==== Discretization
+
+Create the functional spaces for trial and test function
+
+[stem]
+.For trial function
+++++
+U_h^T = H^1_{\Gamma_D,T_g}(\Omega_h) \cap P^M_{c,h}(\Omega_h)
+\\
+U_h^V = H^1_{\Gamma_D,V_g}(\Omega_h) \cap P^N_{c,h}(\Omega_h)
+++++
+
+
+[stem]
+.For test function
+++++
+V_h^T = H^1_{\Gamma_D,0}(\Omega_h) \cap P^M_{c,h}(\Omega_h)
+\\
+V_h^V = H^1_{\Gamma_D,0}(\Omega_h) \cap P^N_{c,h}(\Omega_h)
+++++
+
+We obtain the discreet formulation
+
+[stem]
+.Discreet formulation
+++++
+\text{Find } \left( T_h , V_h \right) \in U_h^T \times U_h^V
+\text{ for all } \left( t_h , v_h \right) \in V_h^T \times V_h^V
+\text{ such that}
+\\
+\sum^{N_{mat}}_{i = 1} \left( - \displaystyle\int_{\Omega_i} q_h \cdot \nabla t_h
+\right)
+= \sum^{N_{mat}}_{i = 1} \left( \displaystyle\int_{\Omega_i} Q_h t_h \right)
+\\
+\sum^{N_{mat}}_{i = 1} \left( - \displaystyle\int_{\Omega_i} j_h \cdot \nabla v_h
+\right)
+= - \int_{Intensity} V_N v_h
+++++
+
+Using the constitutive equations, we rewrite this formulation
+
+[stem]
+.Discreet formulation
+++++
+\text{Find } \left( T_h , V_h \right) \in U_h^T \times U_h^V
+\text{ for all } \left( t_h , v_h \right) \in V_h^T \times V_h^V
+\text{ such that}
+\\
+\sum^{N_{mat}}_{i = 1} \left( - \displaystyle\int_{\Omega_i} \left( (\sigma \alpha^2 T + k)  \nabla T_h + \alpha \sigma T_h \nabla V_h \right) \cdot \nabla t_h
+\right)
+= \sum^{N_{mat}}_{i = 1} \left( \displaystyle\int_{\Omega_i} \left( \sigma |\nabla V_h|^2 + \sigma \alpha \nabla T_h \cdot \nabla V_h  \right) t_h \right)
+\\
+\sum^{N_{mat}}_{i = 1} \left( - \displaystyle\int_{\Omega_i} \left( \sigma \alpha \nabla T + \sigma \nabla V \right) \cdot \nabla v_h
+\right)
+= - \int_{Intensity} V_N v_h
+++++
+
+Rewrite this to metrical form
+
+[sidebar]
+--
+[stem]
+++++
+\sum^{N_{mat}}_{i = 1} \left( - \displaystyle\int_{\Omega_i}
+\begin{bmatrix}
+\nabla t_h & \nabla v_h
+\end{bmatrix}
+\begin{bmatrix}
+\sigma \alpha^2 T_h + k  & \sigma \alpha T_h
+\\
+\sigma \alpha & \sigma
+
+\end{bmatrix}
+\begin{bmatrix}
+\nabla T_h
+\\
+\nabla V_h
+\end{bmatrix}
+\right)
+-
+\begin{bmatrix}
+t_h & v_h
+\end{bmatrix}
+\begin{bmatrix}
+0 & \sum^{N_{mat}}_{i = 1} \left(  \int_{\Omega_i} (\nabla T_h + \nabla V_h) \right)
+\\
+0 & - \int_{Intensity} V_N
+\end{bmatrix}
+\begin{bmatrix}
+\nabla T_h
+\\
+\nabla V_h
+\end{bmatrix}
+=
+\begin{bmatrix}
+0
+\\
+0
+\end{bmatrix}
+++++
+--
+
+==== Algebraic
+
+Let stem:[\{ \varphi_1, \varphi_2, ..., \varphi_M \}] a base of stem:[V_h^T]. An element stem:[T_h \in V_h^T] is written as
+
+[stem]
+++++
+T_h = \sum^{M}_{j=1} T_j \varphi_j
+++++
+
+Let stem:[\{ \psi_1, \psi_2, ..., \psi_N \}] a base of stem:[V_h^V]. An element stem:[V_h \in V_h^V] is written as
+
+[stem]
+++++
+V_h = \sum^{N}_{l=1} V_l \psi_l
+++++
+
+By using stem:[t_h] and stem:[v_h] as the functions base of stem:[V_h^T] and stem:[V_h^V], i.e
+
+[stem]
+++++
+t_h = \varphi_k
+\\
+v_h = \psi_m
+++++
+
+the problem variable approximation is equivalent to the system
+
+
+[stem]
+.Algebraic system
+++++
+\text{Find } U = \left[ (T_j)_j  (V_l)_l \right] \text{ such that }
+\\
+
+\begin{cases}
+
+A_1(T_j, V_l)=
+\sum^{N_{mat}}_{i = 1} \left( - \displaystyle\int_{\Omega_i}
+\begin{bmatrix}
+\nabla \varphi_1 & \nabla \psi_1
+\end{bmatrix}
+\begin{bmatrix}
+\sigma \alpha^2 \sum^{M}_{j=1} T_j \varphi_j + k  & \sigma \alpha \sum^{M}_{j=1} T_j \varphi_j
+\\
+\sigma \alpha & \sigma
+
+\end{bmatrix}
+\begin{bmatrix}
+\sum^{M}_{j=1} T_j \nabla \varphi_j
+\\
+\sum^{N}_{l=1} V_l \nabla \psi_l
+\end{bmatrix}
+\right)
+-
+\begin{bmatrix}
+\varphi_1 & \psi_1
+\end{bmatrix}
+\begin{bmatrix}
+0 & \sum^{N_{mat}}_{i = 1} \left(  \int_{\Omega_i} (\sum^{M}_{j=1} T_j \nabla \varphi_j + \sum^{N}_{l=1} V_l \nabla \psi_l  \right)
+\\
+0 & - \int_{Intensity} V_N
+\end{bmatrix}
+\begin{bmatrix}
+\sum^{M}_{j=1} T_j \nabla \varphi_j
+\\
+\sum^{N}_{l=1} V_l \nabla \varphi_l
+\end{bmatrix}
+=
+\begin{bmatrix}
+0
+\\
+0
+\end{bmatrix}
+
+\\
+
+\vdots
+
+
+
+\\
+
+A_{M \times N}(T_j, V_l)=
+\sum^{N_{mat}}_{i = 1} \left( - \displaystyle\int_{\Omega_i}
+\begin{bmatrix}
+\nabla \varphi_N & \nabla \psi_M
+\end{bmatrix}
+\begin{bmatrix}
+\sigma \alpha^2 \sum^{M}_{j=1} T_j \varphi_1 + k  & \sigma \alpha \sum^{M}_{j=1} T_j \varphi_j
+\\
+\sigma \alpha & \sigma
+
+\end{bmatrix}
+\begin{bmatrix}
+\sum^{M}_{j=1} T_j \nabla \varphi_j
+\\
+\sum^{N}_{l=1} V_l \nabla \varphi_l
+\end{bmatrix}
+\right)
+-
+\begin{bmatrix}
+\varphi_M & \psi_N
+\end{bmatrix}
+\begin{bmatrix}
+0 & \sum^{N_{mat}}_{i = 1} \left(  \int_{\Omega_i} (\sum^{M}_{j=1} T_j \nabla \varphi_1 + V_h = \sum^{N}_{l=1} V_l \nabla \varphi_1) \right)
+\\
+0 & - \int_{Intensity} V_N
+\end{bmatrix}
+\begin{bmatrix}
+\sum^{M}_{j=1} T_j \nabla \varphi_j
+\\
+\sum^{N}_{l=1} V_l \nabla \varphi_l
+\end{bmatrix}
+=
+\begin{bmatrix}
+0
+\\
+0
+\end{bmatrix}
+
+\end{cases}
+
+++++
+
+==== Apply Newton-Raphson's method
+
+Calculate the jacobian matrix
+
+[stem]
+++++
+J =
+\begin{bmatrix}
+\frac{\partial A_1}{\partial T_1} & \cdots & \frac{\partial A_1}{\partial T_M} & \frac{\partial A_1}{\partial V_1} & \cdots & \frac{\partial A_1}{\partial V_N}
+
+\\
+\vdots & \vdots & \ddots & \vdots
+\\
+\frac{\partial A_{M \times N}}{\partial T_1} & \cdots & \frac{\partial A_{M \times N}}{\partial T_M} & \frac{\partial A_{M \times N}}{\partial V_1} & \cdots & \frac{\partial A_{M \times N}}{\partial V_N}
+
+\end{bmatrix}
+
+++++
+
+Consider stem:[U^{(k)} = (T_1^{(k)}, \cdots , T_M^{(k)}, V_1^{(k)}, \cdots , V_N^{(k)})] is the vector of stem:[U_h] in k-th iteration.
+
+And compute the vector residual
+
+[stem]
+++++
+R^{(k)} =
+\begin{bmatrix}
+A_1(U^{(k)})
+\\
+A_2(U^{(k)})
+\\
+\vdots
+\\
+A_{M \times N}(U^{(k)})
+\end{bmatrix}
+++++
+
+We solve the linear system
+
+[stem]
+++++
+J(U^{(k)}) \delta U^{(k)} = - R^{(k)}
+++++
+
+to find the better estimate
+
+[stem]
+++++
+U^{(k+1)} = \delta U^{(k)} + U^{(k)}
+++++
+
+We now compute the element of jacobian natrix
+
+[stem]
+++++
+J(U^{(k)}) = \{ J_{lj} (U^{(k)}) \}_{l = 1, \cdots, M \times N}^{j = 1, \cdots, M + N}
+
+++++
+
+So from
+
+[stem]
+++++
+A(T_k, V_l)
+=  \sum^{N_{mat}}_{i = 1} \left(
+\displaystyle\int_{\Omega_i} q \cdot \nabla \varphi_k
+- \int_{\Omega_i} Q \cdot \nabla \varphi_k
+- \int_{\Omega_i} j \cdot \nabla \psi_k
++ \int_{Intensity} - V_N \psi_k
+\right)
+
+\\
+
+=  \sum^{N_{mat}}_{i = 1} \left(
+- \displaystyle\int_{\Omega_i} \left( k \nabla T + Pj \right) \cdot \nabla \varphi_k
+- \int_{\Omega_i} j E \cdot \nabla \varphi_k
+- \int_{\Omega_i} j \cdot \nabla \psi_k
++ \int_{Intensity} - V_N \psi_k
+\right)
+
+++++
+
+We have
+
+[stem]
+++++
+J_{pq} = \sum^{N_{mat}}_{i = 1} \left(
+- \displaystyle\int_{\Omega_i} \left( k \nabla \varphi_p + P'j + P j' \right) \cdot \nabla \varphi_p
+- \int_{\Omega_i} j' E + j E' \cdot \nabla \varphi_p
+- \int_{\Omega_i} j' \cdot \nabla \psi_q
+\right)
+
+++++
+
+where
+
+[stem]
+++++
+P' := \frac{\partial P}{\partial T_p} = \frac{\partial }{\partial T_p} \left( \alpha \sum^{M}_{j=1} T_j \varphi_j \right)
+= \alpha \varphi_p
+
+\\
+
+E' := \frac{\partial E}{\partial V_q} = \frac{\partial }{\partial V_q} \left( - \sum^{N}_{l=1} V_l \nabla \psi_l \right)
+= - \psi_q
+
+\\
+
+j' := \frac{\partial j}{\partial T_p} + \frac{\partial j}{\partial V_q}
+= \sigma \left( E' + \frac{\partial ( \alpha \nabla T)}{\partial T_p} \right)
+= \sigma (- \psi_q + \alpha \nabla \varphi_p)
+++++
+
+So
+
+[sidebar]
+.Element of jacobian matrix
+--
+[stem]
+++++
+J_{pq}  = \sum^{N_{mat}}_{i = 1} \left(
+- \displaystyle\int_{\Omega_i} \left( k \nabla \varphi_p
+\\
++ \alpha \varphi_p (\sigma (- \nabla V - \alpha \nabla T))
++ \alpha T (\sigma (- \psi_q + \alpha \nabla \varphi_p)) \right) \cdot \nabla \varphi_p
+\\
+- \int_{\Omega_i} \left( \sigma (- \psi_q + \alpha \nabla \varphi_p) (-\nabla V) +  (\sigma (- \nabla V - \alpha \nabla T)) (- \psi_q)  \right) \cdot \nabla \varphi_p
+\\
+- \int_{\Omega_i} \sigma (- \psi_q + \alpha \nabla \varphi_p) \cdot \nabla \psi_q
+\right)
+
+++++
+--
+
+
+[sidebar]
+.Element of vector residual
+--
+[stem]
+++++
+R_k  = \sum^{N_{mat}}_{i = 1} \left(
+- \displaystyle\int_{\Omega_i} \left( k \nabla T - \alpha T (-\sigma \nabla V - \alpha \nabla T) \right) \cdot \nabla \varphi_k
+\\
++ \int_{\Omega_i} - \sigma (|\nabla V|^2 + \alpha \nabla T \cdot \nabla V ) \varphi_k
+\\
++ \int_{\Omega_i} \sigma (- \nabla V - \alpha \nabla T) \cdot \nabla \psi_k
+\right)
+\\
++ \int_{Intensity} V_N \psi_k
+
+++++
+--
+
+=== Implementation
+
+We focus on the two extra functions to update the jacobian matrix and the vector ressidual
+
+[source,cpp
+----
+auto Jacobian = [&](const vector_ptrtype& X, sparse_matrix_ptrtype& J)
+       {
+           if (!J) J = backend()->newMatrix( Vh, Vh );
+           auto l = form1(_test=Vh);
+           auto a = form2( _test=Vh, _trial=Vh, _matrix=J );
+
+           TV = *X;
+           // energy equation
+           a = integrate( _range=markedelements(mesh, "Material0"), _expr= -inner(d_q1,grad(t)) );
+           a += integrate( _range=markedelements(mesh, "Material1"), _expr= -inner(d_q2,grad(t)) );
+
+           a += integrate( _range=markedelements(mesh,"Material0"), _expr= -inner( d_Q1,id(t) ) );
+           a += integrate( _range=markedelements(mesh,"Material1"), _expr= -inner( d_Q2,id(t) ) );
+
+
+           // electric charge equation
+           a += integrate( _range=markedelements(mesh,"Material0"),
+                          _expr= -inner(d_fluxElectric1 ,grad(v)) );
+           a += integrate( _range=markedelements(mesh,"Material1"),
+                          _expr= -inner(d_fluxElectric2 ,grad(v)) );
+
+
+           a += on(_range=markedfaces(mesh,"Ground"),_rhs = l, _element=V, _expr = cst(0.) );
+           a +=on(_range=markedfaces(mesh,"Ground"),_rhs = l, _element=T, _expr = cst(0.) );
+
+       };
+
+----
+
+
+[source,cpp]
+----
+auto Residual = [&](const vector_ptrtype& X, vector_ptrtype& R)
+       {
+           //auto TV = Vh->element();
+
+           TV = *X;
+           auto r = form1( _test=Vh, _vector=R );
+
+           // energy equation
+           r = integrate( _range=markedelements(mesh,"Material0"), _expr= -inner(q1,grad(t)) );
+           r += integrate( _range=markedelements(mesh,"Material1"), _expr= -inner(q2,grad(t)) );
+
+           r += integrate( _range=markedelements(mesh,"Material0"), _expr= -inner(Q1,id(t)) );
+           r += integrate( _range=markedelements(mesh,"Material1"), _expr= -inner(Q2,id(T)) );
+
+           // electric charge equation
+           r += integrate( _range=markedelements(mesh,"Material0"), _expr= -inner(fluxElectric1 ,grad(v)) );
+           r += integrate( _range=markedelements(mesh,"Material1"), _expr= -inner(fluxElectric2 ,grad(v)) );
+
+           r += integrate( _range=markedfaces(mesh,"Intensity"), _expr=  V_N * id(v)); //Neumann condition
+
+           auto w = Vh->element();
+           auto Tw = w.element<0>();
+           auto Vw = w.element<1>();
+
+           w=*R;
+
+           Tw.on(_range=markedfaces(mesh,"Ground"),_expr = cst(0.) );
+           Vw.on(_range=markedfaces(mesh,"Ground"),_expr = cst(0.) );
+
+           *R=w;
+
+       };
+
+----
+
+In this step, we have to pay attention in copy the variable because both of this two functions
+use the same variables which are declared out of the function. So in each iteration, in order
+to modify, we have to copy the variable by reference.
+
+[source,cpp]
+----
+auto Jacobian = [&](const vector_ptrtype& X, sparse_matrix_ptrtype& J)
+----
+
+We export the gradient of the potentiel electric to simulate the courant electric
+
+[source,cpp]
+----
+auto XhVec = Pdhv<1>(mesh);
+    auto electricField = XhVec->element();
+    electricField.on(_range=elements(mesh),_expr=trans(gradv(V)));
+
+----
+
+and also the average value of temperature in each component.
+
+[source,cpp]
+----
+auto T1 = mean(_range = markedelements(mesh,"Electrode1"), _expr  = idv(T))(0,0);
+
+    cout << "T_electrode1 = " << T1<< std::endl;
+
+    auto T2 = mean(_range = markedelements(mesh,"Electrode2"), _expr  = idv(T))(0,0);
+
+    cout << "T_electrode2 = " << T2<< std::endl;
+
+    auto T3 = mean(_range = markedelements(mesh,"Material1"), _expr  = idv(T))(0,0);
+
+    cout << "T_Adiabatic = " << T3<< std::endl;
+
+    auto T4 = mean(_range = markedelements(mesh), _expr  = idv(T))(0,0) ;
+
+    cout << "T_mean = " << T2<< std::endl;
+----
+
+
+
+
+=== Numerical experience
+
+
+This table sows the material properties used for temperature-independent calculations.
+
+.Table of material
+|===
+
+| | | Thermoelectric material| Electrode
+
+|Seebeck coefficient| stem:[\alpha, V/K]| 200e-6| 6.5e-6
+
+|Electric conductivity| stem:[\sigma,  S/m]| 1.1e5| 5.9e8
+
+|Thermal conductivity| stem:[\lambda, kg/m^3]| 1.6| 350
+
+|===
+
+
+[source,bash]
+----
+snes-monitor=true
+#ksp-monitor=true
+snes-ksp-rtol=1e-8
+pc-type=gasm#lu
+
+----
+
+A p-type thermoelectric element is contacted by copper electrodes (left). T
+he base is kept at 0°C and 0V. At the top 0.7A current was applied.
+Adiabatic boundary conditions were used. The resulting temperature
+distribution is shown in the left, the voltage is shown right.
+A temperature difference of nearly 55 K is achieved. The voltage at the upper
+electrode is 40 mV.
+
+
+[cols="^,^"]
+.Solution
+|======
+|image:image/s2.png[]
+|image:image/s3.png[]
+|T
+|V
+|======
+
+
+[source,bash]
+----
+T_electrode1 = 2.285343e+02
+T_electrode2 = 2.731662e+02
+T_Adiabatic = 2.508503e+02
+T_mean = 2.731662e+02
+----
+
+
+[cols="^,^"]
+.Field electric
+|======
+|image:image/s4.png[]
+|image:image/s5.png[]
+|======
+
+
+[cols="^,^"]
+.Line of courant electric
+|======
+|image:image/s61.png[]
+|image:image/s7.png[]
+|======
+
+The program work well in the case of small hsize, par exemple 0.01
+
+[source,bash]
+----
+0  SNES Function norm 1.219878e-01
+1  SNES Function norm 6.870446e-03
+2  SNES Function norm 3.242836e-06
+3  SNES Function norm 5.515413e-11
+T_electrode1 = 2.285343e+02
+T_electrode2 = 2.731662e+02
+T_Adiabatic = 2.508503e+02
+T_mean = 2.731662e+02
+[env] Time : 2.226648e+01s
+----
+
+
+[cols="^,^"]
+|======
+|image:image/s9.png[]
+|image:image/s8.png[]
+|======
+
+[cols="^,^"]
+|======
+|image:image/s10.png[]
+|image:image/s11.png[]
+|======
+
+[cols="^,^"]
+|======
+|image:image/s12.png[]
+|image:image/s13.png[]
+|======
+
+[cols="^,^"]
+|======
+|image:image/s14.png[]
+|image:image/s15.png[]
+|======
+
+
+Otherwise, we can creat option for adding a Peltier-Seebeck's effet
+to an ordinary module thermoelectric . For that, we take off the loi Thomson
+in the equation of energy conservation and the temperature's term in the
+electric charge equation.
+
+[source,cpp]
+----
+( "Peltier-Seebeck", Feel::po::value<bool>()->default_value( false ),
+ "Ajoute effet Peltier - Seebeck   non=0, oui=1" )
+----
+
+In ordinary thermoelectric case, we obtain
+
+[source,bash]
+----
+0  SNES Function norm 1.219878e-01
+1  SNES Function norm 1.544601e-03
+2  SNES Function norm 1.043262e-09
+T_electrode1 = 4.604944e+02
+T_electrode2 = 2.731648e+02
+T_Adiabatic = 3.668296e+02
+T_mean = 2.731648e+02
+[env] Time : 2.040189e+01s
+
+----
+
+[cols="^,^"]
+.Ordinary thermoelectric case
+|======
+|image:image/s16.png[]
+|image:image/s17.png[]
+|======
+
+We observe that the effet of Peltir-Seebeck is well posed in the previous exemple,
+there is the courant electric which is conduit by keeping cold one of the electrode.
+
+Calculated cold side temperatures versus current for
+ temperature independent material properties.
+
+[cols="^,^"]
+|======
+|image:image/i1.png[]
+|image:image/i2.png[]
+|Without Peltier-Seebeck's effet
+|With Peltier-Seebeck's effet
+|======
+
+The fact that the simulations follow the physical effects can verify the strategy
+of the problem.
